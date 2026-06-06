@@ -51,7 +51,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {/* HERO */}
       <header className="case-hero">
         <div className="media">
-          {p.img ? <div className="img" style={{ backgroundImage: p.img }} /> : <div className="ph" />}
+          {(p.heroImg || p.img) ? <div className="img" style={{ backgroundImage: p.heroImg || p.img! }} /> : <div className="ph" />}
           <div className="scrim" />
         </div>
         <div className="wrap inner">

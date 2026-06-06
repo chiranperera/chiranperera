@@ -32,7 +32,8 @@ export type Project = {
   client: string;
   timeline: string;
   stack: string[];
-  img: string | null;
+  img: string | null;       // slideshow / work-card image
+  heroImg?: string;         // case-study hero banner (falls back to img)
   liveUrl?: string;
   overview: string[];
   research: string;
@@ -60,7 +61,8 @@ export const PROJECTS: Project[] = [
     role: "Strategy · Design · Build", client: "VOLT Home Energy", timeline: "4 weeks",
     stack: ["HTML", "CSS", "Vanilla JS", "Lucide", "Vercel"],
     liveUrl: "https://volt-solar-three.vercel.app/",
-    img: "url('/assets/volt/hero.jpg')",
+    img: "url('/assets/volt/project-card-mobile-right.png')",
+    heroImg: "url('/assets/volt/project-card-project-page-banner.png')",
     overview: [
       "I designed and built VOLT Home Energy from a blank page — a direct-to-consumer brand for modular home batteries, hybrid inverters and solar. The brief was to make a category usually sold as engineering spec-sheets feel like a confident, modern consumer product, without watering down the technical detail buyers actually shop on.",
       "The interesting part was the tension: buyers compare LFP chemistry, continuous-kW figures and 20-millisecond switchover claims — and still want a brand they trust enough to bolt onto the wall. I built the whole stack — research, brand language, design system, page architecture, copy, configurator and AI concierge — to do both at once.",
