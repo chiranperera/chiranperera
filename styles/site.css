@@ -28,16 +28,17 @@ img{display:block;max-width:100%}
   animation:gridDrift 60s linear infinite}
 @keyframes gridDrift{to{background-position:var(--grid-size) var(--grid-size),var(--grid-size) var(--grid-size)}}
 
-/* ---- nav (minimal, fixed corners) ---- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;
-  padding:26px var(--wrap-pad);mix-blend-mode:difference}
-.wordmark{font-family:var(--font-display);font-weight:900;font-size:19px;letter-spacing:-.03em;color:#fff;display:inline-flex;align-items:baseline}
+/* ---- unified header: logo top-left, back chevron below it, burger top-right ---- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:flex-start;justify-content:space-between;
+  padding:24px var(--wrap-pad);background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);pointer-events:none}
+.site-header .wordmark,.site-header .burger,.site-header .hdr-back{pointer-events:auto}
+.wordmark{font-family:var(--font-display);font-weight:900;font-size:19px;letter-spacing:-.03em;color:#fff;display:inline-flex;align-items:baseline;cursor:pointer}
 .wordmark .dot{color:#fff}
-.nav-mid{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:.7;display:none}
-@media(min-width:900px){.nav-mid{display:block}}
-.nav-right{display:flex;align-items:center;gap:22px}
-.nav-link{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;cursor:pointer}
-.burger{display:flex;flex-direction:column;gap:5px;cursor:pointer}
+.hdr-left{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.hdr-back{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;color:#fff;
+  border:1px solid var(--line-2);border-radius:50%;transition:background .3s var(--ease-out),color .3s,border-color .3s}
+.hdr-back:hover{background:#fff;color:var(--bg);border-color:#fff}
+.burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;margin-top:4px}
 .burger span{width:24px;height:2px;background:#fff;display:block;transition:transform .3s var(--ease-out),opacity .3s}
 
 /* ---- buttons (mono, sharp) ---- */

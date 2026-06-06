@@ -8,15 +8,21 @@ export function Field() {
   return <div className="field" aria-hidden="true" />;
 }
 
-export function Nav({ onMenu, onHome }: { onMenu: () => void; onHome: () => void }) {
+/* One consistent header for every route: logo top-left (fixed position),
+   an icon-only back chevron BELOW the logo on inner pages (→ home), and the
+   hamburger always top-right. No text labels. */
+export function Header({ showBack = false }: { showBack?: boolean }) {
+  const { go, openMenu } = useNav();
   return (
-    <nav className="nav">
-      <a className="wordmark" onClick={onHome}>CHIRAN<span className="dot">.</span></a>
-      <div className="nav-right">
-        <a className="nav-link" onClick={onMenu}>Menu</a>
-        <button className="burger" aria-label="Open menu" onClick={onMenu}><span /><span /><span /></button>
+    <header className="site-header">
+      <div className="hdr-left">
+        <a className="wordmark" onClick={() => go("home")}>CHIRAN<span className="dot">.</span></a>
+        {showBack && (
+          <button className="hdr-back" aria-label="Back to home" onClick={() => go("home")}><IArrowL s={17} /></button>
+        )}
       </div>
-    </nav>
+      <button className="burger" aria-label="Open menu" onClick={openMenu}><span /><span /><span /></button>
+    </header>
   );
 }
 
@@ -30,7 +36,7 @@ export function Overlay({ open, onClose }: { open: boolean; onClose: () => void 
     <div className={`overlay${open ? " open" : ""}`} role="dialog" aria-modal="true" aria-hidden={!open}>
       <div className="overlay-top">
         <a className="wordmark" onClick={() => { onClose(); go("home"); }}>CHIRAN<span className="dot" style={{ color: "var(--accent)" }}>.</span></a>
-        <button className="overlay-close" onClick={onClose}>Close <IClose s={16} /></button>
+        <button className="overlay-close" aria-label="Close menu" onClick={onClose}><IClose s={20} /></button>
       </div>
       <div className="overlay-body">
         <nav className="overlay-links">
@@ -98,15 +104,3 @@ export function Footer() {
   );
 }
 
-export function PageBar() {
-  const { go, openMenu } = useNav();
-  return (
-    <div className="page-bar">
-      <button className="tlink" onClick={() => go("home")}><IArrowL s={16} /> Index</button>
-      <div className="r">
-        <a className="wordmark" onClick={() => go("home")} style={{ fontSize: 16 }}>CHIRAN<span className="dot" style={{ color: "var(--accent)" }}>.</span></a>
-        <a className="nav-link" style={{ color: "#fff" }} onClick={openMenu}>Menu</a>
-      </div>
-    </div>
-  );
-}

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { PROJECTS } from "@/lib/data";
 import { useNav } from "@/components/AppShell";
-import { Footer, PageBar } from "@/components/chrome/Chrome";
+import { Footer } from "@/components/chrome/Chrome";
 import { IArrow } from "@/components/icons";
 
 /* ---------- WORK ---------- */
@@ -14,7 +14,6 @@ export function WorkPage() {
   const list = f === "All" ? PROJECTS : PROJECTS.filter((p) => p.cats.some((c) => c.includes(f)) || (f === "Branding" && p.cats.includes("Brand")));
   return (
     <div className="case" style={{ "--accent": "#D8FF3E" } as React.CSSProperties}>
-      <PageBar />
       <section className="wrap page-hero" style={{ paddingBottom: 0 }}>
         <span className="eyebrow"><span className="dot" style={{ color: "var(--accent)" }}>●</span> Selected work — 2024–2026</span>
         <h1>Work<span style={{ color: "var(--accent)" }}>.</span></h1>
@@ -57,7 +56,6 @@ export function StudioPage() {
   ];
   return (
     <div className="case" style={{ "--accent": "#D8FF3E" } as React.CSSProperties}>
-      <PageBar />
       <section className="wrap page-hero" style={{ paddingBottom: 0 }}>
         <span className="eyebrow"><span className="dot" style={{ color: "var(--accent)" }}>●</span> The studio — Colombo, LK</span>
         <h1>Design<br />meets<br /><span style={{ color: "var(--accent)" }}>intelligence.</span></h1>
@@ -110,7 +108,6 @@ export function ServicesPage() {
   ];
   return (
     <div className="case" style={{ "--accent": "#D8FF3E" } as React.CSSProperties}>
-      <PageBar />
       <section className="wrap page-hero">
         <span className="eyebrow"><span className="dot" style={{ color: "var(--accent)" }}>●</span> What I do</span>
         <h1>Services<span style={{ color: "var(--accent)" }}>.</span></h1>
@@ -138,7 +135,6 @@ export function ContactPage() {
   const [sent, setSent] = React.useState(false);
   return (
     <div className="case" style={{ "--accent": "#D8FF3E" } as React.CSSProperties}>
-      <PageBar />
       <section className="wrap page-hero">
         <div className="contact-grid">
           <div>
@@ -173,7 +169,6 @@ export function JournalPage() {
   const { go } = useNav();
   return (
     <div className="case" style={{ "--accent": "#D8FF3E", minHeight: "100vh" } as React.CSSProperties}>
-      <PageBar />
       <section className="wrap page-hero">
         <span className="eyebrow"><span className="dot" style={{ color: "var(--accent)" }}>●</span> Journal</span>
         <h1>Journal<span style={{ color: "var(--accent)" }}>.</span></h1>

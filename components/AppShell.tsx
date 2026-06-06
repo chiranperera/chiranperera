@@ -6,7 +6,7 @@
    transition, and the home-only fullscreen scroll lock. */
 import * as React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Field, Nav, Overlay } from "@/components/chrome/Chrome";
+import { Field, Header, Overlay } from "@/components/chrome/Chrome";
 import { Cursor, Preloader } from "@/components/chrome/Effects";
 
 type NavCtx = {
@@ -63,7 +63,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <Cursor />
       <Field />
-      {isHome && <Nav onMenu={openMenu} onHome={() => go("home")} />}
+      <Header showBack={!isHome} />
       {children}
       <Overlay open={menu} onClose={closeMenu} />
       {wipe && <div className="wipe run"><span className="mk">CHIRAN<span className="dot">.</span></span></div>}

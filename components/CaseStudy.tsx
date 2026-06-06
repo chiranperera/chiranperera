@@ -4,7 +4,7 @@ import * as React from "react";
 import { PROJECTS } from "@/lib/data";
 import { useNav } from "@/components/AppShell";
 import { Footer } from "@/components/chrome/Chrome";
-import { IArrow, IArrowL } from "@/components/icons";
+import { IArrow } from "@/components/icons";
 
 function Reveal({ children, className = "", ...rest }: { children: React.ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -46,12 +46,6 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
   return (
     <div className="case" style={{ "--accent": p.accent, "--accent-soft": hexA(p.accent, .12), "--accent-line": hexA(p.accent, .45) } as React.CSSProperties}>
-      <div className="case-back">
-        <button className="tlink" onClick={() => go("home")}><IArrowL s={16} /> All work</button>
-        <span className="nav-mid eyebrow">{p.num} / 05</span>
-        <a className="wordmark" onClick={() => go("home")} style={{ fontSize: 16 }}>CHIRAN<span className="dot" style={{ color: p.accent }}>.</span></a>
-      </div>
-
       {/* HERO */}
       <header className="case-hero">
         <div className="media">
