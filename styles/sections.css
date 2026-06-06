@@ -183,12 +183,14 @@
   .case-body .left{margin-bottom:8px}
   .imgrid-3{grid-template-columns:1fr 1fr}
   .stat-row{grid-template-columns:1fr 1fr}
+  .stat-row .s{padding:24px 20px}
   .tile.wide{grid-column:span 2}
   .foot-grid{grid-template-columns:1fr;gap:36px}
   .case section{padding:var(--section-y-sm) var(--wrap-pad)}
   .case-back .nav-mid{display:none}
 }
 @media(max-width:560px){
-  .meta-bar,.stat-row,.imgrid-2,.imgrid-3{grid-template-columns:1fr}
+  .meta-bar,.imgrid-2,.imgrid-3{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr} /* keep stats 2×2 — never one tall column */
   .tile.wide{grid-column:span 1}
 }
