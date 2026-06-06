@@ -153,9 +153,15 @@ img{display:block;max-width:100%}
 .intro{position:absolute;inset:0;display:block;overflow:hidden}
 .intro-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 92% at 50% 36%, #1c1c22 0%, #101014 46%, #0a0a0b 76%)}
 .intro-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:var(--grid-size) var(--grid-size);-webkit-mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%);mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%)}
+/* Locked composition: name + portrait scale together off ONE axis (the
+   lockup's own size via container units), so their overlap/alignment is
+   identical at every viewport size. Capped by both vw and vh so the
+   figure always fits the screen. */
+.intro-lockup{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(92vw, 116vh);aspect-ratio:100/74;container-type:size;z-index:1;pointer-events:none}
 .intro-nameback{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
-.intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(64px,16vw,250px);line-height:.82;letter-spacing:-.05em;color:#fff;white-space:nowrap;text-shadow:0 4px 50px rgba(0,0,0,.45)}
-.intro-subject{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);height:58%;width:auto;z-index:2;pointer-events:none;display:flex;align-items:flex-end}
+.intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:20.5cqw;line-height:.82;letter-spacing:-.05em;color:#fff;white-space:nowrap;text-shadow:0 4px 50px rgba(0,0,0,.45)}
+.intro-subject{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:99cqh;width:auto;z-index:2;pointer-events:none;display:flex;align-items:flex-end}
 .intro-subject img{height:100%;width:auto;object-fit:contain;filter:grayscale(1) contrast(1.04);-webkit-mask-image:linear-gradient(0deg, transparent 0%, #000 8%);mask-image:linear-gradient(0deg, transparent 0%, #000 8%)}
 .intro-fade{position:absolute;left:0;right:0;bottom:0;height:18%;z-index:3;pointer-events:none;background:linear-gradient(0deg,var(--bg),transparent)}
 .intro-grain{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,11,.35),transparent 30%,transparent 62%,rgba(10,10,11,.85))}
@@ -167,8 +173,7 @@ img{display:block;max-width:100%}
 .intro-eyebrow{position:absolute;left:0;right:0;top:13%;z-index:6;text-align:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 @media(max-width:760px){
   .intro-cap{display:none}
-  .intro-subject{height:44%;top:45%}
-  .intro-nameback h1{font-size:clamp(46px,17vw,120px)}
+  .intro-lockup{width:min(94vw, 88vh);aspect-ratio:100/82}
 }
 
 @media(max-width:900px){

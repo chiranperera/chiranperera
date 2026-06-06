@@ -8,15 +8,17 @@ function IntroSlide({ active }: { active: boolean }) {
   return (
     <article className={`slide intro${active ? " active" : ""}`} aria-hidden={!active}>
       <div className="intro-bg" />
-      <div className="intro-nameback"><h1>CHIRAN</h1><h1>PERERA</h1></div>
+      <div className="intro-lockup">
+        <div className="intro-nameback"><h1>CHIRAN</h1><h1>PERERA</h1></div>
+        <div className="intro-subject">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
+        </div>
+      </div>
       <div className="intro-eyebrow">Designer · Developer · Brand &amp; AI Automation</div>
       <div className="intro-foot">
         <p className="tag">I design, build and brand digital experiences from end to end — powered by AI.</p>
         <span className="tlink" style={{ color: "#fff" }}>Selected work <span className="arr">↓</span></span>
-      </div>
-      <div className="intro-subject">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
       </div>
       <div className="intro-fade" />
       <div className="intro-grain" />
