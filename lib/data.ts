@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
           "A tireless salesperson + support agent in one",
           "Private and instant — runs in the browser, nothing leaves it",
         ],
-        media: { label: "AI Concierge — 24/7 chat" },
+        media: { label: "VOLT AI Concierge", src: "url('/assets/volt/feature-concierge.jpg')" },
       },
       {
         eyebrow: "Interactive · Instant",
@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
           "Skips the slow, manual sizing process",
           "Visitors self-qualify before they ever call",
         ],
-        media: { label: "Bill-upload energy sizing" },
+        media: { label: "Instant Sizer — bill upload", src: "url('/assets/volt/feature-leadcapture.jpg')" },
       },
       {
         eyebrow: "Pipeline · Conversion",
@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
           "Configured systems = higher-value, ready-to-quote leads",
           "Fewer tyre-kickers, more booked installs",
         ],
-        media: { label: "Lead capture + configurator" },
+        media: { label: "Live sizing → quote", src: "url('/assets/volt/feature-sizing.jpg')" },
       },
     ],
     pitch: {
