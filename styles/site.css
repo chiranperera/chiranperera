@@ -82,7 +82,7 @@ img{display:block;max-width:100%}
   background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.5px);
   background-size:22px 22px}
 .slide-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:30px;
-  width:100%;max-width:600px;padding:0 56px 0 var(--wrap-pad)}
+  width:100%;max-width:620px;padding:0 56px 0 clamp(88px,6vw,116px)} /* clear the left SCROLL/2026 rail + breathing room */
 .slide-inner .eyebrow{color:var(--ink-3)}
 .slide-title{font-family:var(--font-display);font-weight:700;font-size:clamp(42px,4.8vw,82px);line-height:.96;letter-spacing:-.04em;color:#fff;text-wrap:balance}
 .slide-inner .summary{font-size:clamp(16px,1.15vw,19px);line-height:1.6;color:var(--ink-2);max-width:460px}
