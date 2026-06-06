@@ -41,6 +41,8 @@ export default function CaseStudy({ slug }: { slug: string }) {
   const { go } = useNav();
   const p = PROJECTS.find((x) => x.slug === slug) || PROJECTS[0];
   const nextP = PROJECTS[(PROJECTS.indexOf(p) + 1) % PROJECTS.length];
+  const total = String(PROJECTS.length).padStart(2, "0");
+  const m = p.media;
   React.useEffect(() => { window.scrollTo(0, 0); }, [slug]);
   const title = p.title.replace("\n", " ");
 
@@ -60,7 +62,11 @@ export default function CaseStudy({ slug }: { slug: string }) {
             <div className="m"><div className="k">Role</div><div className="v">{p.role}</div></div>
             <div className="m"><div className="k">Client</div><div className="v">{p.client}</div></div>
             <div className="m"><div className="k">Timeline</div><div className="v">{p.timeline}</div></div>
-            <div className="m"><div className="k">Live</div><div className="v accent">{p.client.toLowerCase().replace(/ /g, "")}.com ↗</div></div>
+            <div className="m"><div className="k">Live</div><div className="v accent">
+              {p.liveUrl
+                ? <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">{p.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗</a>
+                : `${p.client.toLowerCase().replace(/ /g, "")}.com ↗`}
+            </div></div>
           </div>
         </div>
       </header>
@@ -100,11 +106,11 @@ export default function CaseStudy({ slug }: { slug: string }) {
         <Reveal><CaseHead ix="03">Direction &amp;<br />design.</CaseHead></Reveal>
         <Reveal>
           <div className="imgrid imgrid-2">
-            <Tile n="D—01" label="Identity system" img={p.img} />
-            <Tile n="D—02" label="Type specimen" />
-            <Tile wide n="D—03" label="Hi-fi — homepage" img={p.img} />
-            <Tile n="D—04" label="Mobile flows" tall />
-            <Tile n="D—05" label="Component library" />
+            <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
+            <Tile n="D—02" label="Type specimen" img={m?.type} />
+            <Tile wide n="D—03" label="Hi-fi — homepage" img={m?.homeDesktop || p.img} />
+            <Tile n="D—04" label="Mobile flows" tall img={m?.homeMobile} />
+            <Tile n="D—05" label="Component library" img={m?.components} />
           </div>
         </Reveal>
       </section>
@@ -128,7 +134,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       <section className="wrap">
         <Reveal className="ai-callout">
           <span className="eyebrow"><span style={{ color: p.accent }}>●</span> AI functionality</span>
-          <h3>Engineered for the answer engines.</h3>
+          <h3>{p.aiHeadline || "Engineered for the answer engines."}</h3>
           <p>{p.ai}</p>
         </Reveal>
       </section>
@@ -145,11 +151,25 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </Reveal>
       </section>
 
+      {/* GALLERY (real screens — only when a project supplies them) */}
+      {m?.gallery && m.gallery.length > 0 && (
+        <section className="wrap">
+          <Reveal><CaseHead ix="06">Selected<br />screens.</CaseHead></Reveal>
+          <Reveal>
+            <div className="imgrid imgrid-2">
+              {m.gallery.map((g, i) => (
+                <Tile key={i} n={`S—0${i + 1}`} label={g.label} img={g.src} wide={g.wide} tall={g.tall} />
+              ))}
+            </div>
+          </Reveal>
+        </section>
+      )}
+
       {/* NEXT PROJECT */}
       <div className="next" onClick={() => go("case:" + nextP.slug)} style={{ "--accent": nextP.accent } as React.CSSProperties}>
         <div className="media"><div className="ph" /></div>
         <div className="wrap inner">
-          <span className="eyebrow">Next project — {nextP.num} / 05</span>
+          <span className="eyebrow">Next project — {nextP.num} / {total}</span>
           <h2>{nextP.title.replace("\n", " ")} <span className="arr"><IArrow s={40} /></span></h2>
         </div>
       </div>

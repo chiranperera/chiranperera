@@ -1,6 +1,8 @@
 /* Studio Site — project data. Each project owns an accent.
    hero img: a CSS background value, or null → use a labelled placeholder. */
 
+export type GalleryItem = { src: string; label: string; wide?: boolean; tall?: boolean };
+
 export type Project = {
   slug: string;
   num: string;
@@ -14,15 +16,57 @@ export type Project = {
   timeline: string;
   stack: string[];
   img: string | null;
+  liveUrl?: string;
   overview: string[];
   research: string;
   ai: string;
+  aiHeadline?: string;
   stats: [string, string, string][];
+  /* optional real imagery for the case-study tiles + a gallery */
+  media?: {
+    identity?: string;
+    type?: string;
+    homeDesktop?: string;
+    homeMobile?: string;
+    components?: string;
+    gallery?: GalleryItem[];
+  };
 };
 
 export const PROJECTS: Project[] = [
   {
-    slug: "sarisara-lanka", num: "01", title: "Sarisara\nLanka",
+    slug: "volt-home-energy", num: "01", title: "VOLT Home\nEnergy",
+    cats: ["Solar & Energy", "Web", "Branding", "AI"], year: "2026", accent: "#E5FF03",
+    summary: "A modular home-energy brand — a Swiss-grid storefront with an on-page AI sizing concierge.",
+    role: "Strategy · Design · Build", client: "VOLT Home Energy", timeline: "4 weeks",
+    stack: ["HTML", "CSS", "Vanilla JS", "Lucide", "Vercel"],
+    liveUrl: "https://volt-solar-three.vercel.app/",
+    img: "url('/assets/volt/hero.jpg')",
+    overview: [
+      "I designed and built VOLT Home Energy from a blank page — a direct-to-consumer brand for modular home batteries, hybrid inverters and solar. The brief was to make a category usually sold as engineering spec-sheets feel like a confident, modern consumer product, without watering down the technical detail buyers actually shop on.",
+      "The interesting part was the tension: buyers compare LFP chemistry, continuous-kW figures and 20-millisecond switchover claims — and still want a brand they trust enough to bolt onto the wall. I built the whole stack — research, brand language, design system, page architecture, copy, configurator and AI concierge — to do both at once.",
+    ],
+    research: "A week mapping the 2026 home-storage market: LFP becoming standard, modular/stackable the dominant trend, the federal ITC expiring, and VPP earnings emerging as a real number (~$1,000/yr). I tore down Tesla Powerwall 3, FranklinWH, Enphase, Anker SOLIX and EcoFlow on positioning and spec hierarchy. The key insight: every competitor leads with capacity — almost none lead with the story, start small and stack as you grow. That phrase became the homepage tagline, the configurator's logic, and the modular product line.",
+    ai: "The signature feature is the VOLT Concierge — a sticky, on-page energy assistant that sizes a shopper's system in natural language (\"will it power my home in an outage?\", \"how much can I save?\") without leaving the page. It runs entirely client-side on a curated conversation graph grounded in real product specs, so it's instant and private, surfacing context-aware prompts as you scroll. Behind the scenes I used Claude as a co-builder throughout — research synthesis, copy, and rapid component generation against a strict design system — which is how it shipped in weeks, not months.",
+    aiHeadline: "An assistant that sizes your system.",
+    stats: [["4", "wk", "Blank page → live"], ["0", "", "Framework deps"], ["6", "", "SKUs + 1 OS"], ["100", "%", "Homepage flow shipped"]],
+    media: {
+      identity: "url('/assets/volt/identity.jpg')",
+      type: "url('/assets/volt/type.jpg')",
+      homeDesktop: "url('/assets/volt/home-desktop.jpg')",
+      homeMobile: "url('/assets/volt/flow-mobile.jpg')",
+      components: "url('/assets/volt/ui-components.jpg')",
+      gallery: [
+        { src: "url('/assets/volt/extra-1.jpg')", label: "One day on VOLT power", wide: true },
+        { src: "url('/assets/volt/extra-4.jpg')", label: "System sizing tool" },
+        { src: "url('/assets/volt/extra-2.jpg')", label: "Build-your-system configurator" },
+        { src: "url('/assets/volt/home-mobile.jpg')", label: "Homepage — mobile", tall: true },
+        { src: "url('/assets/volt/extra-3.jpg')", label: "Footer wordmark" },
+      ],
+    },
+  },
+  {
+    slug: "sarisara-lanka", num: "02", title: "Sarisara\nLanka",
     cats: ["Travel Marketplace", "Web", "AI"], year: "2026", accent: "#D8FF3E",
     summary: "An AI-native travel marketplace for Sri Lanka — built to be the source ChatGPT cites when someone asks where to go.",
     role: "Strategy · Design · Build", client: "Sarisara Lanka", timeline: "9 weeks", stack: ["WordPress", "Next.js", "MCP", "Schema"],
@@ -33,7 +77,7 @@ export const PROJECTS: Project[] = [
     stats: [["3.4", "×", "Organic reach"], ["62", "%", "AI-cited queries"], ["9", "wk", "To launch"], ["01", "", "MCP-ready CMS"]],
   },
   {
-    slug: "villa-kaloya", num: "02", title: "Villa\nKaloya",
+    slug: "villa-kaloya", num: "03", title: "Villa\nKaloya",
     cats: ["Hospitality", "Web", "Bookings"], year: "2025", accent: "#FF9F1C",
     summary: "A boutique villa, booked direct. Cinematic, editorial, and engineered to skip the OTAs.",
     role: "Design · Build", client: "Villa Kaloya", timeline: "5 weeks", stack: ["Next.js", "Sanity", "Stripe"],
@@ -44,7 +88,7 @@ export const PROJECTS: Project[] = [
     stats: [["0", "%", "OTA fees"], ["2.1", "×", "Direct bookings"], ["48", "s", "Avg. session"], ["5", "wk", "To launch"]],
   },
   {
-    slug: "lumen-skincare", num: "03", title: "Lumen\nSkincare",
+    slug: "lumen-skincare", num: "04", title: "Lumen\nSkincare",
     cats: ["Beauty", "Brand", "Shopify"], year: "2025", accent: "#FF3B30",
     summary: "A skincare brand built to be cited — identity, store, and an ingredient story assistants can read.",
     role: "Branding · Design · Build", client: "Lumen", timeline: "7 weeks", stack: ["Shopify", "Hydrogen", "Schema"],
@@ -55,7 +99,7 @@ export const PROJECTS: Project[] = [
     stats: [["41", "%", "AI-cited claims"], ["1.8", "×", "Conversion"], ["18", "mo", "Brand runway"], ["7", "wk", "To launch"]],
   },
   {
-    slug: "hiruka-wellness", num: "04", title: "Hiruka\nWellness",
+    slug: "hiruka-wellness", num: "05", title: "Hiruka\nWellness",
     cats: ["Wellness", "Web", "UI/UX"], year: "2024", accent: "#2E6BFF",
     summary: "Calm, editorial, conversion-ready — a wellness retreat that reads like a long exhale.",
     role: "Design · Build", client: "Hiruka", timeline: "6 weeks", stack: ["Next.js", "Contentful"],
@@ -66,7 +110,7 @@ export const PROJECTS: Project[] = [
     stats: [["1.9", "×", "Sign-ups"], ["54", "%", "Mobile share"], ["0", "", "Bounce on hero"], ["6", "wk", "To launch"]],
   },
   {
-    slug: "north-point", num: "05", title: "North Point\nEstates",
+    slug: "north-point", num: "06", title: "North Point\nEstates",
     cats: ["Real Estate", "Web", "Brand"], year: "2024", accent: "#FFFFFF",
     summary: "Property, presented like product. A monochrome estate brand with listings that feel inevitable.",
     role: "Branding · Design · Build", client: "North Point", timeline: "8 weeks", stack: ["Next.js", "Mapbox", "Schema"],

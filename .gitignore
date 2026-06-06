@@ -32,3 +32,6 @@ next-env.d.ts
 
 # design handoff archive (large; source kept in chiran-perera-design-system/)
 *.tar.gz
+
+# project source drops (images already copied into public/assets/)
+/volt-website
