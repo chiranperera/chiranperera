@@ -89,7 +89,7 @@ img{display:block;max-width:100%}
 
 /* RIGHT — image zone: full-bleed, edge-to-edge, no overlay, no clutter */
 .slide-image-zone{position:relative;overflow:hidden;background:#0C0C0E}
-.slide-image-zone .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.05) brightness(.74);transform:scale(1.06);transition:transform 1.4s var(--ease-out)}
+.slide-image-zone .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:contrast(1.02) saturate(1.03);transform:scale(1.06);transition:transform 1.4s var(--ease-out)}
 .slide.active .slide-image-zone .img{transform:scale(1)}
 .slide-image-zone .ph{position:absolute;inset:0;display:grid;place-items:center;background:
   repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 9px), #0C0C0E}
@@ -163,7 +163,7 @@ img{display:block;max-width:100%}
 .intro-comp{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:96px var(--wrap-pad) 84px;text-align:center}
 .intro-lockup{display:contents}
 .intro-subject{order:-2;display:flex;justify-content:center;pointer-events:none}
-.intro-subject img{width:auto;height:auto;max-height:46vh;max-width:84vw;object-fit:contain;filter:grayscale(1) contrast(1.04);-webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
+.intro-subject img{width:auto;height:auto;max-height:46vh;max-width:84vw;object-fit:contain;filter:contrast(1.02);-webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
 .intro-eyebrow{order:-1;font-family:var(--font-mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);max-width:92%}
 .intro-nameback{order:0;display:flex;flex-direction:column;align-items:center}
 .intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;color:#fff}
