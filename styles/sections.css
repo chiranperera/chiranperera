@@ -157,6 +157,29 @@
 .ai-callout h3{font-family:var(--font-display);font-weight:900;font-size:clamp(26px,3vw,40px);letter-spacing:-.025em;color:var(--ink);margin-bottom:16px;line-height:1.02}
 .ai-callout p{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:680px}
 
+/* AI feature rows (alternating image/text selling points) */
+.features{display:flex;flex-direction:column;gap:72px;margin-top:64px}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.feature-row.flip .f-media{order:-1}
+.f-text .eyebrow{display:block;margin-bottom:18px}
+.f-text h3{font-family:var(--font-display);font-weight:700;font-size:clamp(26px,3vw,40px);line-height:1.04;letter-spacing:-.03em;color:var(--ink);margin-bottom:18px;text-wrap:balance}
+.f-text p{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:520px;margin-bottom:22px}
+.f-points{list-style:none;display:flex;flex-direction:column;gap:12px}
+.f-points li{position:relative;padding-left:24px;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.f-points li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.f-media .tile{aspect-ratio:4/3;width:100%}
+
+/* pitch — closing value argument */
+.case section.pitch{border-top:1px solid var(--line-2)}
+.pitch .eyebrow{display:block;margin-bottom:24px}
+.pitch-title{font-family:var(--font-display);font-weight:900;font-size:var(--fs-d1);line-height:.95;letter-spacing:-.04em;color:var(--ink);text-wrap:balance;max-width:1100px}
+.pitch-body{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;margin-top:44px;align-items:start}
+.pitch-prose p{font-size:18px;line-height:1.65;color:var(--ink-2);margin-bottom:18px;max-width:640px}
+.pitch-prose p:last-child{margin-bottom:0}
+.pitch-points{list-style:none;display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--accent-line);padding-left:24px}
+.pitch-points li{position:relative;font-size:16px;line-height:1.5;color:var(--ink)}
+.pitch-cta{margin-top:44px}
+
 /* next project */
 .next{position:relative;min-height:60vh;display:flex;align-items:center;border-top:1px solid var(--line-2);overflow:hidden;cursor:pointer}
 .next .media{position:absolute;inset:0}
@@ -186,6 +209,11 @@
   .stat-row{grid-template-columns:1fr 1fr}
   .stat-row .s{padding:24px 20px}
   .tile.wide{grid-column:span 2}
+  .feature-row{grid-template-columns:1fr;gap:24px}
+  .feature-row .f-media{order:-1} /* image on top */
+  .features{gap:56px;margin-top:48px}
+  .pitch-body{grid-template-columns:1fr;gap:26px}
+  .pitch-points{border-left:0;padding-left:0;border-top:1px solid var(--accent-line);padding-top:22px}
   .foot-grid{grid-template-columns:1fr;gap:36px}
   .case section{padding:var(--section-y-sm) var(--wrap-pad)}
   .case-back .nav-mid{display:none}

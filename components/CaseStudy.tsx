@@ -130,18 +130,34 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </Reveal>
       </section>
 
-      {/* AI CALLOUT */}
+      {/* AI LAYER — callout + (optional) feature breakdown */}
       <section className="wrap">
+        {p.features && <Reveal><CaseHead ix="05">The AI<br />layer.</CaseHead></Reveal>}
         <Reveal className="ai-callout">
           <span className="eyebrow"><span style={{ color: p.accent }}>●</span> AI functionality</span>
           <h3>{p.aiHeadline || "Engineered for the answer engines."}</h3>
           <p>{p.ai}</p>
         </Reveal>
+        {p.features && p.features.length > 0 && (
+          <div className="features">
+            {p.features.map((f, i) => (
+              <Reveal key={i} className={`feature-row${i % 2 === 1 ? " flip" : ""}`}>
+                <div className="f-text">
+                  <span className="eyebrow"><span className="dot">●</span> {f.eyebrow}</span>
+                  <h3>{f.title}</h3>
+                  <p>{f.body}</p>
+                  {f.points && <ul className="f-points">{f.points.map((pt, j) => <li key={j}>{pt}</li>)}</ul>}
+                </div>
+                <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} /></div>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* RESULTS */}
       <section className="wrap">
-        <Reveal><CaseHead ix="05">Deployment &amp;<br />results.</CaseHead></Reveal>
+        <Reveal><CaseHead ix={p.features ? "06" : "05"}>Deployment &amp;<br />results.</CaseHead></Reveal>
         <Reveal>
           <div className="stat-row">
             {p.stats.map(([big, u, lbl], i) => (
@@ -154,13 +170,34 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {/* GALLERY (real screens — only when a project supplies them) */}
       {m?.gallery && m.gallery.length > 0 && (
         <section className="wrap">
-          <Reveal><CaseHead ix="06">Selected<br />screens.</CaseHead></Reveal>
+          <Reveal><CaseHead ix={p.features ? "07" : "06"}>Selected<br />screens.</CaseHead></Reveal>
           <Reveal>
             <div className="imgrid imgrid-2">
               {m.gallery.map((g, i) => (
                 <Tile key={i} n={`S—0${i + 1}`} label={g.label} img={g.src} wide={g.wide} tall={g.tall} />
               ))}
             </div>
+          </Reveal>
+        </section>
+      )}
+
+      {/* PITCH — the value argument (e.g. for other solar businesses) */}
+      {p.pitch && (
+        <section className="wrap pitch">
+          <Reveal>
+            <span className="eyebrow"><span className="dot">●</span> {p.pitch.eyebrow}</span>
+            <h2 className="pitch-title">
+              {p.pitch.title.split("\n").map((line, i) => (
+                <React.Fragment key={i}>{i > 0 && <br />}{line}</React.Fragment>
+              ))}
+            </h2>
+          </Reveal>
+          <Reveal className="pitch-body">
+            <div className="pitch-prose">{p.pitch.body.map((t, i) => <p key={i}>{t}</p>)}</div>
+            <ul className="pitch-points">{p.pitch.points.map((pt, i) => <li key={i}>{pt}</li>)}</ul>
+          </Reveal>
+          <Reveal>
+            <a className="btn btn-accent pitch-cta" href="mailto:hello@chiranperera.com">Build this for your brand <span className="arr">→</span></a>
           </Reveal>
         </section>
       )}

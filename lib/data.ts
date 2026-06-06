@@ -3,6 +3,23 @@
 
 export type GalleryItem = { src: string; label: string; wide?: boolean; tall?: boolean };
 
+/* An alternating image/text "selling point" row (used on rich case studies). */
+export type FeatureRow = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  points?: string[];
+  media: { label: string; src?: string }; // src omitted → labelled placeholder
+};
+
+/* Closing value pitch (e.g. "why a solar business should build this"). */
+export type Pitch = {
+  eyebrow: string;
+  title: string;
+  body: string[];
+  points: string[];
+};
+
 export type Project = {
   slug: string;
   num: string;
@@ -21,6 +38,8 @@ export type Project = {
   research: string;
   ai: string;
   aiHeadline?: string;
+  features?: FeatureRow[];
+  pitch?: Pitch;
   stats: [string, string, string][];
   /* optional real imagery for the case-study tiles + a gallery */
   media?: {
@@ -49,6 +68,55 @@ export const PROJECTS: Project[] = [
     research: "A week mapping the 2026 home-storage market: LFP becoming standard, modular/stackable the dominant trend, the federal ITC expiring, and VPP earnings emerging as a real number (~$1,000/yr). I tore down Tesla Powerwall 3, FranklinWH, Enphase, Anker SOLIX and EcoFlow on positioning and spec hierarchy. The key insight: every competitor leads with capacity — almost none lead with the story, start small and stack as you grow. That phrase became the homepage tagline, the configurator's logic, and the modular product line.",
     ai: "The signature feature is the VOLT Concierge — a sticky, on-page energy assistant that sizes a shopper's system in natural language (\"will it power my home in an outage?\", \"how much can I save?\") without leaving the page. It runs entirely client-side on a curated conversation graph grounded in real product specs, so it's instant and private, surfacing context-aware prompts as you scroll. Behind the scenes I used Claude as a co-builder throughout — research synthesis, copy, and rapid component generation against a strict design system — which is how it shipped in weeks, not months.",
     aiHeadline: "An assistant that sizes your system.",
+    features: [
+      {
+        eyebrow: "Always-on · 24/7",
+        title: "An AI concierge that sells while you sleep.",
+        body: "The VOLT Concierge answers buyer questions — outage backup, savings, sizing — the moment they're asked, day or night. It never takes a break, never forgets a spec, and turns idle browsers into qualified conversations around the clock — spreading awareness about the business 24/7.",
+        points: [
+          "Natural-language answers grounded in the real product line",
+          "A tireless salesperson + support agent in one",
+          "Private and instant — runs in the browser, nothing leaves it",
+        ],
+        media: { label: "AI Concierge — 24/7 chat" },
+      },
+      {
+        eyebrow: "Interactive · Instant",
+        title: "Upload a bill. Get the right system.",
+        body: "Instead of forms, phone tag and a week's wait, a visitor uploads their utility bill and the system reads their real usage to recommend the right battery and solar size in seconds — replacing the traditional manual site-survey back-and-forth with an answer they trust.",
+        points: [
+          "Reads real consumption, not guesswork",
+          "Skips the slow, manual sizing process",
+          "Visitors self-qualify before they ever call",
+        ],
+        media: { label: "Bill-upload energy sizing" },
+      },
+      {
+        eyebrow: "Pipeline · Conversion",
+        title: "Capture better prospects, not just clicks.",
+        body: "The concierge, the bill-sizing tool and the build-your-system configurator each qualify the visitor and capture intent — so the leads that reach the sales team are warmer, more specific and far more likely to close, at a higher order value.",
+        points: [
+          "Qualified intent over anonymous traffic",
+          "Configured systems = higher-value, ready-to-quote leads",
+          "Fewer tyre-kickers, more booked installs",
+        ],
+        media: { label: "Lead capture + configurator" },
+      },
+    ],
+    pitch: {
+      eyebrow: "For solar & energy businesses",
+      title: "Renewable is the future.\nYour website should act like it.",
+      body: [
+        "Solar is scaling fast — yet most solar sites still behave like 2015 brochure-ware: a spec sheet, a contact form, and a wait. The brands that win the next decade are the ones that make a technical, high-trust purchase feel effortless.",
+        "An AI-native build like VOLT works on three fronts at once: it makes customers' lives easier with instant answers and instant sizing, it works around the clock like a tireless salesperson, and it grows revenue through warmer, higher-value leads and a lighter support load — all wrapped in a brand and design system that signals you're the modern choice.",
+      ],
+      points: [
+        "A 24/7 salesperson + support agent, built in",
+        "Customers self-serve sizing and quotes — less friction, faster decisions",
+        "Warmer, qualified pipeline → more booked installs",
+        "A design system and brand that scale with the business",
+      ],
+    },
     stats: [["4", "wk", "Blank page → live"], ["0", "", "Framework deps"], ["6", "", "SKUs + 1 OS"], ["100", "%", "Homepage flow shipped"]],
     media: {
       identity: "url('/assets/volt/identity.jpg')",
