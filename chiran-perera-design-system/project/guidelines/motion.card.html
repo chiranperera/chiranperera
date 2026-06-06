@@ -1,0 +1,43 @@
+<!-- @dsCard group="Spacing" viewport="700x230" name="Motion" subtitle="easings · durations · live demos" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:26px; color:var(--ink); }
+  .grid { display:grid; grid-template-columns:1.1fr 1fr; gap:34px; }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 12px; }
+  .track { height:2px; background:var(--bg-4); position:relative; margin:14px 0 4px; }
+  .dot { position:absolute; top:50%; left:0; width:10px; height:10px; border-radius:50%; background:var(--ink); transform:translate(0,-50%); }
+  .d1 .dot { animation:run 2.4s var(--ease-out) infinite; }
+  .d2 .dot { animation:run 2.4s var(--ease-in-out) infinite; background:var(--accent); }
+  .d3 .dot { animation:run 2.4s var(--ease-quint) infinite; }
+  @keyframes run { 0%{left:0} 45%{left:calc(100% - 10px)} 55%{left:calc(100% - 10px)} 100%{left:0} }
+  .nm { font-family:var(--font-mono); font-size:11px; color:var(--ink-3); }
+  .durs { display:flex; flex-direction:column; gap:10px; }
+  .dur { display:flex; align-items:center; gap:12px; }
+  .dur .bar { height:6px; background:var(--ink); border-radius:var(--r-pill); }
+  .dur .v { font-family:var(--font-mono); font-size:11px; color:var(--ink-3); white-space:nowrap; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <p class="lbl">Easings — live</p>
+      <div class="d1"><div class="nm">--ease-out · cubic-bezier(.2,.7,.2,1)</div><div class="track"><span class="dot"></span></div></div>
+      <div class="d2"><div class="nm">--ease-in-out · slide transitions</div><div class="track"><span class="dot"></span></div></div>
+      <div class="d3"><div class="nm">--ease-quint · long reveals</div><div class="track"><span class="dot"></span></div></div>
+    </div>
+    <div>
+      <p class="lbl">Durations</p>
+      <div class="durs">
+        <div class="dur"><span class="bar" style="width:30px"></span><span class="v">--dur-fast · 200ms · hovers</span></div>
+        <div class="dur"><span class="bar" style="width:60px"></span><span class="v">--dur-med · 400ms · reveals</span></div>
+        <div class="dur"><span class="bar" style="width:120px"></span><span class="v">--dur-slow · 800ms</span></div>
+        <div class="dur"><span class="bar" style="width:135px"></span><span class="v">--dur-slide · 900ms · slides</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

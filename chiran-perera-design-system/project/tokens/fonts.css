@@ -1,0 +1,45 @@
+/* ============================================================
+   FONTS — Chiran Perera Design System
+   Main:  Stolzl (geometric grotesque), weights 100/200/300/400/500/700,
+          delivered from Adobe Fonts' CDN (the same endpoints as Typekit
+          kit uqp8dyo). The @font-face rules are declared locally below so
+          the family resolves explicitly — no other family is substituted.
+   Mono:  Space Mono (Google Fonts).
+
+   To fully self-host: replace the use.typekit.net src URLs below with your
+   licensed Stolzl .woff2 files dropped beside this file. (Adobe's TOU
+   forbids redistributing the Typekit binaries, so that swap must be done
+   with files you own.) Typekit delivery is domain-locked — add new domains
+   in Adobe Fonts or Stolzl falls back to system-ui.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 100; font-display: swap;
+  src: url("https://use.typekit.net/af/f5ea15/00000000000000007753c396/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff2"),
+       url("https://use.typekit.net/af/f5ea15/00000000000000007753c396/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3") format("woff");
+}
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 200; font-display: swap;
+  src: url("https://use.typekit.net/af/586695/00000000000000007753c398/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n2&v=3") format("woff2"),
+       url("https://use.typekit.net/af/586695/00000000000000007753c398/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n2&v=3") format("woff");
+}
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 300; font-display: swap;
+  src: url("https://use.typekit.net/af/e58fc3/00000000000000007753c397/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),
+       url("https://use.typekit.net/af/e58fc3/00000000000000007753c397/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff");
+}
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://use.typekit.net/af/2f17eb/00000000000000007753c395/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),
+       url("https://use.typekit.net/af/2f17eb/00000000000000007753c395/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff");
+}
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("https://use.typekit.net/af/32bb89/00000000000000007753c394/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),
+       url("https://use.typekit.net/af/32bb89/00000000000000007753c394/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff");
+}
+@font-face {
+  font-family: "stolzl"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("https://use.typekit.net/af/bee409/00000000000000007753c399/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),
+       url("https://use.typekit.net/af/bee409/00000000000000007753c399/31/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff");
+}

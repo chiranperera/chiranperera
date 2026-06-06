@@ -1,0 +1,54 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Surface — panels & stats" subtitle="Panel · StatCard" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin:0; font-family:var(--font-body); padding:32px; background:var(--bg); }
+  .grid { display:grid; grid-template-columns:1.3fr 1fr; gap:14px; margin-bottom:14px; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  h3 { font:var(--w-black) 28px var(--font-display); letter-spacing:-.03em; color:var(--ink); margin:14px 0 8px; line-height:1.0; }
+  p { font-size:14px; line-height:1.55; color:var(--ink-3); margin:0; }
+  .tags { display:flex; gap:6px; margin-top:16px; }
+  .lead { font-family:var(--font-mono); font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.12em; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Panel, StatCard, Eyebrow, Tag } = window.ChiranPereraDesignSystem_bfab9b;
+    function Demo() {
+      return (
+        <div>
+          <div className="grid">
+            <Panel number="01">
+              <div className="lead">Flagship</div>
+              <h3>Website Design<br/>+ Build, in 3 weeks.</h3>
+              <p>Custom websites on Next.js or WordPress — wired for AI citation on day one.</p>
+              <div className="tags"><Tag>Next.js</Tag><Tag>WordPress</Tag><Tag>Shopify</Tag></div>
+            </Panel>
+            <Panel number="02">
+              <div className="lead" style={{color:'var(--ink-4)'}}>Identity</div>
+              <h3>Brand +<br/>Visual System</h3>
+              <p>The kind of identity that doesn't need a refresh in 18 months.</p>
+              <div className="tags"><Tag>Logo</Tag><Tag variant="accent">Guidelines</Tag></div>
+            </Panel>
+          </div>
+          <div className="stats">
+            <StatCard value="50" accent="+" label="Brands designed" />
+            <StatCard value="6" accent=" yrs" label="Studio experience" />
+            <StatCard value="99" accent="%" label="Repeat clients" />
+            <StatCard value="3" accent=" wks" label="Site to launch" />
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

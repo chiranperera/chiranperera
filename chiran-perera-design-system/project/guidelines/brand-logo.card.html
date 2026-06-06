@@ -1,0 +1,56 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Logos" subtitle="mark · wordmark · lockups · clear-space" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; }
+  .grid { display:grid; grid-template-columns:1.1fr 1fr; gap:28px 40px; align-items:center; }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 14px; }
+  .wm { font-family:var(--font-display); font-weight:700; letter-spacing:-.03em; color:var(--ink); display:inline-flex; align-items:baseline; }
+  .wm .dot { color:var(--accent); }
+  .mark { font-family:var(--font-display); font-weight:700; letter-spacing:-.04em; color:var(--ink); border:1.5px solid var(--line-2); width:62px; height:62px; display:grid; place-items:center; font-size:28px; }
+  .stack { font-family:var(--font-display); font-weight:700; font-size:19px; line-height:.92; letter-spacing:-.02em; color:var(--ink); }
+  .clear { position:relative; border:1px dashed var(--line-2); padding:26px; display:inline-flex; }
+  .clear .wm { font-size:30px; }
+  .clear .gx { position:absolute; font-family:var(--font-mono); font-size:9px; color:var(--ink-4); }
+  .gx.t { top:6px; left:50%; transform:translateX(-50%); }
+  .gx.b { bottom:6px; left:50%; transform:translateX(-50%); }
+  .gx.l { left:6px; top:50%; transform:translateY(-50%); }
+  .gx.r { right:6px; top:50%; transform:translateY(-50%); }
+  .inv { background:var(--ink); padding:18px 22px; border-radius:var(--r-xs); display:inline-flex; }
+  .inv .wm { color:var(--bg); font-size:22px; }
+  .inv .wm .dot { color:var(--accent); }
+  .col { display:flex; flex-direction:column; gap:20px; align-items:flex-start; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="col">
+      <div>
+        <p class="lbl">Wordmark · monogram · stacked</p>
+        <div style="display:flex;align-items:center;gap:26px">
+          <span class="wm" style="font-size:34px">CHIRAN&nbsp;PERERA<span class="dot">.</span></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:24px;margin-top:18px">
+          <span class="mark">CP</span>
+          <div class="stack">CHIRAN<br>PERERA</div>
+          <span class="wm" style="font-size:18px">CHIRAN<span class="dot">.</span></span>
+        </div>
+      </div>
+      <div>
+        <p class="lbl">On accent / inverse</p>
+        <span class="inv"><span class="wm">CHIRAN&nbsp;PERERA<span class="dot">.</span></span></span>
+      </div>
+    </div>
+    <div>
+      <p class="lbl">Clear-space — 0.5× cap height</p>
+      <span class="clear">
+        <span class="gx t">— x —</span><span class="gx b">— x —</span><span class="gx l">x</span><span class="gx r">x</span>
+        <span class="wm">CHIRAN<span class="dot">.</span></span>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

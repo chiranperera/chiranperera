@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Inputs & states" subtitle="text, toggle, check, radio across rest / focus / filled / error / disabled" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; color:var(--ink); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:26px 40px; }
+  .field { display:flex; flex-direction:column; gap:7px; }
+  label { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); }
+  .inp { background:var(--bg-2); border:1px solid var(--line-2); border-radius:var(--r-xs); padding:12px 14px; font-family:var(--font-body); font-size:14px; color:var(--ink); }
+  .inp.placeholder { color:var(--ink-4); }
+  .inp.focus { border-color:var(--ink); box-shadow:0 0 0 3px rgba(255,255,255,.08); }
+  .inp.error { border-color:var(--danger); }
+  .inp.disabled { opacity:.4; }
+  .err { font-family:var(--font-mono); font-size:10px; color:var(--danger); }
+  .controls { display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  .ctl { display:flex; align-items:center; gap:9px; font-size:13px; color:var(--ink-2); }
+  .box { width:18px; height:18px; border:1px solid var(--line-2); border-radius:var(--r-xs); display:grid; place-items:center; }
+  .box.on { background:var(--ink); border-color:var(--ink); }
+  .box.on svg { stroke:var(--bg); }
+  .radio { width:18px; height:18px; border:1px solid var(--line-2); border-radius:50%; display:grid; place-items:center; }
+  .radio.on::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--ink); }
+  .switch { width:38px; height:22px; border-radius:var(--r-pill); background:var(--bg-4); border:1px solid var(--line-2); position:relative; }
+  .switch.on { background:var(--ink); border-color:var(--ink); }
+  .switch::after { content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:var(--ink-3); transition:.2s; }
+  .switch.on::after { left:18px; background:var(--bg); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="field"><label>Name — rest</label><div class="inp placeholder">Your name</div></div>
+    <div class="field"><label>Email — focus</label><div class="inp focus">chiran@</div></div>
+    <div class="field"><label>Company — filled</label><div class="inp">Studio Perera</div></div>
+    <div class="field"><label>Budget — error</label><div class="inp error">—</div><span class="err">Please enter a project budget</span></div>
+  </div>
+  <div class="controls" style="margin-top:26px">
+    <span class="ctl"><span class="box on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Checkbox on</span>
+    <span class="ctl"><span class="box"></span> Checkbox off</span>
+    <span class="ctl"><span class="radio on"></span> Radio on</span>
+    <span class="ctl"><span class="radio"></span> Radio off</span>
+    <span class="ctl"><span class="switch on"></span> Toggle on</span>
+    <span class="ctl"><span class="switch"></span> Toggle off</span>
+  </div>
+</body>
+</html>

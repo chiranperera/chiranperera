@@ -1,0 +1,37 @@
+<!-- @dsCard group="Brand" viewport="700x340" name="Design System" subtitle="full system index — Chiran Perera, monochrome + Stolzl" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); color:var(--ink); padding:0; }
+  .wrap { position:relative; padding:34px; min-height:340px; overflow:hidden; }
+  .wrap::after { content:''; position:absolute; inset:0; pointer-events:none;
+    background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+    background-size:48px 48px; mask-image:radial-gradient(700px 360px at 80% 0%, #000, transparent 80%); -webkit-mask-image:radial-gradient(700px 360px at 80% 0%, #000, transparent 80%); }
+  .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); }
+  h1 { font-family:var(--font-display); font-weight:700; font-size:54px; letter-spacing:-.04em; line-height:.92; margin:16px 0 0; }
+  h1 .dot { color:var(--accent); }
+  .sub { font-size:15px; color:var(--ink-3); max-width:440px; margin-top:14px; line-height:1.5; }
+  .meta { display:grid; grid-template-columns:repeat(4,auto); gap:0 40px; margin-top:30px; position:relative; z-index:1; }
+  .m .n { font-family:var(--font-display); font-weight:700; font-size:30px; letter-spacing:-.02em; }
+  .m .k { font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-4); margin-top:4px; }
+  .foot { font-family:var(--font-mono); font-size:11px; color:var(--ink-4); margin-top:30px; letter-spacing:.04em; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">Design system — v2 · 2026</div>
+    <h1>CHIRAN<br>PERERA<span class="dot">.</span></h1>
+    <p class="sub">A strictly monochrome, grotesque, futuristic system for a creative's portfolio — Stolzl + Space Mono, one per-project accent, big type over black-and-white imagery.</p>
+    <div class="meta">
+      <div class="m"><div class="n">5</div><div class="k">Categories</div></div>
+      <div class="m"><div class="n">30</div><div class="k">Cards</div></div>
+      <div class="m"><div class="n">6</div><div class="k">Components</div></div>
+      <div class="m"><div class="n">1</div><div class="k">UI kit</div></div>
+    </div>
+    <div class="foot">Type · Colors · Spacing · Components · Brand</div>
+  </div>
+</body>
+</html>

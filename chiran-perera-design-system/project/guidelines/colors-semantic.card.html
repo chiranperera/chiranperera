@@ -1,0 +1,34 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Semantic" subtitle="success · warning · info · error — state only, never brand" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .sw { border:1px solid var(--line); border-radius:var(--r-xs); overflow:hidden; }
+  .chip { height:52px; }
+  .meta { padding:10px 12px; background:var(--bg-3); display:flex; align-items:center; gap:8px; }
+  .dot { width:8px; height:8px; border-radius:50%; }
+  .name { font-family:var(--font-mono); font-size:11px; color:var(--ink-2); }
+  .val { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); margin-top:2px; }
+  .pillrow { display:flex; gap:8px; margin-top:16px; }
+  .pill { font-family:var(--font-mono); font-size:11px; padding:5px 11px; border-radius:var(--r-pill); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--success)"></div><div class="meta"><div><div class="name">success</div><div class="val">#3DD68C</div></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--warning)"></div><div class="meta"><div><div class="name">warning</div><div class="val">#E5B567</div></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--info)"></div><div class="meta"><div><div class="name">info</div><div class="val">#6AA6FF</div></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--danger)"></div><div class="meta"><div><div class="name">error</div><div class="val">#FF5247</div></div></div></div>
+  </div>
+  <div class="pillrow">
+    <span class="pill" style="background:var(--success-soft);color:var(--success)">Shipped</span>
+    <span class="pill" style="background:var(--warning-soft);color:var(--warning)">Pending</span>
+    <span class="pill" style="background:var(--info-soft);color:var(--info)">Draft</span>
+    <span class="pill" style="background:var(--danger-soft);color:var(--danger)">Failed</span>
+  </div>
+</body>
+</html>

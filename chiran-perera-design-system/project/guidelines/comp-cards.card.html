@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" viewport="700x320" name="Cards" subtitle="service · project · stat · testimonial" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; color:var(--ink); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .card { background:var(--bg-3); border:1px solid var(--line); border-radius:var(--r-xs); padding:22px; position:relative; }
+  .ix { position:absolute; right:18px; top:16px; font-family:var(--font-mono); font-size:11px; color:var(--ink-4); }
+  .k { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  h3 { font-family:var(--font-display); font-weight:700; font-size:22px; letter-spacing:-.02em; line-height:1.05; margin:12px 0 8px; }
+  p { font-size:13px; line-height:1.5; color:var(--ink-3); margin:0; }
+  .chips { display:flex; gap:6px; margin-top:14px; }
+  .chip { font-family:var(--font-mono); font-size:10px; color:var(--ink-2); border:1px solid var(--line); padding:4px 9px; border-radius:var(--r-pill); }
+  /* project (media) */
+  .proj { padding:0; overflow:hidden; }
+  .proj .media { aspect-ratio:16/9; background:repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 2px, transparent 2px 9px), var(--bg-2); display:grid; place-items:center; }
+  .proj .media span { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); letter-spacing:.08em; }
+  .proj .body { padding:16px 18px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .proj h3 { margin:0; font-size:20px; }
+  /* stat */
+  .stat .big { font-family:var(--font-display); font-weight:700; font-size:52px; letter-spacing:-.03em; line-height:.9; }
+  .stat .big em { font-style:normal; color:var(--accent); }
+  .stat .l { font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  /* testimonial */
+  .quote { font-family:var(--font-display); font-weight:500; font-size:16px; line-height:1.4; letter-spacing:-.01em; color:var(--ink); }
+  .who { display:flex; align-items:center; gap:10px; margin-top:16px; }
+  .av { width:34px; height:34px; border-radius:50%; background:var(--bg-4); border:1px solid var(--line-2); display:grid; place-items:center; font-family:var(--font-display); font-weight:500; font-size:12px; color:var(--ink-2); }
+  .who .n { font-size:13px; color:var(--ink); }
+  .who .r { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card"><span class="ix">01</span><div class="k">Flagship</div><h3>Website Design<br>+ Build</h3><p>Custom builds wired for AI citation on day one.</p><div class="chips"><span class="chip">Next.js</span><span class="chip">3 weeks</span></div></div>
+    <div class="card proj"><div class="media"><span>[ Project — hero still ]</span></div><div class="body"><h3>Sarisara Lanka</h3><span class="chip">2026</span></div></div>
+    <div class="card stat"><div class="big">99<em>%</em></div><div class="l">Repeat client rate</div></div>
+    <div class="card"><p class="quote">"He made our site feel inevitable — and AI actually recommends us now."</p><div class="who"><span class="av">AK</span><div><div class="n">Amaya K.</div><div class="r">Founder, Lumen</div></div></div></div>
+  </div>
+</body>
+</html>

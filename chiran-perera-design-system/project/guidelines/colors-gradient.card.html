@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x230" name="Per-project accent" subtitle="The ONE colour knob — set --accent per case study, used sparingly" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .note { font-family:var(--font-mono); font-size:11px; color:var(--ink-4); letter-spacing:.02em; margin-bottom:16px; text-transform:uppercase; }
+  .row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .sw { border:1px solid var(--line); border-radius:var(--r-xs); overflow:hidden; }
+  .chip { height:56px; display:flex; align-items:flex-end; padding:8px; }
+  .demo { background:var(--bg-3); padding:10px 11px; }
+  .name { font-family:var(--font-mono); font-size:10px; color:var(--ink-3); }
+  .val { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); margin-top:2px; }
+  .dot { width:7px; height:7px; border-radius:50%; }
+  .word { font:var(--w-black) 13px var(--font-display); letter-spacing:-.02em; color:var(--ink); margin-top:6px; }
+</style>
+</head>
+<body>
+  <div class="note">// neutral UI, one accent per project — never mixed, never purple</div>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--bg-3)"><span class="dot" style="background:var(--accent-lime)"></span></div><div class="demo"><div class="name">lime</div><div class="val">#D8FF3E</div><div class="word">found<span style="color:var(--accent-lime)">.</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-3)"><span class="dot" style="background:var(--accent-red)"></span></div><div class="demo"><div class="name">red</div><div class="val">#FF3B30</div><div class="word">found<span style="color:var(--accent-red)">.</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-3)"><span class="dot" style="background:var(--accent-blue)"></span></div><div class="demo"><div class="name">blue</div><div class="val">#2E6BFF</div><div class="word">found<span style="color:var(--accent-blue)">.</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-3)"><span class="dot" style="background:var(--accent-amber)"></span></div><div class="demo"><div class="name">amber</div><div class="val">#FF9F1C</div><div class="word">found<span style="color:var(--accent-amber)">.</span></div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-3)"><span class="dot" style="background:var(--accent-white)"></span></div><div class="demo"><div class="name">mono</div><div class="val">#FFFFFF</div><div class="word">found<span style="color:var(--ink-3)">.</span></div></div></div>
+  </div>
+</body>
+</html>

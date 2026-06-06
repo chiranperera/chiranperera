@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Corner radii" subtitle="Sharp & technical — 0–8px, pills for tags only" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .row { display:flex; gap:16px; align-items:flex-start; }
+  .col { display:flex; flex-direction:column; gap:8px; align-items:center; }
+  .box { width:90px; height:60px; background:var(--bg-3); border:1px solid var(--line-2); }
+  .v { font:var(--w-bold) 12px var(--font-display); color:var(--ink); }
+  .lbl { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><div class="box" style="border-radius:var(--r-0)"></div><div class="v">0</div><div class="lbl">media</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--r-xs)"></div><div class="v">xs · 2</div><div class="lbl">default</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--r-sm)"></div><div class="v">sm · 4</div><div class="lbl">controls</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--r-md)"></div><div class="v">md · 8</div><div class="lbl">softest</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--r-pill);width:90px"></div><div class="v">pill</div><div class="lbl">tags only</div></div>
+  </div>
+</body>
+</html>

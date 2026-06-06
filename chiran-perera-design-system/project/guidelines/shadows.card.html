@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Depth & field" subtitle="Soft neutral shadows + the technical grid background" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:0; }
+  .stage { display:grid; grid-template-columns:1fr 1fr; }
+  .pane { padding:28px; min-height:160px; }
+  .left { display:flex; gap:18px; align-items:center; border-right:1px solid var(--line); }
+  .box { width:88px; height:72px; border-radius:var(--r-xs); background:var(--bg-3); border:1px solid var(--line); }
+  .v { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); text-align:center; margin-top:8px; }
+  .right { position:relative; overflow:hidden; }
+  .right .cap { position:absolute; left:28px; bottom:24px; font-family:var(--font-mono); font-size:11px; color:var(--ink-3); letter-spacing:.04em; text-transform:uppercase; z-index:1; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="pane left">
+      <div><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="v">--shadow-md</div></div>
+      <div><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="v">--shadow-lg</div></div>
+    </div>
+    <div class="pane right cp-surface cp-grid-field">
+      <span class="cap">.cp-grid-field · 80px drift</span>
+    </div>
+  </div>
+</body>
+</html>

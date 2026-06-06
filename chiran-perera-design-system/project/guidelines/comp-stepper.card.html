@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Stepper" subtitle="horizontal · pill · vertical timeline" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; color:var(--ink); }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 14px; }
+  /* horizontal */
+  .hz { display:flex; align-items:center; }
+  .hz .node { width:30px; height:30px; border-radius:50%; border:1px solid var(--line-2); display:grid; place-items:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-3); flex:none; }
+  .hz .node.done { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .hz .node.now { border-color:var(--ink); color:var(--ink); box-shadow:0 0 0 3px rgba(255,255,255,.08); }
+  .hz .line { flex:1; height:1px; background:var(--line-2); margin:0 10px; }
+  .hz .line.done { background:var(--ink); }
+  /* pill */
+  .pills { display:flex; gap:8px; }
+  .pill { font-family:var(--font-mono); font-size:11px; padding:7px 14px; border-radius:var(--r-pill); border:1px solid var(--line); color:var(--ink-3); }
+  .pill.now { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .pill.done { color:var(--ink); border-color:var(--line-2); }
+  /* vertical timeline */
+  .vt { display:flex; flex-direction:column; gap:0; }
+  .vt .step { display:flex; gap:14px; }
+  .vt .col { display:flex; flex-direction:column; align-items:center; }
+  .vt .d { width:12px; height:12px; border-radius:50%; border:1px solid var(--line-2); background:var(--bg); margin-top:3px; }
+  .vt .d.done { background:var(--ink); border-color:var(--ink); }
+  .vt .d.now { border-color:var(--accent); background:var(--accent); }
+  .vt .ln { width:1px; flex:1; background:var(--line-2); min-height:26px; }
+  .vt .txt { padding-bottom:18px; }
+  .vt .t { font-family:var(--font-display); font-weight:500; font-size:15px; }
+  .vt .s { font-family:var(--font-mono); font-size:11px; color:var(--ink-4); margin-top:2px; }
+</style>
+</head>
+<body>
+  <p class="lbl">Horizontal</p>
+  <div class="hz">
+    <span class="node done">✓</span><span class="line done"></span>
+    <span class="node done">✓</span><span class="line done"></span>
+    <span class="node now">3</span><span class="line"></span>
+    <span class="node">4</span>
+  </div>
+  <p class="lbl" style="margin:24px 0 14px">Pill</p>
+  <div class="pills">
+    <span class="pill done">Discovery</span>
+    <span class="pill now">Design</span>
+    <span class="pill">Build</span>
+    <span class="pill">Launch</span>
+  </div>
+  <p class="lbl" style="margin:24px 0 14px">Vertical timeline</p>
+  <div class="vt">
+    <div class="step"><div class="col"><span class="d done"></span><span class="ln"></span></div><div class="txt"><div class="t">Discovery call</div><div class="s">Week 0 — complete</div></div></div>
+    <div class="step"><div class="col"><span class="d now"></span><span class="ln"></span></div><div class="txt"><div class="t">Design + build</div><div class="s">Week 2 — in progress</div></div></div>
+    <div class="step"><div class="col"><span class="d"></span></div><div class="txt"><div class="t">Launch + handover</div><div class="s">Week 3 — upcoming</div></div></div>
+  </div>
+</body>
+</html>

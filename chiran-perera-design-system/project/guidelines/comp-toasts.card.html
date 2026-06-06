@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x290" name="Toast & Alerts" subtitle="toast · banner · snackbar — four tones + stack" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; color:var(--ink); }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 12px; }
+  .stack { display:flex; flex-direction:column; gap:10px; max-width:420px; }
+  .toast { display:flex; align-items:center; gap:12px; background:var(--bg-3); border:1px solid var(--line-2); border-left-width:2px; border-radius:var(--r-xs); padding:13px 15px; }
+  .toast .ico { width:8px; height:8px; border-radius:50%; flex:none; }
+  .toast .t { font-size:13px; color:var(--ink); flex:1; }
+  .toast .x { font-family:var(--font-mono); font-size:14px; color:var(--ink-4); }
+  .s { border-left-color:var(--success); }
+  .w { border-left-color:var(--warning); }
+  .i { border-left-color:var(--info); }
+  .e { border-left-color:var(--danger); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:34px; }
+  .banner { border:1px solid var(--line-2); border-radius:var(--r-xs); padding:16px; display:flex; gap:12px; align-items:flex-start; }
+  .banner .body { font-size:13px; color:var(--ink-2); line-height:1.5; }
+  .banner .body b { color:var(--ink); font-weight:500; }
+  .snack { display:inline-flex; align-items:center; gap:16px; background:var(--ink); color:var(--bg); border-radius:var(--r-xs); padding:11px 16px; font-size:13px; }
+  .snack a { font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid currentColor; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <p class="lbl">Toasts — four tones</p>
+      <div class="stack">
+        <div class="toast s"><span class="ico" style="background:var(--success)"></span><span class="t">Project shipped to Vercel.</span><span class="x">✕</span></div>
+        <div class="toast w"><span class="ico" style="background:var(--warning)"></span><span class="t">Draft saved — not published.</span><span class="x">✕</span></div>
+        <div class="toast i"><span class="ico" style="background:var(--info)"></span><span class="t">New inquiry from the contact form.</span><span class="x">✕</span></div>
+        <div class="toast e"><span class="ico" style="background:var(--danger)"></span><span class="t">Audit failed — domain unreachable.</span><span class="x">✕</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="lbl">Banner</p>
+      <div class="banner"><span class="ico" style="width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:5px"></span><div class="body"><b>Available Q3 2026.</b> Two project slots remaining — book a discovery call before they're gone.</div></div>
+      <p class="lbl" style="margin:24px 0 12px">Snackbar</p>
+      <div class="snack">Message sent <a>Undo</a></div>
+    </div>
+  </div>
+</body>
+</html>

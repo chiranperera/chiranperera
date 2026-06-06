@@ -1,0 +1,48 @@
+<!-- @dsCard group="Brand" viewport="700x360" name="Iconography" subtitle="36 thin-line system glyphs · 1.7px stroke, 24px grid" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:22px; }
+  .grid { display:grid; grid-template-columns:repeat(9,1fr); gap:4px; }
+  .cell { aspect-ratio:1; border:1px solid var(--line); border-radius:var(--r-xs); display:grid; place-items:center; color:var(--ink-2); }
+  .cell:hover { border-color:var(--line-3); color:var(--ink); }
+  svg { width:20px; height:20px; }
+  .cap { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); margin-top:14px; letter-spacing:.04em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+  <div class="grid" id="g"></div>
+  <div class="cap">Stroke 1.7 · round caps · swap 1:1 for Lucide in production</div>
+  <script>
+    const P = {
+      arrowR:"M5 12h14M13 6l6 6-6 6", arrowL:"M19 12H5M11 6l-6 6 6 6", arrowU:"M12 19V5M6 11l6-6 6 6",
+      arrowUR:"M7 17 17 7M8 7h9v9", menu:"M4 7h16M4 12h16M4 17h16", close:"M6 6l12 12M18 6 6 18",
+      search:"M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-4.3-4.3", plus:"M12 5v14M5 12h14", minus:"M5 12h14",
+      check:"M20 6 9 17l-5-5", play:"M8 5v14l11-7z", pause:"M9 5v14M15 5v14",
+      mail:"M3 6h18v12H3zM3 7l9 6 9-6", phone:"M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2",
+      pin:"M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11zM12 10a2 2 0 1 0 0 .01", calendar:"M3 5h18v16H3zM3 9h18M8 3v4M16 3v4",
+      clock:"M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2", user:"M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0",
+      users:"M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a6 6 0 0 0-4-5.6",
+      star:"M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 18l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z", heart:"M12 20S4 14 4 8.5A3.5 3.5 0 0 1 12 6a3.5 3.5 0 0 1 8 2.5C20 14 12 20 12 20z",
+      bookmark:"M6 3h12v18l-6-4-6 4z", share:"M16 8a3 3 0 1 0-3-3M8 14a3 3 0 1 0 0 0M16 22a3 3 0 1 0 0-6M9.5 12.5l5 3M14.5 6.5l-5 3",
+      download:"M12 4v11M7 11l5 5 5-5M5 20h14", upload:"M12 20V9M7 13l5-5 5 5M5 4h14", settings:"M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12l2-1-1-3-2 .5-1.5-1.5.5-2-3-1-1 2h-2l-1-2-3 1 .5 2L4 8 2 7.5 1 10.5 3 12l-2 1.5 1 3 2-.5 1.5 1.5-.5 2 3 1 1-2h2l1 2 3-1-.5-2z",
+      grid:"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z", list:"M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01",
+      layers:"M12 3l9 5-9 5-9-5zM3 13l9 5 9-5", image:"M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M9 9a1 1 0 1 0 0 .01",
+      video:"M3 6h13v12H3zM16 9l5-3v12l-5-3", code:"M9 7l-5 5 5 5M15 7l5 5-5 5", edit:"M5 19h14M14 5l5 5-9 9H5v-5z",
+      eye:"M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7zM12 14a2 2 0 1 0 0-4", lock:"M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3",
+      globe:"M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18", chat:"M4 5h16v11H9l-4 4z",
+      send:"M5 12l15-7-7 15-2-6z", link:"M9 15l6-6M10 7l1-1a4 4 0 0 1 6 6l-1 1M14 17l-1 1a4 4 0 0 1-6-6l1-1",
+      filter:"M3 5h18l-7 8v5l-4 2v-7z", sun:"M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1 1M18 18l1 1M19 5l-1 1M6 18l-1 1",
+      moon:"M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z", camera:"M4 7h4l2-2h4l2 2h4v12H4zM12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6",
+      folder:"M3 6h6l2 2h10v11H3z", refresh:"M21 12a9 9 0 1 1-3-6.7M21 4v4h-4"
+    };
+    const order = ["arrowR","arrowL","arrowU","arrowUR","menu","close","search","plus","minus","check","play","pause","mail","phone","pin","calendar","clock","user","users","star","heart","bookmark","share","download","upload","settings","grid","list","layers","image","video","code","edit","eye","globe","send"];
+    document.getElementById('g').innerHTML = order.map(k =>
+      `<div class="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${P[k]}"/></svg></div>`
+    ).join('');
+  </script>
+</body>
+</html>

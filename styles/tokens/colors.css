@@ -1,0 +1,72 @@
+/* ============================================================
+   COLORS — Chiran Perera Design System
+   STRICT MONOCHROME. A near-black canvas, white type, a calibrated
+   grey scale, and hairline borders. There is NO brand colour.
+   The only colour in the system is --accent: a single, restrained,
+   PER-PROJECT signal (lime by default) — set it per case study the
+   way the work itself sets its own tone. Use it sparingly: a dot, an
+   active underline, one word. Everything else stays black & white.
+   ============================================================ */
+:root {
+  /* ---- Canvas (near-black, neutral) ---- */
+  --bg:    #0A0A0B; /* global background */
+  --bg-2:  #0F0F11; /* elevated sections */
+  --bg-3:  #161619; /* cards / panels */
+  --bg-4:  #1E1E22; /* hover fills, inputs */
+
+  /* ---- Ink (white → grey scale) ---- */
+  --ink:   #FFFFFF; /* headings, key copy */
+  --ink-2: #C9C9CF; /* strong secondary */
+  --ink-3: #8A8A93; /* muted body, captions */
+  --ink-4: #5A5A62; /* faint meta, disabled */
+  --ink-5: #34343A; /* hairline-on-dark text */
+
+  /* ---- Lines & borders ---- */
+  --line:    rgba(255,255,255,.10); /* default hairline */
+  --line-2:  rgba(255,255,255,.18); /* stronger / hover */
+  --line-3:  rgba(255,255,255,.32); /* active, focus on dark */
+
+  /* ---- Inverse (light surfaces — e.g. a light case-study page) ---- */
+  --paper:     #F4F4F2; /* off-white surface */
+  --paper-2:   #E7E7E3;
+  --ink-on-paper: #0A0A0B;
+  --line-on-paper: rgba(10,10,11,.12);
+
+  /* ---- ACCENT — per-project signal. Override --accent per case study.
+         Default: acid lime (the studio's type-specimen accent). ---- */
+  --accent:        #D8FF3E; /* lime */
+  --accent-ink:    #0A0A0B; /* text on accent fills */
+  --accent-soft:   rgba(216,255,62,.14);
+  --accent-line:   rgba(216,255,62,.45);
+
+  /* ---- Curated per-project accent options (see Brand card) ---- */
+  --accent-lime:   #D8FF3E;
+  --accent-red:    #FF3B30;
+  --accent-blue:   #2E6BFF;
+  --accent-amber:  #FF9F1C;
+  --accent-white:  #FFFFFF; /* "no colour" — pure monochrome accent */
+
+  /* ---- Semantic status — minimal, functional. Used ONLY for state
+         (validation, badges, toasts), never as brand colour. ---- */
+  --success:      #3DD68C; --success-soft: rgba(61,214,140,.14);
+  --warning:      #E5B567; --warning-soft: rgba(229,181,103,.14);
+  --info:         #6AA6FF; --info-soft:    rgba(106,166,255,.14);
+  --danger:       #FF5247; --danger-soft:  rgba(255,82,71,.14);
+
+  /* ---- Photo overlays / scrims (monochrome — no colour gradients) ---- */
+  --scrim-top:    linear-gradient(180deg, rgba(10,10,11,.7), transparent 45%); /* @kind color */
+  --scrim-bottom: linear-gradient(0deg, rgba(10,10,11,.9), transparent 55%); /* @kind color */
+  --scrim-read:   linear-gradient(180deg, rgba(10,10,11,.2), rgba(10,10,11,.78)); /* @kind color */
+  --grad-ink:     linear-gradient(180deg, #16161A, #0A0A0B); /* @kind color */
+  --grad-fade:    linear-gradient(90deg, var(--ink), var(--ink-4));
+
+  /* ---- Semantic aliases ---- */
+  --surface:       var(--bg-3);
+  --surface-raised:var(--bg-2);
+  --text-primary:  var(--ink);
+  --text-secondary:var(--ink-3);
+  --text-tertiary: var(--ink-4);
+  --border:        var(--line);
+  --border-strong: var(--line-2);
+  --focus-ring:    var(--ink);
+}

@@ -1,0 +1,48 @@
+/* ============================================================
+   SPACING & RADII — Chiran Perera Design System
+   Generous "blackspace" and a 4px rhythm. Corners are SHARP and
+   technical (0–8px) — the look is a spec sheet / blueprint, not soft
+   cards. Pills are reserved for tags and toggles only.
+   ============================================================ */
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---- Section & layout rhythm ---- */
+  --section-y:    128px;
+  --section-y-sm: 88px;
+  --section-y-xs: 56px;
+  --wrap-max:     1480px;
+  --wrap-pad:     48px;
+  --gap:          24px;
+
+  /* ---- Radii (sharp / technical) ---- */
+  --r-0:    0;     /* @kind radius */ /* full-bleed media, hard edges */
+  --r-xs:   2px;   /* default — cards, buttons, inputs */
+  --r-sm:   4px;   /* slightly softened controls */
+  --r-md:   8px;   /* the softest the system goes */
+  --r-pill: 999px; /* tags + toggles ONLY */
+
+  /* ---- Borders ---- */
+  --bw:    1px;
+  --bw-2:  2px;
+
+  /* ---- Backgrounds: the technical field ---- */
+  --grid-size: 80px;                     /* blueprint grid cell */
+  --grid-line: rgba(255,255,255,.035);   /* faint grid stroke */
+  --dot-size:  26px;                      /* dot-field spacing */
+  --dot-color: rgba(255,255,255,.06);
+}

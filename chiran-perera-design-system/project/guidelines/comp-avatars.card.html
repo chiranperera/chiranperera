@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Avatars" subtitle="sizes · presence · verified · stacks" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; color:var(--ink); }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 14px; }
+  .row { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+  .av { border-radius:50%; background:var(--bg-4); border:1px solid var(--line-2); display:grid; place-items:center; font-family:var(--font-display); font-weight:500; color:var(--ink-2); overflow:hidden; position:relative; flex:none; }
+  .av img { width:100%; height:100%; object-fit:cover; filter:grayscale(1); }
+  .pres::after { content:''; position:absolute; right:0; bottom:0; width:26%; height:26%; border-radius:50%; background:var(--success); border:2px solid var(--bg); }
+  .ver::after { content:''; position:absolute; right:-2px; bottom:-2px; width:42%; height:42%; border-radius:50%; background:var(--ink); border:2px solid var(--bg);
+    -webkit-mask:none; }
+  .stack { display:flex; }
+  .stack .av { margin-left:-14px; box-shadow:0 0 0 2px var(--bg); }
+  .stack .av:first-child { margin-left:0; }
+  .more { font-family:var(--font-mono); font-size:12px; color:var(--ink-3); margin-left:10px; }
+</style>
+</head>
+<body>
+  <p class="lbl">Sizes — 24 / 32 / 40 / 56 / 72</p>
+  <div class="row">
+    <span class="av" style="width:24px;height:24px;font-size:9px">CP</span>
+    <span class="av" style="width:32px;height:32px;font-size:11px">CP</span>
+    <span class="av" style="width:40px;height:40px;font-size:13px"><img src="../assets/chiran-portrait.jpg" alt=""/></span>
+    <span class="av" style="width:56px;height:56px;font-size:17px"><img src="../assets/chiran-portrait.jpg" alt=""/></span>
+    <span class="av" style="width:72px;height:72px;font-size:22px"><img src="../assets/chiran-portrait.jpg" alt=""/></span>
+  </div>
+  <p class="lbl">Presence · verified · stack</p>
+  <div class="row" style="margin-bottom:0">
+    <span class="av pres" style="width:48px;height:48px;font-size:15px"><img src="../assets/chiran-portrait.jpg" alt=""/></span>
+    <span class="av ver" style="width:48px;height:48px;font-size:15px">AK</span>
+    <span class="stack">
+      <span class="av" style="width:40px;height:40px;font-size:13px">CP</span>
+      <span class="av" style="width:40px;height:40px;font-size:13px">AK</span>
+      <span class="av" style="width:40px;height:40px;font-size:13px">RJ</span>
+      <span class="av" style="width:40px;height:40px;font-size:13px">+5</span>
+    </span>
+    <span class="more">12 collaborators</span>
+  </div>
+</body>
+</html>

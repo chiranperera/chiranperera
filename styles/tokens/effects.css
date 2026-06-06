@@ -1,0 +1,111 @@
+/* ============================================================
+   EFFECTS — Chiran Perera Design System
+   Monochrome and restrained. Depth comes from hairline borders and
+   soft ambient shadows — never neon. Backgrounds are technical:
+   a faint blueprint grid or dot field. Motion is engineered: eased
+   reveals, marquees, underline-grow links, slow drift.
+   ============================================================ */
+:root {
+  /* ---- Shadows (soft, neutral, sparing) ---- */
+  --shadow-sm:  0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:  0 18px 40px -24px rgba(0,0,0,.8);
+  --shadow-lg:  0 40px 90px -40px rgba(0,0,0,.9);
+  --shadow-float: 0 30px 80px -30px rgba(0,0,0,.85);
+
+  /* ---- Blur ---- */
+  --blur:     blur(14px) saturate(110%); /* @kind other */
+  --blur-nav: blur(18px) saturate(120%); /* @kind other */
+
+  /* ---- Motion: durations ---- */
+  --dur-fast:  .2s;  /* @kind other */
+  --dur-med:   .4s;  /* @kind other */
+  --dur-slow:  .8s;  /* @kind other */
+  --dur-slide: .9s;  /* @kind other */
+
+  /* ---- Motion: easing ---- */
+  --ease-out:    cubic-bezier(.2,.7,.2,1);     /* @kind other */ /* signature reveal */
+  --ease-in-out: cubic-bezier(.76,0,.24,1);    /* @kind other */ /* slide transitions */
+  --ease-quint:  cubic-bezier(.22,1,.36,1);    /* @kind other */
+
+  /* ---- Focus ---- */
+  --focus-outline: 2px solid var(--ink); /* @kind other */
+  --focus-offset:  3px;
+}
+
+/* ============================================================
+   TECHNICAL FIELD — drop on a full-bleed wrapper for the studio's
+   signature background. Choose grid OR dots; add a soft top light.
+   ============================================================ */
+.cp-surface { position: relative; background: var(--bg); }
+
+/* faint blueprint grid (blueprint / spec-sheet) */
+.cp-grid-field::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  mask-image: radial-gradient(1200px 800px at 50% 0%, #000 5%, rgba(0,0,0,.4) 55%, transparent 92%);
+  -webkit-mask-image: radial-gradient(1200px 800px at 50% 0%, #000 5%, rgba(0,0,0,.4) 55%, transparent 92%);
+  animation: cpGridDrift 60s linear infinite;
+}
+/* dot field (Ohio-style) — alternative to the grid */
+.cp-dot-field::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1.4px);
+  background-size: var(--dot-size) var(--dot-size);
+  mask-image: radial-gradient(1100px 760px at 50% 0%, #000 5%, transparent 90%);
+  -webkit-mask-image: radial-gradient(1100px 760px at 50% 0%, #000 5%, transparent 90%);
+}
+@keyframes cpGridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size); }
+}
+
+/* Reveal-on-scroll primitive */
+.cp-reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.cp-reveal.in { opacity: 1; transform: none; }
+
+/* Char/line stagger used by oversized titles */
+@keyframes cpRise { from { opacity: 0; transform: translateY(115%); } to { opacity: 1; transform: none; } }
+
+/* Underline-grow link (signature link affordance) */
+.cp-underline { position: relative; }
+.cp-underline::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.cp-underline:hover::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-grid-field::before { animation: none; }
+  .cp-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============================================================
+   COMPONENT INTERACTION STATES — hover/active/focus that inline
+   React styles can't express. Shipped to consumers.
+   ============================================================ */
+.cp-btn:focus-visible { outline: var(--focus-outline); outline-offset: var(--focus-offset); }
+.cp-btn:active:not(:disabled) { transform: translateY(1px); }
+.cp-btn .cp-btn-arrow { transition: transform var(--dur-fast) var(--ease-out); }
+.cp-btn:hover .cp-btn-arrow { transform: translateX(4px); }
+/* solid (white) → invert to outline on hover */
+.cp-btn-solid:not(:disabled):hover { background: transparent !important; color: var(--ink) !important; box-shadow: inset 0 0 0 1px var(--line-3) !important; }
+/* outline → fill white on hover */
+.cp-btn-outline:not(:disabled):hover { background: var(--ink) !important; color: var(--bg) !important; }
+/* accent → slight dim */
+.cp-btn-accent:not(:disabled):hover { filter: brightness(.92); }
+.cp-btn-ghost:not(:disabled):hover { color: var(--ink) !important; }
+
+/* Card hover — border brightens, faint lift */
+.cp-card { transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med), background var(--dur-med); }
+.cp-card-hoverable:hover { transform: translateY(-2px); border-color: var(--line-2) !important; background: var(--bg-4) !important; }
+
+/* Tag */
+.cp-tag { transition: border-color var(--dur-fast), color var(--dur-fast), background var(--dur-fast); }
+.cp-tag-interactive:hover { border-color: var(--line-3); color: var(--ink); }

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Overlays & scrims" subtitle="Monochrome photo scrims — no colour gradients" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .tile { position:relative; height:120px; border:1px solid var(--line); border-radius:var(--r-xs); overflow:hidden;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 2px, transparent 2px 9px), var(--bg-3); }
+  .ov { position:absolute; inset:0; }
+  .lbl { position:absolute; left:10px; bottom:8px; font-family:var(--font-mono); font-size:10px; color:#fff; letter-spacing:.04em; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="tile"><div class="ov" style="background:var(--scrim-top)"></div><span class="lbl">--scrim-top</span></div>
+    <div class="tile"><div class="ov" style="background:var(--scrim-bottom)"></div><span class="lbl">--scrim-bottom</span></div>
+    <div class="tile"><div class="ov" style="background:var(--scrim-read)"></div><span class="lbl">--scrim-read</span></div>
+    <div class="tile"><div class="ov" style="background:var(--grad-ink)"></div><span class="lbl">--grad-ink</span></div>
+  </div>
+</body>
+</html>

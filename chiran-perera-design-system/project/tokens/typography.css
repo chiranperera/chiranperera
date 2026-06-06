@@ -1,0 +1,81 @@
+/* ============================================================
+   TYPOGRAPHY — Chiran Perera Design System
+   Stolzl (geometric grotesque) for everything visible; Space Mono for
+   technical labels, metadata, pagination and "spec-sheet" eyebrows.
+   Display is OVERSIZED, weight 700 (Stolzl's heaviest), tight tracking —
+   the signature move is giant grotesque type layered with imagery.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-display: 'stolzl', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'stolzl', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---- Weights (Stolzl: 100 · 200 · 300 · 400 · 500 · 700) ----
+     Heavier aliases (extra/black) map to 700, Stolzl's heaviest, so
+     existing references stay valid. */
+  --w-thin:       100; /* @kind font */
+  --w-extralight: 200; /* @kind font */
+  --w-light:      300; /* @kind font */
+  --w-regular:    400; /* @kind font */
+  --w-medium:     500; /* @kind font */
+  --w-semibold:   500; /* @kind font */  /* Stolzl has no 600 → 500 */
+  --w-bold:       700; /* @kind font */
+  --w-extra:      700; /* @kind font */
+  --w-black:      700; /* @kind font */
+
+  /* ---- Fluid display scale (clamp: min, vw, max) ---- */
+  --fs-mega:     clamp(72px, 16vw, 280px); /* @kind font */
+  --fs-display:  clamp(56px, 10vw, 160px); /* @kind font */
+  --fs-d1:       clamp(48px, 7vw, 104px);  /* @kind font */
+  --fs-d2:       clamp(36px, 5vw, 64px);   /* @kind font */
+  --fs-h1:       clamp(32px, 4vw, 48px); /* @kind font */
+  --fs-h2:       clamp(26px, 3vw, 36px); /* @kind font */
+  --fs-h3:       22px; /* @kind font */
+  --fs-h4:       18px; /* @kind font */
+
+  /* ---- Text scale ---- */
+  --fs-lead: 20px; /* @kind font */  /* intro paragraphs */
+  --fs-body: 16px; /* @kind font */  /* default body */
+  --fs-sm:   14px; /* @kind font */
+  --fs-meta: 12px; /* @kind font */  /* mono metadata */
+  --fs-label:11px; /* @kind font */  /* mono eyebrows, uppercase */
+
+  /* ---- Line heights ---- */
+  --lh-mega:  0.86; /* @kind font */
+  --lh-display:0.95;/* @kind font */
+  --lh-tight: 1.05; /* @kind font */
+  --lh-snug:  1.25; /* @kind font */
+  --lh-body:  1.6;  /* @kind font */
+
+  /* ---- Letter spacing ---- */
+  --ls-mega:   -.04em; /* @kind font */ /* tightest on the biggest type */
+  --ls-display:-.03em; /* @kind font */
+  --ls-tight:  -.015em;/* @kind font */
+  --ls-normal: 0;      /* @kind font */
+  --ls-label:  .14em;  /* @kind font */ /* uppercase mono labels */
+  --ls-wide:   .24em;  /* @kind font */ /* eyebrow / vertical rail */
+}
+
+/* ---- Reusable type classes ---- */
+.cp-display {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-display);
+  color: var(--ink);
+}
+.cp-label {
+  font-family: var(--font-mono);
+  font-weight: var(--w-regular);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.cp-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: .02em;
+  color: var(--ink-3);
+}

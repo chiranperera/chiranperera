@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Badges" subtitle="solid + soft · four tones + project status set" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:28px; }
+  .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); margin:0 0 12px; }
+  .row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .b { font-family:var(--font-mono); font-size:11px; letter-spacing:.02em; padding:5px 11px; border-radius:var(--r-pill); display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:6px; height:6px; border-radius:50%; }
+  .soft { border:1px solid var(--line); color:var(--ink-2); }
+</style>
+</head>
+<body>
+  <p class="lbl">Solid</p>
+  <div class="row">
+    <span class="b" style="background:var(--ink);color:var(--bg)">Default</span>
+    <span class="b" style="background:var(--success);color:#06281A">Shipped</span>
+    <span class="b" style="background:var(--warning);color:#2A1E06">Pending</span>
+    <span class="b" style="background:var(--danger);color:#2A0906">Failed</span>
+    <span class="b" style="background:var(--accent);color:var(--accent-ink)">Featured</span>
+  </div>
+  <p class="lbl">Soft + status dot</p>
+  <div class="row" style="margin-bottom:0">
+    <span class="b soft"><span class="dot" style="background:var(--ink-3)"></span>Draft</span>
+    <span class="b soft"><span class="dot" style="background:var(--success)"></span>Live</span>
+    <span class="b soft"><span class="dot" style="background:var(--warning)"></span>In review</span>
+    <span class="b soft"><span class="dot" style="background:var(--info)"></span>Scheduled</span>
+    <span class="b soft"><span class="dot" style="background:var(--danger)"></span>Archived</span>
+    <span class="b soft"><span class="dot" style="background:var(--accent)"></span>New inquiry</span>
+  </div>
+</body>
+</html>

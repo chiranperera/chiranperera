@@ -1,0 +1,65 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Core — buttons, tags, badges" subtitle="Button · Tag · Eyebrow · Badge" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin:0; font-family:var(--font-body); padding:32px; background:var(--bg); }
+  .group { display:flex; flex-direction:column; gap:14px; }
+  .block { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding-bottom:22px; border-bottom:1px solid var(--line); }
+  .block:last-child { border:0; }
+  .cap { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); width:100%; text-transform:uppercase; letter-spacing:.12em; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { Button, Tag, Eyebrow, Badge } = window.ChiranPereraDesignSystem_bfab9b;
+    function Demo() {
+      return (
+        <div className="group">
+          <div className="block">
+            <span className="cap">Button · variants</span>
+            <Button variant="solid" arrow>View project</Button>
+            <Button variant="outline" arrow>All work</Button>
+            <Button variant="ghost">Details →</Button>
+            <Button variant="accent" arrow>Free AI audit</Button>
+            <Button variant="solid" disabled>Disabled</Button>
+          </div>
+          <div className="block">
+            <span className="cap">Button · sizes</span>
+            <Button variant="outline" size="sm">Small</Button>
+            <Button variant="outline" size="md">Medium</Button>
+            <Button variant="outline" size="lg">Large</Button>
+          </div>
+          <div className="block">
+            <span className="cap">Eyebrow</span>
+            <Eyebrow dot>Branding · Web · AI — 2026</Eyebrow>
+            <Eyebrow>The studio · what I do</Eyebrow>
+          </div>
+          <div className="block">
+            <span className="cap">Tag</span>
+            <Tag>Next.js</Tag>
+            <Tag>WordPress</Tag>
+            <Tag variant="solid">Featured</Tag>
+            <Tag variant="accent">AI</Tag>
+            <Tag interactive>Hospitality</Tag>
+          </div>
+          <div className="block">
+            <span className="cap">Badge</span>
+            <Badge status="open">Available Q3 2026</Badge>
+            <Badge status="busy">Booked through Q2</Badge>
+            <Badge status="neutral">Draft</Badge>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

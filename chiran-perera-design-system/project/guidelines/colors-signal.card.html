@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Ink scale" subtitle="White → grey type hierarchy" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .stack { display:flex; flex-direction:column; }
+  .line { display:flex; align-items:center; gap:16px; padding:9px 0; border-bottom:1px solid var(--line); }
+  .swatch { width:40px; height:40px; border-radius:var(--r-xs); border:1px solid var(--line); flex:none; }
+  .name { font:var(--w-bold) 16px var(--font-display); width:170px; }
+  .role { font-size:13px; color:var(--ink-3); flex:1; }
+  .val { font-family:var(--font-mono); font-size:11px; color:var(--ink-4); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="line"><span class="swatch" style="background:var(--ink)"></span><span class="name" style="color:var(--ink)">--ink</span><span class="role">Headings, key copy</span><span class="val">#FFFFFF</span></div>
+    <div class="line"><span class="swatch" style="background:var(--ink-2)"></span><span class="name" style="color:var(--ink-2)">--ink-2</span><span class="role">Strong secondary</span><span class="val">#C9C9CF</span></div>
+    <div class="line"><span class="swatch" style="background:var(--ink-3)"></span><span class="name" style="color:var(--ink-3)">--ink-3</span><span class="role">Muted body, captions</span><span class="val">#8A8A93</span></div>
+    <div class="line"><span class="swatch" style="background:var(--ink-4)"></span><span class="name" style="color:var(--ink-4)">--ink-4</span><span class="role">Faint meta, disabled</span><span class="val">#5A5A62</span></div>
+  </div>
+</body>
+</html>

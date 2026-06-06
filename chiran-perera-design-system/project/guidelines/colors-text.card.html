@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Lines & borders" subtitle="Hairlines define structure — no shadows needed" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; background:var(--bg); font-family:var(--font-body); padding:24px; }
+  .row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .box { height:84px; border-radius:var(--r-xs); background:var(--bg-2); display:flex; align-items:flex-end; padding:12px; }
+  .name { font-family:var(--font-mono); font-size:11px; color:var(--ink-3); }
+  .val { font-family:var(--font-mono); font-size:10px; color:var(--ink-4); margin-top:2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><div class="box" style="border:1px solid var(--line)"><div><div class="name">--line</div><div class="val">white / .10</div></div></div></div>
+    <div><div class="box" style="border:1px solid var(--line-2)"><div><div class="name">--line-2</div><div class="val">white / .18 · hover</div></div></div></div>
+    <div><div class="box" style="border:1px solid var(--line-3)"><div><div class="name">--line-3</div><div class="val">white / .32 · active</div></div></div></div>
+  </div>
+</body>
+</html>
