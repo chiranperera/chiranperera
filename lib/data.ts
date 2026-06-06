@@ -9,7 +9,7 @@ export type FeatureRow = {
   title: string;
   body: string;
   points?: string[];
-  media: { label: string; src?: string }; // src omitted → labelled placeholder
+  media: { label: string; src?: string; pos?: string }; // src omitted → labelled placeholder; pos = background-position
 };
 
 /* Closing value pitch (e.g. "why a solar business should build this"). */
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
           "A tireless salesperson + support agent in one",
           "Private and instant — runs in the browser, nothing leaves it",
         ],
-        media: { label: "VOLT AI Concierge", src: "url('/assets/volt/feature-concierge.jpg')" },
+        media: { label: "VOLT AI Concierge", src: "url('/assets/volt/feature-concierge.jpg')", pos: "right center" },
       },
       {
         eyebrow: "Interactive · Instant",

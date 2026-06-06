@@ -17,10 +17,10 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
   return <div ref={ref} className={`cp-reveal ${className}`} {...rest}>{children}</div>;
 }
 
-function Tile({ label, n, tall, wide, img }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null }) {
+function Tile({ label, n, tall, wide, img, pos }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null; pos?: string }) {
   return (
     <div className={`tile${tall ? " tall" : ""}${wide ? " wide" : ""}`}>
-      {img && <div className="img" style={{ backgroundImage: img }} />}
+      {img && <div className="img" style={{ backgroundImage: img, backgroundPosition: pos }} />}
       <span className="n">{n}</span>
       <span className="lbl">{label}</span>
     </div>
@@ -148,7 +148,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
                   <p>{f.body}</p>
                   {f.points && <ul className="f-points">{f.points.map((pt, j) => <li key={j}>{pt}</li>)}</ul>}
                 </div>
-                <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} /></div>
+                <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} /></div>
               </Reveal>
             ))}
           </div>
