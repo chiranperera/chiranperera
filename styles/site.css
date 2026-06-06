@@ -162,7 +162,7 @@ img{display:block;max-width:100%}
 .intro-comp{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:96px 24px 84px;text-align:center}
 .intro-lockup{display:contents}
 .intro-subject{order:-2;display:flex;justify-content:center;pointer-events:none}
-.intro-subject img{width:auto;height:auto;max-height:46vh;max-width:84vw;object-fit:contain;filter:grayscale(1) contrast(1.04);-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 7%);mask-image:linear-gradient(0deg,transparent 0%,#000 7%)}
+.intro-subject img{width:auto;height:auto;max-height:46vh;max-width:84vw;object-fit:contain;filter:grayscale(1) contrast(1.04);-webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
 .intro-eyebrow{order:-1;font-family:var(--font-mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);max-width:92%}
 .intro-nameback{order:0;display:flex;flex-direction:column;align-items:center}
 .intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;color:#fff}
@@ -188,8 +188,8 @@ img{display:block;max-width:100%}
      background gray (mask affects the image alone — the name text is a separate
      layer and is never touched). */
   .intro-subject img{width:100%;height:auto;max-height:none;max-width:none;
-    -webkit-mask-image:linear-gradient(to top, transparent 0%, #000 14%);
-    mask-image:linear-gradient(to top, transparent 0%, #000 14%)}
+    -webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);
+    mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
   .intro-nameback{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:1;width:max-content;display:flex;flex-direction:column;align-items:center}
   .intro-nameback h1{font-size:clamp(64px,10.5vw,168px);line-height:.84;letter-spacing:-.05em;white-space:nowrap;text-shadow:0 4px 50px rgba(0,0,0,.45)}
   .intro-tag{order:1;max-width:680px;font-size:clamp(18px,2vw,24px)}
