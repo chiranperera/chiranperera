@@ -29,20 +29,22 @@ function IntroSlide({ active }: { active: boolean }) {
 function Slide({ p, active, onOpen }: { p: Project; active: boolean; onOpen: (slug: string) => void }) {
   const title = p.title.replace("\n", " ");
   return (
-    <article className={`slide${active ? " active" : ""}`} aria-hidden={!active}
+    <article className={`slide split${active ? " active" : ""}`} aria-hidden={!active}
       style={{ "--accent": p.accent } as React.CSSProperties}>
-      <div className="slide-media">
+      {/* LEFT — content zone */}
+      <div className="slide-content-zone">
+        <div className="slide-inner">
+          <span className="eyebrow">{p.cats.join(" · ")} — {p.year}</span>
+          <h2 className="slide-title">{title}</h2>
+          <p className="summary">{p.summary}</p>
+          <button className="tlink" onClick={() => onOpen(p.slug)}>View project <span className="arr">→</span></button>
+        </div>
+      </div>
+      {/* RIGHT — image zone */}
+      <div className="slide-image-zone">
         {p.img
           ? <div className="img" style={{ backgroundImage: p.img }} />
           : <div className="ph"><span className="ph-tag">[ {p.client} — hero still ]</span></div>}
-      </div>
-      <div className="slide-scrim" />
-      <div className="slide-num">{p.num.replace(/^0/, "")}<em>.</em></div>
-      <div className="slide-huge"><h2>{title}</h2></div>
-      <div className="slide-content">
-        <span className="eyebrow">{p.cats.join(" · ")} — {p.year}</span>
-        <p className="summary">{p.summary}</p>
-        <button className="tlink" onClick={() => onOpen(p.slug)}>View project <span className="arr">→</span></button>
       </div>
     </article>
   );
