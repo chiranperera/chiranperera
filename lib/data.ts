@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
           "Skips the slow, manual sizing process",
           "Visitors self-qualify before they ever call",
         ],
-        media: { label: "Instant Sizer — bill upload", src: "url('/assets/volt/feature-leadcapture.jpg')" },
+        media: { label: "Instant Sizer — bill upload", src: "url('/assets/volt/feature-leadcapture.jpg')", pos: "left center" },
       },
       {
         eyebrow: "Pipeline · Conversion",
@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
           "Configured systems = higher-value, ready-to-quote leads",
           "Fewer tyre-kickers, more booked installs",
         ],
-        media: { label: "Live sizing → quote", src: "url('/assets/volt/feature-sizing.jpg')" },
+        media: { label: "Live sizing → quote", src: "url('/assets/volt/feature-sizing.jpg')", pos: "right center" },
       },
     ],
     pitch: {
