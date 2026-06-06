@@ -155,7 +155,7 @@ img{display:block;max-width:100%}
    DESKTOP (≥1024) = behind-text composition with the photo's BOTTOM locked to
    PERERA's baseline via a shared anchor (the lockup's box = the name's box). */
 .intro{position:absolute;inset:0;display:block;overflow:hidden}
-.intro-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 92% at 50% 36%, #1c1c22 0%, #101014 46%, #0a0a0b 76%)}
+.intro-bg{position:absolute;inset:0;z-index:0;background:#000000}
 .intro-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:var(--grid-size) var(--grid-size);-webkit-mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%);mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%)}
 
 /* MOBILE stack — photo (large) on top, then eyebrow, name, tagline, CTA */
@@ -168,7 +168,7 @@ img{display:block;max-width:100%}
 .intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;color:#fff}
 .intro-tag{order:1;font-family:var(--font-display);font-weight:500;font-size:clamp(17px,4.6vw,22px);letter-spacing:-.01em;color:#fff;max-width:560px;text-wrap:balance}
 .intro-cta{order:2;color:#fff}
-.intro-fade{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:3;pointer-events:none;background:linear-gradient(0deg,var(--bg),transparent)}
+.intro-fade{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:3;pointer-events:none;background:linear-gradient(0deg,#000,transparent)}
 .intro-grain{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,11,.30),transparent 30%,transparent 64%,rgba(10,10,11,.85))}
 
 /* DESKTOP — normal flow, whole hero group vertically centered.
