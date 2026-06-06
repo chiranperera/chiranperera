@@ -68,9 +68,25 @@ export default function Slideshow({ onOpen }: { onOpen: (slug: string) => void }
       if (e.key === "ArrowDown" || e.key === "ArrowRight") next();
       if (e.key === "ArrowUp" || e.key === "ArrowLeft") prev();
     };
+    // Touch: vertical swipe to change slides (swipe up → next, down → prev).
+    let startY = 0, startX = 0;
+    const onTouchStart = (e: TouchEvent) => { startY = e.touches[0].clientY; startX = e.touches[0].clientX; };
+    const onTouchEnd = (e: TouchEvent) => {
+      const dy = startY - e.changedTouches[0].clientY;
+      const dx = startX - e.changedTouches[0].clientX;
+      if (Math.abs(dy) < 45 || Math.abs(dy) <= Math.abs(dx)) return; // ignore small or mostly-horizontal swipes
+      dy > 0 ? next() : prev();
+    };
     addEventListener("wheel", onWheel, { passive: true });
     addEventListener("keydown", onKey);
-    return () => { removeEventListener("wheel", onWheel); removeEventListener("keydown", onKey); };
+    addEventListener("touchstart", onTouchStart, { passive: true });
+    addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      removeEventListener("wheel", onWheel);
+      removeEventListener("keydown", onKey);
+      removeEventListener("touchstart", onTouchStart);
+      removeEventListener("touchend", onTouchEnd);
+    };
   }, [next, prev]);
 
   // accent: intro = lime; projects use their own

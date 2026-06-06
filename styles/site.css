@@ -204,7 +204,8 @@ img{display:block;max-width:100%}
   .slide-content-zone{flex:1 1 auto;width:100%}
   .slide-inner{max-width:none;padding:0 var(--wrap-pad);gap:22px}
   .slide-title{font-size:clamp(40px,9vw,62px)}
-  .pager,.rail-left{display:none}
+  /* mobile: no on-screen slide arrows — use vertical swipe instead */
+  .pager,.rail-left,.nav-arrows{display:none}
   .overlay-body{grid-template-columns:1fr;gap:32px}
 }
 @media (prefers-reduced-motion:reduce){.field::before{animation:none}.slide{transition:opacity .2s}}
