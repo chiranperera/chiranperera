@@ -18,11 +18,11 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
   return <div ref={ref} className={`cp-reveal ${className}`} {...rest}>{children}</div>;
 }
 
-function Tile({ label, n, tall, wide, img, pos }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null; pos?: string }) {
+function Tile({ label, n, tall, wide, img, pos, capPad }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null; pos?: string; capPad?: string }) {
   return (
     <figure className={`tile${tall ? " tall" : ""}${wide ? " wide" : ""}`}>
       <div className="tile-img" style={img ? { backgroundImage: img, backgroundPosition: pos } : undefined} />
-      <figcaption className="tile-cap"><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
+      <figcaption className="tile-cap" style={capPad ? { paddingLeft: capPad, paddingRight: capPad } : undefined}><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
     </figure>
   );
 }
@@ -173,7 +173,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
                     <p>{f.body}</p>
                     {f.points && <ul className="f-points">{f.points.map((pt, j) => <li key={j}>{pt}</li>)}</ul>}
                   </div>
-                  <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} /></div>
+                  <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} capPad={f.media.capPad} /></div>
                 </Reveal>
               ))}
             </div>

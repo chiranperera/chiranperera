@@ -9,7 +9,7 @@ export type FeatureRow = {
   title: string;
   body: string;
   points?: string[];
-  media: { label: string; src?: string; pos?: string }; // src omitted → labelled placeholder; pos = background-position
+  media: { label: string; src?: string; pos?: string; capPad?: string }; // src omitted → placeholder; pos = bg-position; capPad = caption side inset
 };
 
 /* A business pain point the client faced before the project (Overview). */
@@ -92,7 +92,7 @@ export const PROJECTS: Project[] = [
           "A tireless salesperson + support agent in one",
           "Private and instant — runs in the browser, nothing leaves it",
         ],
-        media: { label: "VOLT AI Concierge", src: "url('/assets/volt/feature-concierge.jpg')", pos: "right center" },
+        media: { label: "VOLT AI Concierge", src: "url('/assets/volt/feature-concierge.jpg')", pos: "right center", capPad: "8.6%" },
       },
       {
         eyebrow: "Interactive · Instant",
