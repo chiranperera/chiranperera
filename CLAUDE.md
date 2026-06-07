@@ -96,29 +96,39 @@ media?{identity,type,homeDesktop,homeMobile,components,devicePair,gallery[]}`.
 Projects: volt-home-energy (lead, real images), sarisara-lanka, villa-kaloya,
 lumen-skincare, hiruka-wellness, north-point. Only VOLT has real screenshots.
 
-## ▶ CURRENT TASK (in progress) — crop placeholders from two full images
-The user now supplies, per project, **one full-length desktop PNG + one full
-mobile PNG** (`public/assets/volt/full-desktop.png`, `full-mobile.png`), plus
-**individual images only for interactive/overlay states** (e.g.
-`feature-concierge.jpg` — the open chat). **This is the standard going forward.**
+## ✅ IMAGE WINDOWING SYSTEM (done for VOLT — standard going forward)
+Per project the user supplies **one full-desktop PNG + one full-mobile PNG**
+(`public/assets/volt/full-desktop.png`, `full-mobile.png`) + **individual images
+only for interactive/overlay states** (e.g. `feature-concierge.jpg`, the open
+chat — NOT in the static page screenshot, so it can't be cropped).
 
-Plan agreed with the user:
-1. **Reuse the two full images** for every page-section placeholder via CSS
-   "windowing": `background-image` = full image, `background-size: 100%` (full
-   width), `background-position-y: <%>` to reveal the right band. One file, many
-   crops. **I (Claude) identify the crop positions by viewing the image** — no
-   backend admin tool (static site; adjusting a crop is a one-line value change).
-2. Add an image-model option like `{ from: "desktop"|"mobile", at: "<%>", zoom? }`
-   so tiles/feature-media/device-pair reference a crop of the full image.
-3. **Annotations:** when a feature is too small to isolate in a band, overlay an
-   anchored callout (accent marker + mono label, positioned in **%** so it
-   tracks across desktop/mobile resizing). On-brand: thin accent bracket + label.
-4. **Interactive states** (open concierge chat, modals): keep their own
-   individual images (user provides), don't crop from the full page.
+**How it works (implemented):**
+- CSS "windowing": a tile shows `background-image:<full img>; background-size:100%;
+  background-position:50% <cropY>`. One file, many crops. Supported on `GalleryItem`
+  (`cropY`), `FeatureRow.media` (`cropY`), `media.design[]` (the Direction&design
+  grid), and `DevicePair` (`cropYDesktop`/`cropYMobile`). All in `lib/data.ts`.
+- **cropY ≠ section %.** `background-position-y: P%` puts the band at
+  `[P·(1−k), P·(1−k)+k]` of the image where `k = tileAspectH/imageAspectH`
+  (≈0.127 for a 4:3 tile on the 3024×17788 desktop img). To CENTRE a section
+  whose centre is at fraction C: `P = (C − k/2)/(1−k)`. **Don't eyeball from
+  downscaled slices** — that error cost a redo. Instead measure precisely:
+  segment the full PNG into background-colour bands with PIL
+  (yellow/black/white runs → exact section centres), then compute P.
+- **Annotations = leader lines** (`TileNote {x,y,text,lx?,ly?}`): a dot at the
+  anchor (x,y) + a thin accent line to a label parked in a CLEAR area (lx,ly).
+  Never sits on top of content. Label chip is dark w/ accent border + the line
+  has a dark casing → readable on yellow/white/black. CSS `.tile-anno*`.
 
-Next step when resuming: VIEW full-desktop.png + full-mobile.png (they're large
-~6 MB — mind the context budget), map each VOLT section's vertical position,
-implement the crop option + annotations, wire VOLT's placeholders, build, push.
+**▶ LIVE CALIBRATOR** (`components/CropCalibrator.tsx`) — the user can tune crops
+themselves: open any case URL with **`?calibrate`**, drag any windowed image ↕ to
+frame it; cropY updates live + persists to localStorage; panel lists every tile
+with **Copy values**. Self-gates on the query flag (zero footprint otherwise).
+Workflow to LOCK: user drags → tells me the values (or I read `localStorage
+.voltCropOverrides` via `preview_eval`) → I bake them into `lib/data.ts`.
+
+Preview screenshots of case pages render BLACK/dim (reveal + DPR glitch) — verify
+crops by **pixel-sampling a canvas** (`drawImage` the band → read section colour)
+or via `preview_eval` computed `background-position`, never screenshots.
 
 ## Known TODOs / state
 - Contact form is client-only (confirmation message) — wire to Resend/Formspree
