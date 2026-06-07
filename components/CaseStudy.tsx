@@ -20,11 +20,10 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
 
 function Tile({ label, n, tall, wide, img, pos }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null; pos?: string }) {
   return (
-    <div className={`tile${tall ? " tall" : ""}${wide ? " wide" : ""}`}>
-      {img && <div className="img" style={{ backgroundImage: img, backgroundPosition: pos }} />}
-      <span className="n">{n}</span>
-      <span className="lbl">{label}</span>
-    </div>
+    <figure className={`tile${tall ? " tall" : ""}${wide ? " wide" : ""}`}>
+      <div className="tile-img" style={img ? { backgroundImage: img, backgroundPosition: pos } : undefined} />
+      <figcaption className="tile-cap"><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
+    </figure>
   );
 }
 
