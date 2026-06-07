@@ -6,8 +6,9 @@ export type TileNote = { x: string; y: string; text: string };
 /* cropY: window a full-page image — background-size 100%, position-y = cropY. */
 export type GalleryItem = { src: string; label: string; portrait?: boolean; pos?: string; capPad?: string; cropY?: string; note?: TileNote };
 
-/* A desktop + mobile screenshot shown side by side as one captioned unit. */
-export type DevicePair = { label: string; desktop: string; mobile: string };
+/* A desktop + mobile screenshot shown side by side as one captioned unit.
+   cropYDesktop/cropYMobile window a full-page image into each panel. */
+export type DevicePair = { label: string; desktop: string; mobile: string; cropYDesktop?: string; cropYMobile?: string };
 
 /* An alternating image/text "selling point" row (used on rich case studies). */
 export type FeatureRow = {
@@ -15,7 +16,7 @@ export type FeatureRow = {
   title: string;
   body: string;
   points?: string[];
-  media: { label: string; src?: string; pos?: string; capPad?: string }; // src omitted → placeholder; pos = bg-position; capPad = caption side inset
+  media: { label: string; src?: string; pos?: string; capPad?: string; cropY?: string; note?: TileNote }; // src omitted → placeholder; pos = bg-position; capPad = caption side inset; cropY = window a full-page image; note = anchored pin
 };
 
 /* A business pain point the client faced before the project (Overview). */
@@ -60,6 +61,7 @@ export type Project = {
     homeDesktop?: string;
     homeMobile?: string;
     components?: string;
+    design?: GalleryItem[];    // Direction & design grid (windowed crops); falls back to identity/type/components/homeMobile
     devicePair?: DevicePair;   // desktop + mobile shown side by side
     gallery?: GalleryItem[];
   };
@@ -110,7 +112,7 @@ export const PROJECTS: Project[] = [
           "Skips the slow, manual sizing process",
           "Visitors self-qualify before they ever call",
         ],
-        media: { label: "Instant Sizer — bill upload", src: "url('/assets/volt/feature-leadcapture.jpg')", pos: "left center" },
+        media: { label: "Instant Sizer — system sizing", src: "url('/assets/volt/full-desktop.png')", cropY: "37%", note: { x: "28%", y: "40%", text: "Reads your usage" } },
       },
       {
         eyebrow: "Pipeline · Conversion",
@@ -121,7 +123,7 @@ export const PROJECTS: Project[] = [
           "Configured systems = higher-value, ready-to-quote leads",
           "Fewer tyre-kickers, more booked installs",
         ],
-        media: { label: "Live sizing → quote", src: "url('/assets/volt/feature-sizing.jpg')", pos: "right center" },
+        media: { label: "Savings & lead capture", src: "url('/assets/volt/full-desktop.png')", cropY: "51%", note: { x: "72%", y: "82%", text: "Capture lead →" } },
       },
     ],
     pitch: {
@@ -140,20 +142,23 @@ export const PROJECTS: Project[] = [
     },
     stats: [["4", "wk", "Blank page → live"], ["0", "", "Framework deps"], ["6", "", "SKUs + 1 OS"], ["100", "%", "Homepage flow shipped"]],
     media: {
-      identity: "url('/assets/volt/identity.jpg')",
-      type: "url('/assets/volt/type.jpg')",
-      homeDesktop: "url('/assets/volt/home-desktop.jpg')",
-      homeMobile: "url('/assets/volt/flow-mobile.jpg')",
-      components: "url('/assets/volt/ui-components.jpg')",
-      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/home-desktop.jpg')", mobile: "url('/assets/volt/home-mobile.jpg')" },
+      // Direction & design grid — every tile is a windowed band of the one full-desktop screenshot
+      design: [
+        { src: "url('/assets/volt/full-desktop.png')", label: "Identity & hero", cropY: "0%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Type specimen", cropY: "79%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Component library", cropY: "10%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "App / mobile UI", cropY: "44%", note: { x: "80%", y: "48%", text: "Live app" } },
+      ],
+      // homepage shown as one captioned device pair, windowed from both full images
+      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.png')", mobile: "url('/assets/volt/full-mobile.png')", cropYDesktop: "0%", cropYMobile: "0%" },
       gallery: [
-        // homepage sections cropped from the one full-desktop image (cropY = % down)
-        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "12%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "System sizing tool", cropY: "26%", note: { x: "72%", y: "46%", text: "AI sizing →" } },
-        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "19%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Footer", cropY: "95%" },
-        // separate page (not on the homepage) → keep its own shot
-        { src: "url('/assets/volt/extra-2.jpg')", label: "Build-your-system configurator" },
+        // each tile is a vertical band of the one full-desktop screenshot (cropY = % from top)
+        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "15%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "AI system sizing", cropY: "37%", note: { x: "80%", y: "82%", text: "AI sizing →" } },
+        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "29%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "What it pays back", cropY: "51%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Trusted & reviewed", cropY: "61%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Footer & wordmark", cropY: "87%" },
       ],
     },
   },

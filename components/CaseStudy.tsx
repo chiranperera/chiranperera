@@ -36,11 +36,17 @@ function Tile({ label, n, portrait, img, pos, capPad, cropY, note }: { label: st
 }
 
 /* desktop + mobile screenshots side by side, one caption. */
-function DevicePair({ pair, n }: { pair: { label: string; desktop: string; mobile: string }; n: string }) {
+function DevicePair({ pair, n }: { pair: { label: string; desktop: string; mobile: string; cropYDesktop?: string; cropYMobile?: string }; n: string }) {
+  const dStyle: React.CSSProperties = pair.cropYDesktop
+    ? { backgroundImage: pair.desktop, backgroundSize: "100%", backgroundPosition: `50% ${pair.cropYDesktop}` }
+    : { backgroundImage: pair.desktop };
+  const mStyle: React.CSSProperties = pair.cropYMobile
+    ? { backgroundImage: pair.mobile, backgroundSize: "100%", backgroundPosition: `50% ${pair.cropYMobile}` }
+    : { backgroundImage: pair.mobile };
   return (
     <figure className="device-pair">
-      <div className="dp-d tile-img" style={{ backgroundImage: pair.desktop }} />
-      <div className="dp-m tile-img" style={{ backgroundImage: pair.mobile }} />
+      <div className="dp-d tile-img" style={dStyle} />
+      <div className="dp-m tile-img" style={mStyle} />
       <figcaption className="tile-cap dp-cap"><span className="lbl">{pair.label}</span><span className="n">{n}</span></figcaption>
     </figure>
   );
@@ -192,7 +198,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
                     <p>{f.body}</p>
                     {f.points && <ul className="f-points">{f.points.map((pt, j) => <li key={j}>{pt}</li>)}</ul>}
                   </div>
-                  <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} capPad={f.media.capPad} /></div>
+                  <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} capPad={f.media.capPad} cropY={f.media.cropY} note={f.media.note} /></div>
                 </Reveal>
               ))}
             </div>
@@ -206,10 +212,18 @@ export default function CaseStudy({ slug }: { slug: string }) {
           <Reveal><CaseHead ix="04">Direction &amp;<br />design.</CaseHead></Reveal>
           <Reveal>
             <div className="imgrid imgrid-2">
-              <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
-              <Tile n="D—02" label="Type specimen" img={m?.type} />
-              <Tile n="D—03" label="Component library" img={m?.components} />
-              <Tile n="D—04" label="App / mobile UI" img={m?.homeMobile} />
+              {m?.design && m.design.length > 0 ? (
+                m.design.map((g, i) => (
+                  <Tile key={i} n={`D—0${i + 1}`} label={g.label} img={g.src} portrait={g.portrait} pos={g.pos} capPad={g.capPad} cropY={g.cropY} note={g.note} />
+                ))
+              ) : (
+                <>
+                  <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
+                  <Tile n="D—02" label="Type specimen" img={m?.type} />
+                  <Tile n="D—03" label="Component library" img={m?.components} />
+                  <Tile n="D—04" label="App / mobile UI" img={m?.homeMobile} />
+                </>
+              )}
             </div>
           </Reveal>
         </section>
