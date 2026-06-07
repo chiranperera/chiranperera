@@ -55,9 +55,9 @@ export default function CaseStudy({ slug }: { slug: string }) {
     { key: "all", label: "All" },
     { key: "why", label: "Overview" },
     { key: "research", label: "Research" },
+    { key: "ai", label: "AI" },
     { key: "design", label: "Design" },
     { key: "build", label: "Build" },
-    { key: "ai", label: "AI layer" },
     { key: "results", label: "Results" },
     ...(hasGallery ? [{ key: "screens", label: "Screens" }] : []),
   ];
@@ -106,77 +106,59 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </div>
       </div>
 
-      {/* OVERVIEW + PULL QUOTE */}
+      {/* OVERVIEW — the premise + the business pain points */}
       {show("why") && (
         <>
           <section className="wrap">
-            <Reveal><CaseHead ix="01">Why this<br />project.</CaseHead></Reveal>
+            <Reveal><CaseHead ix="01">The business<br />problem.</CaseHead></Reveal>
             <Reveal className="case-body">
               <div className="left">Overview / The premise</div>
               <div>{p.overview.map((t, i) => <p key={i}>{t}</p>)}</div>
             </Reveal>
+            {p.pains && p.pains.length > 0 && (
+              <Reveal style={{ marginTop: 46 }}>
+                <div className="pains-label">What wasn&apos;t working</div>
+                <div className="pains">
+                  {p.pains.map((pain, i) => (
+                    <div className="pain" key={i}>
+                      <span className="pain-x" aria-hidden="true">✕</span>
+                      <div>
+                        <div className="pain-problem">{pain.problem}</div>
+                        <div className="pain-result">{pain.result}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            )}
           </section>
           <section className="wrap">
-            <Reveal><p className="pull">A portfolio piece is only as good as the <em>thinking</em> it shows — so every project here is a full case study, not a thumbnail.</p></Reveal>
+            <Reveal><p className="pull">A portfolio piece is only as good as the <em>thinking</em> it shows — so every project here starts with the problem, then the solution.</p></Reveal>
           </section>
         </>
       )}
 
-      {/* RESEARCH */}
+      {/* RESEARCH — industry standard vs. what we built differently */}
       {show("research") && (
         <section className="wrap">
-          <Reveal><CaseHead ix="02">Research &amp;<br />discovery.</CaseHead></Reveal>
+          <Reveal><CaseHead ix="02">Research &amp;<br />approach.</CaseHead></Reveal>
           <Reveal className="case-body">
-            <div className="left">Market · Audience · AI scan</div>
+            <div className="left">Industry standard</div>
             <div><p>{p.research}</p></div>
           </Reveal>
-          <Reveal style={{ marginTop: 40 }}>
-            <div className="imgrid imgrid-3">
-              <Tile n="R—01" label="Competitive scan" />
-              <Tile n="R—02" label="Audience map" />
-              <Tile n="R—03" label="AI citation audit" />
-            </div>
-          </Reveal>
+          {p.researchOurs && (
+            <Reveal className="case-body solution" style={{ marginTop: 32 }}>
+              <div className="left"><span className="dot">●</span> What I built differently</div>
+              <div><p>{p.researchOurs}</p></div>
+            </Reveal>
+          )}
         </section>
       )}
 
-      {/* DIRECTION + DESIGN */}
-      {show("design") && (
-        <section className="wrap">
-          <Reveal><CaseHead ix="03">Direction &amp;<br />design.</CaseHead></Reveal>
-          <Reveal>
-            <div className="imgrid imgrid-2">
-              <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
-              <Tile n="D—02" label="Type specimen" img={m?.type} />
-              <Tile wide n="D—03" label="Hi-fi — homepage" img={m?.homeDesktop || p.img} />
-              <Tile n="D—04" label="Mobile flows" tall img={m?.homeMobile} />
-              <Tile n="D—05" label="Component library" img={m?.components} />
-            </div>
-          </Reveal>
-        </section>
-      )}
-
-      {/* BUILD + STACK */}
-      {show("build") && (
-        <section className="wrap">
-          <Reveal><CaseHead ix="04">Build &amp;<br />stack.</CaseHead></Reveal>
-          <Reveal className="case-body">
-            <div className="left">Frameworks · Tooling</div>
-            <div>
-              <p>Static-generated, image-optimised, and shipped on Vercel — built the way I&apos;d build my own studio site, then handed over clean.</p>
-              <div className="chips" style={{ marginTop: 20 }}>
-                {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
-                <span className="chip accent">llms.txt</span>
-              </div>
-            </div>
-          </Reveal>
-        </section>
-      )}
-
-      {/* AI LAYER — callout + (optional) feature breakdown */}
+      {/* AI LAYER — the automation that solves the pains (before design) */}
       {show("ai") && (
         <section className="wrap">
-          {p.features && <Reveal><CaseHead ix="05">The AI<br />layer.</CaseHead></Reveal>}
+          <Reveal><CaseHead ix="03">The AI<br />solutions.</CaseHead></Reveal>
           <Reveal className="ai-callout">
             <span className="eyebrow"><span style={{ color: p.accent }}>●</span> AI functionality</span>
             <h3>{p.aiHeadline || "Engineered for the answer engines."}</h3>
@@ -200,10 +182,43 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </section>
       )}
 
+      {/* DIRECTION + DESIGN */}
+      {show("design") && (
+        <section className="wrap">
+          <Reveal><CaseHead ix="04">Direction &amp;<br />design.</CaseHead></Reveal>
+          <Reveal>
+            <div className="imgrid imgrid-2">
+              <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
+              <Tile n="D—02" label="Type specimen" img={m?.type} />
+              <Tile wide n="D—03" label="Hi-fi — homepage" img={m?.homeDesktop || p.img} />
+              <Tile n="D—04" label="Mobile flows" tall img={m?.homeMobile} />
+              <Tile n="D—05" label="Component library" img={m?.components} />
+            </div>
+          </Reveal>
+        </section>
+      )}
+
+      {/* BUILD + STACK */}
+      {show("build") && (
+        <section className="wrap">
+          <Reveal><CaseHead ix="05">Build &amp;<br />stack.</CaseHead></Reveal>
+          <Reveal className="case-body">
+            <div className="left">Frameworks · Tooling</div>
+            <div>
+              <p>Static-generated, image-optimised, and shipped on Vercel — built the way I&apos;d build my own studio site, then handed over clean.</p>
+              <div className="chips" style={{ marginTop: 20 }}>
+                {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
+                <span className="chip accent">llms.txt</span>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      )}
+
       {/* RESULTS */}
       {show("results") && (
         <section className="wrap">
-          <Reveal><CaseHead ix={p.features ? "06" : "05"}>Deployment &amp;<br />results.</CaseHead></Reveal>
+          <Reveal><CaseHead ix="06">Deployment &amp;<br />results.</CaseHead></Reveal>
           <Reveal>
             <div className="stat-row">
               {p.stats.map(([big, u, lbl], i) => (
@@ -217,7 +232,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {/* GALLERY (real screens — only when a project supplies them) */}
       {hasGallery && show("screens") && (
         <section className="wrap">
-          <Reveal><CaseHead ix={p.features ? "07" : "06"}>Selected<br />screens.</CaseHead></Reveal>
+          <Reveal><CaseHead ix="07">Selected<br />screens.</CaseHead></Reveal>
           <Reveal>
             <div className="imgrid imgrid-2">
               {m!.gallery!.map((g, i) => (
