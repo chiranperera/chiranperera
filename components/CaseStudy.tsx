@@ -5,6 +5,7 @@ import * as React from "react";
 import { PROJECTS } from "@/lib/data";
 import { useNav } from "@/components/AppShell";
 import { Footer } from "@/components/chrome/Chrome";
+import CropCalibrator from "@/components/CropCalibrator";
 import { IArrow } from "@/components/icons";
 
 function Reveal({ children, className = "", ...rest }: { children: React.ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
@@ -18,7 +19,27 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
   return <div ref={ref} className={`cp-reveal ${className}`} {...rest}>{children}</div>;
 }
 
-function Tile({ label, n, portrait, img, pos, capPad, cropY, note }: { label: string; n: string; portrait?: boolean; img?: string | null; pos?: string; capPad?: string; cropY?: string; note?: { x: string; y: string; text: string } }) {
+type Note = { x: string; y: string; text: string; lx?: string; ly?: string };
+
+/* Leader-line annotation: a dot at the anchor point, a thin line out to a
+   label parked in a clear area — so the label never covers the content. */
+function TileAnno({ note }: { note: Note }) {
+  const ax = parseFloat(note.x), ay = parseFloat(note.y);
+  const lx = note.lx != null ? parseFloat(note.lx) : ax;
+  const ly = note.ly != null ? parseFloat(note.ly) : Math.max(6, ay - 22);
+  return (
+    <div className="tile-anno" aria-hidden>
+      <svg className="tile-anno-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1={lx} y1={ly} x2={ax} y2={ay} className="casing" />
+        <line x1={lx} y1={ly} x2={ax} y2={ay} className="lead" />
+      </svg>
+      <span className="tile-anno-dot" style={{ left: note.x, top: note.y }} />
+      <span className="tile-anno-lbl" style={{ left: `${lx}%`, top: `${ly}%` }}>{note.text}</span>
+    </div>
+  );
+}
+
+function Tile({ label, n, portrait, img, pos, capPad, cropY, note }: { label: string; n: string; portrait?: boolean; img?: string | null; pos?: string; capPad?: string; cropY?: string; note?: Note }) {
   const imgStyle: React.CSSProperties | undefined = img
     ? (cropY
         ? { backgroundImage: img, backgroundSize: "100%", backgroundPosition: `50% ${cropY}` }
@@ -26,9 +47,9 @@ function Tile({ label, n, portrait, img, pos, capPad, cropY, note }: { label: st
     : undefined;
   return (
     <figure className={`tile${portrait ? " portrait" : ""}`}>
-      <div className="tile-img" style={imgStyle}>
+      <div className="tile-img" style={imgStyle} data-cropkey={cropY != null ? label : undefined}>
         {!img && <span className="tile-ph">[ {label} ]</span>}
-        {note && <span className="tile-note" style={{ left: note.x, top: note.y }}>{note.text}</span>}
+        {note && <TileAnno note={note} />}
       </div>
       <figcaption className="tile-cap" style={capPad ? { paddingLeft: capPad, paddingRight: capPad } : undefined}><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
     </figure>
@@ -45,8 +66,8 @@ function DevicePair({ pair, n }: { pair: { label: string; desktop: string; mobil
     : { backgroundImage: pair.mobile };
   return (
     <figure className="device-pair">
-      <div className="dp-d tile-img" style={dStyle} />
-      <div className="dp-m tile-img" style={mStyle} />
+      <div className="dp-d tile-img" style={dStyle} data-cropkey={pair.cropYDesktop != null ? `${pair.label} · desktop` : undefined} />
+      <div className="dp-m tile-img" style={mStyle} data-cropkey={pair.cropYMobile != null ? `${pair.label} · mobile` : undefined} />
       <figcaption className="tile-cap dp-cap"><span className="lbl">{pair.label}</span><span className="n">{n}</span></figcaption>
     </figure>
   );
@@ -310,6 +331,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       </div>
 
       <Footer />
+      <CropCalibrator />
     </div>
   );
 }

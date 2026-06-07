@@ -1,8 +1,10 @@
 /* Studio Site — project data. Each project owns an accent.
    hero img: a CSS background value, or null → use a labelled placeholder. */
 
-/* A pin-able annotation overlaid on a tile (x/y as % so it tracks any size). */
-export type TileNote = { x: string; y: string; text: string };
+/* A leader-line annotation on a tile: a marker dot at the anchor point (x,y)
+   with a thin line to a label placed in a clear area (lx,ly) so it never
+   covers content. All coords are % so they track any size. */
+export type TileNote = { x: string; y: string; text: string; lx?: string; ly?: string };
 /* cropY: window a full-page image — background-size 100%, position-y = cropY. */
 export type GalleryItem = { src: string; label: string; portrait?: boolean; pos?: string; capPad?: string; cropY?: string; note?: TileNote };
 
@@ -112,7 +114,7 @@ export const PROJECTS: Project[] = [
           "Skips the slow, manual sizing process",
           "Visitors self-qualify before they ever call",
         ],
-        media: { label: "Instant Sizer — system sizing", src: "url('/assets/volt/full-desktop.png')", cropY: "37%", note: { x: "28%", y: "40%", text: "Reads your usage" } },
+        media: { label: "Instant Sizer — system sizing", src: "url('/assets/volt/full-desktop.png')", cropY: "43%", note: { x: "30%", y: "58%", text: "Reads your usage", lx: "74%", ly: "16%" } },
       },
       {
         eyebrow: "Pipeline · Conversion",
@@ -123,7 +125,7 @@ export const PROJECTS: Project[] = [
           "Configured systems = higher-value, ready-to-quote leads",
           "Fewer tyre-kickers, more booked installs",
         ],
-        media: { label: "Savings & lead capture", src: "url('/assets/volt/full-desktop.png')", cropY: "51%", note: { x: "72%", y: "82%", text: "Capture lead →" } },
+        media: { label: "Savings & lead capture", src: "url('/assets/volt/full-desktop.png')", cropY: "63%", note: { x: "78%", y: "78%", text: "Capture lead", lx: "30%", ly: "20%" } },
       },
     ],
     pitch: {
@@ -142,23 +144,24 @@ export const PROJECTS: Project[] = [
     },
     stats: [["4", "wk", "Blank page → live"], ["0", "", "Framework deps"], ["6", "", "SKUs + 1 OS"], ["100", "%", "Homepage flow shipped"]],
     media: {
-      // Direction & design grid — every tile is a windowed band of the one full-desktop screenshot
+      // Direction & design grid — every tile is a windowed band of the one full-desktop screenshot.
+      // cropY values measured from the image (section centers → centered crops), tune live with ?calibrate
       design: [
         { src: "url('/assets/volt/full-desktop.png')", label: "Identity & hero", cropY: "0%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Type specimen", cropY: "79%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Component library", cropY: "10%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "App / mobile UI", cropY: "44%", note: { x: "80%", y: "48%", text: "Live app" } },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Type specimen", cropY: "91%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Component library", cropY: "12%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "App / mobile UI", cropY: "54%", note: { x: "80%", y: "50%", text: "Live app", lx: "26%", ly: "20%" } },
       ],
       // homepage shown as one captioned device pair, windowed from both full images
       devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.png')", mobile: "url('/assets/volt/full-mobile.png')", cropYDesktop: "0%", cropYMobile: "0%" },
       gallery: [
         // each tile is a vertical band of the one full-desktop screenshot (cropY = % from top)
-        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "15%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "AI system sizing", cropY: "37%", note: { x: "80%", y: "82%", text: "AI sizing →" } },
-        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "29%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "What it pays back", cropY: "51%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Trusted & reviewed", cropY: "61%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Footer & wordmark", cropY: "87%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "22%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "AI system sizing", cropY: "43%", note: { x: "80%", y: "62%", text: "AI sizing", lx: "26%", ly: "15%" } },
+        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "33%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "What it pays back", cropY: "63%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Trusted & reviewed", cropY: "72%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Footer & wordmark", cropY: "99%" },
       ],
     },
   },
