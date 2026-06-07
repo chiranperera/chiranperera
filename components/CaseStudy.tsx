@@ -18,11 +18,24 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
   return <div ref={ref} className={`cp-reveal ${className}`} {...rest}>{children}</div>;
 }
 
-function Tile({ label, n, tall, wide, img, pos, capPad }: { label: string; n: string; tall?: boolean; wide?: boolean; img?: string | null; pos?: string; capPad?: string }) {
+function Tile({ label, n, portrait, img, pos, capPad }: { label: string; n: string; portrait?: boolean; img?: string | null; pos?: string; capPad?: string }) {
   return (
-    <figure className={`tile${tall ? " tall" : ""}${wide ? " wide" : ""}`}>
-      <div className="tile-img" style={img ? { backgroundImage: img, backgroundPosition: pos } : undefined} />
+    <figure className={`tile${portrait ? " portrait" : ""}`}>
+      <div className="tile-img" style={img ? { backgroundImage: img, backgroundPosition: pos } : undefined}>
+        {!img && <span className="tile-ph">[ {label} ]</span>}
+      </div>
       <figcaption className="tile-cap" style={capPad ? { paddingLeft: capPad, paddingRight: capPad } : undefined}><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
+    </figure>
+  );
+}
+
+/* desktop + mobile screenshots side by side, one caption. */
+function DevicePair({ pair, n }: { pair: { label: string; desktop: string; mobile: string }; n: string }) {
+  return (
+    <figure className="device-pair">
+      <div className="dp-d tile-img" style={{ backgroundImage: pair.desktop }} />
+      <div className="dp-m tile-img" style={{ backgroundImage: pair.mobile }} />
+      <figcaption className="tile-cap dp-cap"><span className="lbl">{pair.label}</span><span className="n">{n}</span></figcaption>
     </figure>
   );
 }
@@ -49,7 +62,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
   const barRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => { window.scrollTo(0, 0); setActive("all"); }, [slug]);
 
-  const hasGallery = !!(m?.gallery && m.gallery.length);
+  const hasGallery = !!(m?.gallery?.length || m?.devicePair);
   const tabs: { key: string; label: string }[] = [
     { key: "all", label: "All" },
     { key: "why", label: "Overview" },
@@ -189,9 +202,8 @@ export default function CaseStudy({ slug }: { slug: string }) {
             <div className="imgrid imgrid-2">
               <Tile n="D—01" label="Identity system" img={m?.identity || p.img} />
               <Tile n="D—02" label="Type specimen" img={m?.type} />
-              <Tile wide n="D—03" label="Hi-fi — homepage" img={m?.homeDesktop || p.img} />
-              <Tile n="D—04" label="Mobile flows" tall img={m?.homeMobile} />
-              <Tile n="D—05" label="Component library" img={m?.components} />
+              <Tile n="D—03" label="Component library" img={m?.components} />
+              <Tile n="D—04" label="App / mobile UI" img={m?.homeMobile} />
             </div>
           </Reveal>
         </section>
@@ -232,13 +244,18 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {hasGallery && show("screens") && (
         <section className="wrap">
           <Reveal><CaseHead ix="07">Selected<br />screens.</CaseHead></Reveal>
-          <Reveal>
-            <div className="imgrid imgrid-2">
-              {m!.gallery!.map((g, i) => (
-                <Tile key={i} n={`S—0${i + 1}`} label={g.label} img={g.src} wide={g.wide} tall={g.tall} />
-              ))}
-            </div>
-          </Reveal>
+          {m?.devicePair && (
+            <Reveal style={{ marginBottom: 24 }}><DevicePair pair={m.devicePair} n="S—01" /></Reveal>
+          )}
+          {m?.gallery && m.gallery.length > 0 && (
+            <Reveal>
+              <div className="imgrid imgrid-2">
+                {m.gallery.map((g, i) => (
+                  <Tile key={i} n={`S—0${(m.devicePair ? 2 : 1) + i}`} label={g.label} img={g.src} portrait={g.portrait} pos={g.pos} capPad={g.capPad} />
+                ))}
+              </div>
+            </Reveal>
+          )}
         </section>
       )}
 

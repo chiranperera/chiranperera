@@ -163,21 +163,26 @@
 .chips .chip{font-family:var(--font-mono);font-size:11px;letter-spacing:.02em;color:var(--ink-2);border:1px solid var(--line);padding:7px 13px;border-radius:var(--r-pill)}
 .chips .chip.accent{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
 
-/* image grid / gallery (B&W placeholder tiles) */
-.imgrid{display:grid;gap:14px}
+/* image grid / gallery — uniform ratio, clean panel, caption below */
+.imgrid{display:grid;gap:26px;align-items:start}
 .imgrid-2{grid-template-columns:1fr 1fr}
 .imgrid-3{grid-template-columns:repeat(3,1fr)}
-.imgrid{align-items:start}
 .tile{display:flex;flex-direction:column}
-.tile .tile-img{aspect-ratio:4/3;border-radius:var(--r-xs);overflow:hidden;background-size:cover;background-position:center;filter:contrast(1.02);
-  background-color:var(--bg-2);background-image:repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 10px)}
-.tile.tall .tile-img{aspect-ratio:3/4}
-.tile.wide{grid-column:span 2}
-.tile.wide .tile-img{aspect-ratio:16/9}
+.tile .tile-img{aspect-ratio:4/3;border-radius:var(--r-sm);overflow:hidden;display:grid;place-items:center;
+  background-size:cover;background-position:center;filter:contrast(1.02);background-color:var(--bg-3)}
+.tile.portrait .tile-img{aspect-ratio:3/4}
+.tile-ph{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);border:1px solid var(--line);padding:7px 14px;border-radius:var(--r-pill);max-width:80%;text-align:center}
 /* caption sits BELOW the image (never over it) → readable on any image */
-.tile-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 1px 0}
+.tile-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 1px 0}
 .tile-cap .lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
 .tile-cap .n{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-4);flex:0 0 auto}
+
+/* device pair — desktop (16:9) + mobile (9:16) at matched height, one caption */
+.device-pair{display:grid;grid-template-columns:1.78fr 0.56fr;gap:0 18px;align-items:start}
+.device-pair .tile-img{border-radius:var(--r-sm);overflow:hidden;background-size:cover;background-position:top center;filter:contrast(1.02);background-color:var(--bg-3)}
+.device-pair .dp-d{aspect-ratio:16/9}
+.device-pair .dp-m{aspect-ratio:9/16}
+.device-pair .dp-cap{grid-column:1/-1}
 
 /* stat row */
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -244,7 +249,6 @@
   .imgrid-3{grid-template-columns:1fr 1fr}
   .stat-row{grid-template-columns:1fr 1fr}
   .stat-row .s{padding:24px 20px}
-  .tile.wide{grid-column:span 2}
   .feature-row{grid-template-columns:1fr;gap:24px}
   .feature-row .f-media{order:-1} /* image on top */
   .features{gap:56px;margin-top:48px}
@@ -257,5 +261,7 @@
 @media(max-width:560px){
   .meta-bar,.imgrid-2,.imgrid-3{grid-template-columns:1fr}
   .stat-row{grid-template-columns:1fr 1fr} /* keep stats 2×2 — never one tall column */
-  .tile.wide{grid-column:span 1}
+  /* device pair stacks: desktop on top, mobile below (kept phone-sized) */
+  .device-pair{grid-template-columns:1fr;gap:24px 0}
+  .device-pair .dp-m{max-width:64%}
 }

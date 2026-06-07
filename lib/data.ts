@@ -1,7 +1,10 @@
 /* Studio Site — project data. Each project owns an accent.
    hero img: a CSS background value, or null → use a labelled placeholder. */
 
-export type GalleryItem = { src: string; label: string; wide?: boolean; tall?: boolean };
+export type GalleryItem = { src: string; label: string; portrait?: boolean; pos?: string; capPad?: string };
+
+/* A desktop + mobile screenshot shown side by side as one captioned unit. */
+export type DevicePair = { label: string; desktop: string; mobile: string };
 
 /* An alternating image/text "selling point" row (used on rich case studies). */
 export type FeatureRow = {
@@ -54,6 +57,7 @@ export type Project = {
     homeDesktop?: string;
     homeMobile?: string;
     components?: string;
+    devicePair?: DevicePair;   // desktop + mobile shown side by side
     gallery?: GalleryItem[];
   };
 };
@@ -138,11 +142,11 @@ export const PROJECTS: Project[] = [
       homeDesktop: "url('/assets/volt/home-desktop.jpg')",
       homeMobile: "url('/assets/volt/flow-mobile.jpg')",
       components: "url('/assets/volt/ui-components.jpg')",
+      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/home-desktop.jpg')", mobile: "url('/assets/volt/home-mobile.jpg')" },
       gallery: [
-        { src: "url('/assets/volt/extra-1.jpg')", label: "One day on VOLT power", wide: true },
+        { src: "url('/assets/volt/extra-1.jpg')", label: "One day on VOLT power" },
         { src: "url('/assets/volt/extra-4.jpg')", label: "System sizing tool" },
         { src: "url('/assets/volt/extra-2.jpg')", label: "Build-your-system configurator" },
-        { src: "url('/assets/volt/home-mobile.jpg')", label: "Homepage — mobile", tall: true },
         { src: "url('/assets/volt/extra-3.jpg')", label: "Footer wordmark" },
       ],
     },
