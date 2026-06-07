@@ -110,15 +110,17 @@
 .case-hero h1{font-family:var(--font-display);font-weight:900;font-size:var(--fs-display);line-height:.88;letter-spacing:-.04em;color:#fff;margin-bottom:28px;text-wrap:balance}
 .case-hero .lead{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.2vw,30px);line-height:1.3;letter-spacing:-.01em;color:#fff;max-width:760px}
 
-/* ---- sticky section filter (logo · section tabs · menu) ---- */
-.case-filter{position:sticky;top:0;z-index:95;display:flex;align-items:center;gap:16px;
-  padding:12px var(--wrap-pad);background:var(--bg);border-bottom:1px solid var(--line)}
-.case-filter .cf-home{font-size:16px;flex:0 0 auto}
-.cf-tabs{display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+/* ---- sticky section filter (tabs only) ----
+   Sits below the banner with a top margin that doubles as clearance for the
+   fixed global header: when scrolled, the one logo (left) + one menu (right)
+   stack above the tabs instead of duplicating. Solid bg fills behind the
+   header so scrolled content never shows through. */
+.case-filter{position:sticky;top:0;z-index:80;padding:62px var(--wrap-pad) 14px;
+  background:var(--bg);border-bottom:1px solid var(--line)}
+.cf-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .cf-tabs::-webkit-scrollbar{display:none}
 .cf-tabs .filter{flex:0 0 auto;white-space:nowrap}
 .case-filter .filter.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.cf-burger{flex:0 0 auto}
 /* filtered view → reveal content immediately (no scroll-reveal dependency) */
 .case-filtered .cp-reveal{opacity:1;transform:none;transition:none}
 

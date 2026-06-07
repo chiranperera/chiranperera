@@ -39,7 +39,7 @@ function hexA(hex: string, a: number) {
 }
 
 export default function CaseStudy({ slug }: { slug: string }) {
-  const { go, openMenu } = useNav();
+  const { go } = useNav();
   const p = PROJECTS.find((x) => x.slug === slug) || PROJECTS[0];
   const nextP = PROJECTS[(PROJECTS.indexOf(p) + 1) % PROJECTS.length];
   const total = String(PROJECTS.length).padStart(2, "0");
@@ -96,15 +96,14 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </div>
       </header>
 
-      {/* SECTION FILTER (sticky) */}
+      {/* SECTION FILTER (sticky) — tabs only; the global header (one logo + one
+          menu) stays fixed above it and stacks with it when scrolled. */}
       <div className="case-filter" ref={barRef}>
-        <a className="wordmark cf-home" onClick={() => go("home")} aria-label="All work">CHIRAN<span className="dot" style={{ color: "var(--accent)" }}>.</span></a>
         <div className="cf-tabs" role="tablist" aria-label="Case study sections">
           {tabs.map((t) => (
             <button key={t.key} role="tab" aria-selected={active === t.key} className={`filter${active === t.key ? " on" : ""}`} onClick={() => pick(t.key)}>{t.label}</button>
           ))}
         </div>
-        <button className="burger cf-burger" aria-label="Open menu" onClick={openMenu}><span /><span /><span /></button>
       </div>
 
       {/* OVERVIEW + PULL QUOTE */}

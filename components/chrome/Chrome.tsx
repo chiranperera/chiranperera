@@ -11,10 +11,10 @@ export function Field() {
 /* One consistent header for every route: logo top-left (fixed position),
    an icon-only back chevron BELOW the logo on inner pages (→ home), and the
    hamburger always top-right. No text labels. */
-export function Header({ showBack = false, absolute = false }: { showBack?: boolean; absolute?: boolean }) {
+export function Header({ showBack = false }: { showBack?: boolean }) {
   const { go, openMenu } = useNav();
   return (
-    <header className={`site-header${absolute ? " is-abs" : ""}`}>
+    <header className="site-header">
       <div className="hdr-left">
         <a className="wordmark" onClick={() => go("home")}>CHIRAN<span className="dot">.</span></a>
         {showBack && (

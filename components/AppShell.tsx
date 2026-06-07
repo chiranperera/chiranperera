@@ -35,8 +35,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [menu, setMenu] = React.useState(false);
   const [wipe, setWipe] = React.useState(false);
   const isHome = pathname === "/";
-  // case-study pages have their own sticky section-filter toolbar → let the
-  // global header scroll away with the hero instead of staying fixed.
+  // case-study pages: the sticky section-filter provides nav context, and the
+  // logo already returns home — so drop the redundant back chevron there.
   const isCase = pathname.startsWith("/work/");
 
   const closeMenu = React.useCallback(() => setMenu(false), []);
@@ -66,7 +66,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <Cursor />
       <Field />
-      <Header showBack={!isHome} absolute={isCase} />
+      <Header showBack={!isHome && !isCase} />
       {children}
       <Overlay open={menu} onClose={closeMenu} />
       {wipe && <div className="wipe run"><span className="mk">CHIRAN<span className="dot">.</span></span></div>}
