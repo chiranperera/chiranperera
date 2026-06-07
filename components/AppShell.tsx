@@ -35,6 +35,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [menu, setMenu] = React.useState(false);
   const [wipe, setWipe] = React.useState(false);
   const isHome = pathname === "/";
+  // case-study pages have their own sticky section-filter toolbar → let the
+  // global header scroll away with the hero instead of staying fixed.
+  const isCase = pathname.startsWith("/work/");
 
   const closeMenu = React.useCallback(() => setMenu(false), []);
   const openMenu = React.useCallback(() => setMenu(true), []);
@@ -63,7 +66,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <Cursor />
       <Field />
-      <Header showBack={!isHome} />
+      <Header showBack={!isHome} absolute={isCase} />
       {children}
       <Overlay open={menu} onClose={closeMenu} />
       {wipe && <div className="wipe run"><span className="mk">CHIRAN<span className="dot">.</span></span></div>}

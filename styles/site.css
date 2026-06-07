@@ -32,6 +32,9 @@ img{display:block;max-width:100%}
 .site-header{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:flex-start;justify-content:space-between;
   padding:24px var(--wrap-pad);background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);pointer-events:none}
 .site-header .wordmark,.site-header .burger,.site-header .hdr-back{pointer-events:auto}
+/* on case-study pages the header scrolls away with the hero (the sticky
+   section-filter toolbar takes over the top) */
+.site-header.is-abs{position:absolute}
 .wordmark{font-family:var(--font-display);font-weight:900;font-size:19px;letter-spacing:-.03em;color:#fff;display:inline-flex;align-items:baseline;cursor:pointer}
 .wordmark .dot{color:#fff}
 .hdr-left{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
