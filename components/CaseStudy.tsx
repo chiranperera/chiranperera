@@ -18,11 +18,17 @@ function Reveal({ children, className = "", ...rest }: { children: React.ReactNo
   return <div ref={ref} className={`cp-reveal ${className}`} {...rest}>{children}</div>;
 }
 
-function Tile({ label, n, portrait, img, pos, capPad }: { label: string; n: string; portrait?: boolean; img?: string | null; pos?: string; capPad?: string }) {
+function Tile({ label, n, portrait, img, pos, capPad, cropY, note }: { label: string; n: string; portrait?: boolean; img?: string | null; pos?: string; capPad?: string; cropY?: string; note?: { x: string; y: string; text: string } }) {
+  const imgStyle: React.CSSProperties | undefined = img
+    ? (cropY
+        ? { backgroundImage: img, backgroundSize: "100%", backgroundPosition: `50% ${cropY}` }
+        : { backgroundImage: img, backgroundPosition: pos })
+    : undefined;
   return (
     <figure className={`tile${portrait ? " portrait" : ""}`}>
-      <div className="tile-img" style={img ? { backgroundImage: img, backgroundPosition: pos } : undefined}>
+      <div className="tile-img" style={imgStyle}>
         {!img && <span className="tile-ph">[ {label} ]</span>}
+        {note && <span className="tile-note" style={{ left: note.x, top: note.y }}>{note.text}</span>}
       </div>
       <figcaption className="tile-cap" style={capPad ? { paddingLeft: capPad, paddingRight: capPad } : undefined}><span className="lbl">{label}</span><span className="n">{n}</span></figcaption>
     </figure>
@@ -251,7 +257,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
             <Reveal>
               <div className="imgrid imgrid-2">
                 {m.gallery.map((g, i) => (
-                  <Tile key={i} n={`S—0${(m.devicePair ? 2 : 1) + i}`} label={g.label} img={g.src} portrait={g.portrait} pos={g.pos} capPad={g.capPad} />
+                  <Tile key={i} n={`S—0${(m.devicePair ? 2 : 1) + i}`} label={g.label} img={g.src} portrait={g.portrait} pos={g.pos} capPad={g.capPad} cropY={g.cropY} note={g.note} />
                 ))}
               </div>
             </Reveal>

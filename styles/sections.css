@@ -168,10 +168,12 @@
 .imgrid-2{grid-template-columns:1fr 1fr}
 .imgrid-3{grid-template-columns:repeat(3,1fr)}
 .tile{display:flex;flex-direction:column}
-.tile .tile-img{aspect-ratio:4/3;border-radius:var(--r-sm);overflow:hidden;display:grid;place-items:center;
+.tile .tile-img{position:relative;aspect-ratio:4/3;border-radius:var(--r-sm);overflow:hidden;display:grid;place-items:center;
   background-size:cover;background-position:center;filter:contrast(1.02);background-color:var(--bg-3)}
 .tile.portrait .tile-img{aspect-ratio:3/4}
 .tile-ph{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);border:1px solid var(--line);padding:7px 14px;border-radius:var(--r-pill);max-width:80%;text-align:center}
+/* anchored annotation pin (x/y in % → tracks the feature at any size) */
+.tile-note{position:absolute;transform:translate(-50%,-50%);font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:5px 10px;border-radius:var(--r-pill);white-space:nowrap;box-shadow:0 3px 14px rgba(0,0,0,.5);z-index:2;pointer-events:none}
 /* caption sits BELOW the image (never over it) → readable on any image */
 .tile-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 1px 0}
 .tile-cap .lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}

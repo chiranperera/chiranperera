@@ -1,7 +1,10 @@
 /* Studio Site — project data. Each project owns an accent.
    hero img: a CSS background value, or null → use a labelled placeholder. */
 
-export type GalleryItem = { src: string; label: string; portrait?: boolean; pos?: string; capPad?: string };
+/* A pin-able annotation overlaid on a tile (x/y as % so it tracks any size). */
+export type TileNote = { x: string; y: string; text: string };
+/* cropY: window a full-page image — background-size 100%, position-y = cropY. */
+export type GalleryItem = { src: string; label: string; portrait?: boolean; pos?: string; capPad?: string; cropY?: string; note?: TileNote };
 
 /* A desktop + mobile screenshot shown side by side as one captioned unit. */
 export type DevicePair = { label: string; desktop: string; mobile: string };
@@ -144,10 +147,13 @@ export const PROJECTS: Project[] = [
       components: "url('/assets/volt/ui-components.jpg')",
       devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/home-desktop.jpg')", mobile: "url('/assets/volt/home-mobile.jpg')" },
       gallery: [
-        { src: "url('/assets/volt/extra-1.jpg')", label: "One day on VOLT power" },
-        { src: "url('/assets/volt/extra-4.jpg')", label: "System sizing tool" },
+        // homepage sections cropped from the one full-desktop image (cropY = % down)
+        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "12%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "System sizing tool", cropY: "26%", note: { x: "72%", y: "46%", text: "AI sizing →" } },
+        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "19%" },
+        { src: "url('/assets/volt/full-desktop.png')", label: "Footer", cropY: "95%" },
+        // separate page (not on the homepage) → keep its own shot
         { src: "url('/assets/volt/extra-2.jpg')", label: "Build-your-system configurator" },
-        { src: "url('/assets/volt/extra-3.jpg')", label: "Footer wordmark" },
       ],
     },
   },
