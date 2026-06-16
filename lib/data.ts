@@ -151,17 +151,9 @@ export const PROJECTS: Project[] = [
         { src: "url('/assets/volt/design-components.jpg')", label: "Component library" },
         { src: "url('/assets/volt/design-app.jpg')", label: "App / mobile UI" },
       ],
-      // homepage shown as one captioned device pair, windowed from both full images
+      // homepage shown as one captioned device pair (desktop + mobile); the rest
+      // of the screens live on the real site, linked from the Screens section.
       devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.png')", mobile: "url('/assets/volt/full-mobile.png')", cropYDesktop: "0%", cropYMobile: "0%" },
-      gallery: [
-        // each tile is a vertical band of the one full-desktop screenshot (cropY = % from top)
-        { src: "url('/assets/volt/full-desktop.png')", label: "One day on VOLT power", cropY: "22%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "AI system sizing", cropY: "43%", note: { x: "80%", y: "62%", text: "AI sizing", lx: "26%", ly: "15%" } },
-        { src: "url('/assets/volt/full-desktop.png')", label: "How it works", cropY: "33%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "What it pays back", cropY: "63%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Trusted & reviewed", cropY: "72%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Footer & wordmark", cropY: "99%" },
-      ],
     },
   },
   {

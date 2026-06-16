@@ -95,7 +95,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
   const barRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => { window.scrollTo(0, 0); setActive("all"); }, [slug]);
 
-  const hasGallery = !!(m?.gallery?.length || m?.devicePair);
+  const hasScreens = !!(m?.devicePair || p.liveUrl);
   const tabs: { key: string; label: string }[] = [
     { key: "all", label: "All" },
     { key: "why", label: "Overview" },
@@ -104,7 +104,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
     { key: "design", label: "Design" },
     { key: "build", label: "Build" },
     { key: "results", label: "Results" },
-    ...(hasGallery ? [{ key: "screens", label: "Screens" }] : []),
+    ...(hasScreens ? [{ key: "screens", label: "Screens" }] : []),
   ];
   const show = (k: string) => active === "all" || active === k;
   const pick = (k: string) => {
@@ -281,20 +281,19 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* GALLERY (real screens — only when a project supplies them) */}
-      {hasGallery && show("screens") && (
+      {/* SCREENS — desktop + mobile, then a link out to the live build.
+          We deliberately don't dump every screen here; the real site is one
+          click away and far better explored live. */}
+      {hasScreens && show("screens") && (
         <section className="wrap">
           <Reveal><CaseHead ix="07">Selected<br />screens.</CaseHead></Reveal>
           {m?.devicePair && (
             <Reveal style={{ marginBottom: 24 }}><DevicePair pair={m.devicePair} n="S—01" /></Reveal>
           )}
-          {m?.gallery && m.gallery.length > 0 && (
-            <Reveal>
-              <div className="imgrid imgrid-2">
-                {m.gallery.map((g, i) => (
-                  <Tile key={i} n={`S—0${(m.devicePair ? 2 : 1) + i}`} label={g.label} img={g.src} portrait={g.portrait} pos={g.pos} capPad={g.capPad} cropY={g.cropY} note={g.note} />
-                ))}
-              </div>
+          {p.liveUrl && (
+            <Reveal className="screens-live">
+              <p>Screens only tell half the story — every interaction and AI feature is live on the site. Open the real build and click through it yourself.</p>
+              <a className="btn btn-accent" href={p.liveUrl} target="_blank" rel="noopener noreferrer">Visit live site <span className="arr">↗</span></a>
             </Reveal>
           )}
         </section>

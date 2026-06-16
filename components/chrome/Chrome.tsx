@@ -11,14 +11,14 @@ export function Field() {
 /* One consistent header for every route: logo top-left (fixed position),
    an icon-only back chevron BELOW the logo on inner pages (→ home), and the
    hamburger always top-right. No text labels. */
-export function Header({ showBack = false }: { showBack?: boolean }) {
+export function Header({ showBack = false, backTo = "home", backLabel = "Back" }: { showBack?: boolean; backTo?: string; backLabel?: string }) {
   const { go, openMenu } = useNav();
   return (
     <header className="site-header">
       <div className="hdr-left">
         <a className="wordmark" onClick={() => go("home")}>CHIRAN<span className="dot">.</span></a>
         {showBack && (
-          <button className="hdr-back" aria-label="Back to home" onClick={() => go("home")}><IArrowL s={17} /></button>
+          <button className="hdr-back" aria-label={backLabel} onClick={() => go(backTo)}><IArrowL s={17} /></button>
         )}
       </div>
       <button className="burger" aria-label="Open menu" onClick={openMenu}><span /><span /><span /></button>
@@ -29,7 +29,7 @@ export function Header({ showBack = false }: { showBack?: boolean }) {
 export function Overlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { go } = useNav();
   const links: [string, string][] = [
-    ["work", "Work"], ["studio", "Studio"], ["services", "Services"],
+    ["projects", "Projects"], ["studio", "Studio"], ["services", "Services"],
     ["journal", "Journal"], ["contact", "Contact"],
   ];
   return (
@@ -79,7 +79,7 @@ export function Footer() {
           <div className="foot-col">
             <h6>Studio</h6>
             <ul>
-              <li><a onClick={() => go("work")}>Work</a></li>
+              <li><a onClick={() => go("projects")}>Projects</a></li>
               <li><a onClick={() => go("studio")}>Studio</a></li>
               <li><a onClick={() => go("services")}>Services</a></li>
               <li><a onClick={() => go("journal")}>Journal</a></li>

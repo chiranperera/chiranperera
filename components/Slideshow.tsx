@@ -37,7 +37,7 @@ function Slide({ p, active, onOpen }: { p: Project; active: boolean; onOpen: (sl
           <span className="eyebrow">{p.cats.join(" · ")} — {p.year}</span>
           <h2 className="slide-title">{title}</h2>
           <p className="summary">{p.summary}</p>
-          <button className="tlink" onClick={() => onOpen(p.slug)}>View project <span className="arr">→</span></button>
+          <button className="btn btn-accent slide-cta" onClick={() => onOpen(p.slug)}>View project <span className="arr">→</span></button>
         </div>
       </div>
       {/* RIGHT — image zone */}

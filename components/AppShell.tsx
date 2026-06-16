@@ -25,7 +25,7 @@ export function useNav(): NavCtx {
 
 function routeToUrl(route: string): string {
   if (route === "home") return "/";
-  if (route.startsWith("case:")) return "/work/" + route.slice(5);
+  if (route.startsWith("case:")) return "/projects/" + route.slice(5);
   return "/" + route;
 }
 
@@ -35,9 +35,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [menu, setMenu] = React.useState(false);
   const [wipe, setWipe] = React.useState(false);
   const isHome = pathname === "/";
-  // case-study pages: the sticky section-filter provides nav context, and the
-  // logo already returns home — so drop the redundant back chevron there.
-  const isCase = pathname.startsWith("/work/");
+  // case-study pages get a back chevron to the projects archive; other inner
+  // pages get one back to home. Home itself shows none.
+  const isCase = pathname.startsWith("/projects/");
 
   const closeMenu = React.useCallback(() => setMenu(false), []);
   const openMenu = React.useCallback(() => setMenu(true), []);
@@ -66,7 +66,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <Cursor />
       <Field />
-      <Header showBack={!isHome && !isCase} />
+      <Header showBack={!isHome} backTo={isCase ? "projects" : "home"} backLabel={isCase ? "Back to projects" : "Back to home"} />
       {children}
       <Overlay open={menu} onClose={closeMenu} />
       {wipe && <div className="wipe run"><span className="mk">CHIRAN<span className="dot">.</span></span></div>}

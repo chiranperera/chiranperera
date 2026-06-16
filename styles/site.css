@@ -86,6 +86,8 @@ img{display:block;max-width:100%}
 .slide-inner .eyebrow{color:var(--ink-3)}
 .slide-title{font-family:var(--font-display);font-weight:700;font-size:clamp(42px,4.8vw,82px);line-height:.96;letter-spacing:-.04em;color:#fff;text-wrap:balance}
 .slide-inner .summary{font-size:clamp(16px,1.15vw,19px);line-height:1.6;color:var(--ink-2);max-width:460px}
+/* filled accent CTA (prominent, reads clearly as a button) — extra space above it */
+.slide-cta{margin-top:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
 
 /* RIGHT — image zone: full-bleed, edge-to-edge, no overlay, no clutter */
 .slide-image-zone{position:relative;overflow:hidden;background:#0C0C0E}

@@ -202,6 +202,10 @@ body.calibrating [data-cropkey]{outline:1px dashed rgba(229,255,3,.5);outline-of
 .cropcal-actions button{flex:1;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
   padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;cursor:pointer}
 .cropcal-actions button:first-child{background:var(--accent);color:#0A0A0B;border-color:var(--accent);font-weight:700}
+
+/* Screens section — "explore the live build" block under the device pair */
+.screens-live{display:flex;flex-direction:column;align-items:flex-start;gap:20px;max-width:580px}
+.screens-live p{color:var(--ink-2);font-size:clamp(15px,1.1vw,18px);line-height:1.6;margin:0}
 /* caption sits BELOW the image (never over it) → readable on any image */
 .tile-cap{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 1px 0}
 .tile-cap .lbl{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
