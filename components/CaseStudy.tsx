@@ -93,41 +93,40 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
   const [active, setActive] = React.useState("all");
   const barRef = React.useRef<HTMLDivElement>(null);
-  const pendingScroll = React.useRef(false);
   React.useEffect(() => { window.scrollTo(0, 0); setActive("all"); }, [slug]);
 
-  // After a filter click changes which sections render, bring the sticky tab
-  // bar to the top so the chosen section starts at its heading (right below the
-  // bar). Runs post-commit (layout settled) to avoid the smooth-scroll/reflow
-  // race that previously overshot past the heading.
-  React.useEffect(() => {
-    if (!pendingScroll.current) return;
-    pendingScroll.current = false;
+  // All sections stay mounted — the tabs are jump-navigation, not a filter — so
+  // scroll the chosen section's heading to just below the sticky bar (the bar's
+  // own offsetHeight, immune to its stuck state). Two frames let the reveal-
+  // disable (.case-filtered) settle the heading to its transform-free position.
+  const focusSection = React.useCallback((k: string) => {
     const bar = barRef.current;
     if (!bar) return;
-    // Two frames so the collapsed-section layout fully settles before we measure.
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      // "All" keeps the scroll-reveal animations on, so a heading would be measured
-      // mid-transform. Anchor on the (non-animating) hero bottom = the bar's natural
-      // top, so the page re-sticks at the top and Overview reveals in below it.
-      if (active === "all") {
-        // Expanding to all sections balloons the page height; the browser's
-        // scroll-anchoring jumps scrollY far down to keep content in view, so a
-        // smooth scroll would crawl thousands of px back up. Snap instantly.
+      if (k === "all") {
         const hero = bar.previousElementSibling as HTMLElement | null;
         const y = hero ? hero.getBoundingClientRect().bottom + window.scrollY : 0;
-        window.scrollTo({ top: Math.max(0, y), behavior: "auto" });
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
         return;
       }
-      // Filtered: reveals are disabled, so the heading sits at its final position.
-      // Anchor it just below the sticky bar (bar.offsetHeight is the bar's own
-      // height; immune to its stuck state).
-      const head = bar.parentElement?.querySelector(".case-head") as HTMLElement | null;
+      const sec = document.getElementById("sec-" + k);
+      const head = (sec?.querySelector(".case-head") as HTMLElement | null) ?? sec;
       if (!head) return;
       const y = head.getBoundingClientRect().top + window.scrollY - bar.offsetHeight - 10;
       window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
     }));
-  }, [active]);
+  }, []);
+
+  // Reveal neighbouring tabs by centering the clicked one in the scrollable bar,
+  // so mobile users discover the off-screen filters on either side.
+  const centerTab = React.useCallback((k: string) => {
+    const tabsEl = barRef.current?.querySelector<HTMLElement>(".cf-tabs");
+    const btn = tabsEl?.querySelector<HTMLElement>(`[data-key="${k}"]`);
+    if (!tabsEl || !btn) return;
+    const tr = tabsEl.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    const delta = (br.left - tr.left) - (tabsEl.clientWidth - br.width) / 2;
+    tabsEl.scrollBy({ left: delta, behavior: "smooth" });
+  }, []);
 
   const hasScreens = !!(m?.devicePair || p.liveUrl);
   const tabs: { key: string; label: string }[] = [
@@ -140,10 +139,11 @@ export default function CaseStudy({ slug }: { slug: string }) {
     { key: "results", label: "Results" },
     ...(hasScreens ? [{ key: "screens", label: "Screens" }] : []),
   ];
-  const show = (k: string) => active === "all" || active === k;
+  const show = (_k: string) => true; // sections stay mounted; tabs only jump-navigate
   const pick = (k: string) => {
-    pendingScroll.current = true;
     setActive(k);
+    centerTab(k);
+    focusSection(k);
   };
 
   return (
@@ -176,7 +176,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       <div className="case-filter" ref={barRef}>
         <div className="cf-tabs" role="tablist" aria-label="Case study sections">
           {tabs.map((t) => (
-            <button key={t.key} role="tab" aria-selected={active === t.key} className={`filter${active === t.key ? " on" : ""}`} onClick={() => pick(t.key)}>{t.label}</button>
+            <button key={t.key} data-key={t.key} role="tab" aria-selected={active === t.key} className={`filter${active === t.key ? " on" : ""}`} onClick={() => pick(t.key)}>{t.label}</button>
           ))}
         </div>
       </div>
@@ -184,7 +184,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {/* OVERVIEW — the premise + the business pain points */}
       {show("why") && (
         <>
-          <section className="wrap">
+          <section className="wrap" id="sec-why">
             <Reveal><CaseHead ix="01">The business<br />problem.</CaseHead></Reveal>
             <Reveal className="case-body">
               <div className="left">Overview / The premise</div>
@@ -215,7 +215,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
       {/* RESEARCH — industry standard vs. what we built differently */}
       {show("research") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-research">
           <Reveal><CaseHead ix="02">Research &amp;<br />approach.</CaseHead></Reveal>
           <Reveal className="case-body">
             <div className="left">Industry standard</div>
@@ -232,7 +232,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
       {/* AI LAYER — the automation that solves the pains (before design) */}
       {show("ai") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-ai">
           <Reveal><CaseHead ix="03">The AI<br />solutions.</CaseHead></Reveal>
           <Reveal className="ai-callout">
             <span className="eyebrow"><span style={{ color: p.accent }}>●</span> AI functionality</span>
@@ -259,7 +259,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
       {/* DIRECTION + DESIGN */}
       {show("design") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-design">
           <Reveal><CaseHead ix="04">Direction &amp;<br />design.</CaseHead></Reveal>
           <Reveal>
             <div className="imgrid imgrid-2">
@@ -282,7 +282,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
       {/* BUILD + STACK */}
       {show("build") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-build">
           <Reveal><CaseHead ix="05">Build &amp;<br />stack.</CaseHead></Reveal>
           <Reveal className="case-body">
             <div className="left">Frameworks · Tooling</div>
@@ -299,7 +299,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
       {/* RESULTS */}
       {show("results") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-results">
           <Reveal><CaseHead ix="06">Deployment &amp;<br />results.</CaseHead></Reveal>
           <Reveal>
             <div className="stat-row">
@@ -315,7 +315,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
           We deliberately don't dump every screen here; the real site is one
           click away and far better explored live. */}
       {hasScreens && show("screens") && (
-        <section className="wrap">
+        <section className="wrap" id="sec-screens">
           <Reveal><CaseHead ix="07">Selected<br />screens.</CaseHead></Reveal>
           {m?.devicePair && (
             <Reveal style={{ marginBottom: 24 }}><DevicePair pair={m.devicePair} n="S—01" /></Reveal>
@@ -329,8 +329,8 @@ export default function CaseStudy({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* PITCH — value argument (full view only) */}
-      {active === "all" && p.pitch && (
+      {/* PITCH — value argument */}
+      {p.pitch && (
         <section className="wrap pitch">
           <Reveal>
             <span className="eyebrow"><span className="dot">●</span> {p.pitch.eyebrow}</span>
