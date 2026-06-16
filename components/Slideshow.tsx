@@ -12,14 +12,14 @@ function IntroSlide({ active }: { active: boolean }) {
       <div className="intro-comp">
         <span className="intro-eyebrow">Designer · Developer · Brand &amp; AI Automation</span>
         <div className="intro-lockup">
-          <div className="intro-nameback"><h1>CHIRAN</h1><h1>PERERA</h1></div>
+          <div className="intro-nameback"><h1 className="nb-tape">CHIRAN<span className="nametape" aria-hidden="true" /></h1><h1>PERERA</h1></div>
           <div className="intro-subject">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
           </div>
         </div>
-        <p className="intro-tag">I design, build and brand digital experiences from end to end — powered by AI.</p>
-        <span className="tlink intro-cta" style={{ color: "#fff" }}>Selected work <span className="arr">↓</span></span>
+        <p className="intro-tag">I design, build and brand digital experiences — helping people and businesses get seen, stand out, and run smarter with AI.</p>
+        <span className="tlink intro-cta" style={{ color: "#fff" }}>Selected projects <span className="arr">↓</span></span>
       </div>
       <div className="intro-fade" />
       <div className="intro-grain" />
