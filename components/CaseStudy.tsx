@@ -105,10 +105,28 @@ export default function CaseStudy({ slug }: { slug: string }) {
     pendingScroll.current = false;
     const bar = barRef.current;
     if (!bar) return;
-    requestAnimationFrame(() => {
-      const y = bar.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    });
+    // Two frames so the collapsed-section layout fully settles before we measure.
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      // "All" keeps the scroll-reveal animations on, so a heading would be measured
+      // mid-transform. Anchor on the (non-animating) hero bottom = the bar's natural
+      // top, so the page re-sticks at the top and Overview reveals in below it.
+      if (active === "all") {
+        // Expanding to all sections balloons the page height; the browser's
+        // scroll-anchoring jumps scrollY far down to keep content in view, so a
+        // smooth scroll would crawl thousands of px back up. Snap instantly.
+        const hero = bar.previousElementSibling as HTMLElement | null;
+        const y = hero ? hero.getBoundingClientRect().bottom + window.scrollY : 0;
+        window.scrollTo({ top: Math.max(0, y), behavior: "auto" });
+        return;
+      }
+      // Filtered: reveals are disabled, so the heading sits at its final position.
+      // Anchor it just below the sticky bar (bar.offsetHeight is the bar's own
+      // height; immune to its stuck state).
+      const head = bar.parentElement?.querySelector(".case-head") as HTMLElement | null;
+      if (!head) return;
+      const y = head.getBoundingClientRect().top + window.scrollY - bar.offsetHeight - 10;
+      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+    }));
   }, [active]);
 
   const hasScreens = !!(m?.devicePair || p.liveUrl);
