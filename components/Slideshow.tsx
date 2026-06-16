@@ -2,6 +2,7 @@
 /* Fullscreen vertical slideshow: behind-text intro hero + projects. */
 import * as React from "react";
 import { PROJECTS, type Project } from "@/lib/data";
+import { useNav } from "@/components/AppShell";
 import { IArrow, IArrowL } from "@/components/icons";
 
 function IntroSlide({ active }: { active: boolean }) {
@@ -26,8 +27,10 @@ function IntroSlide({ active }: { active: boolean }) {
   );
 }
 
-function Slide({ p, active, onOpen }: { p: Project; active: boolean; onOpen: (slug: string) => void }) {
+function Slide({ p, active, onOpen, onPrefetch }: { p: Project; active: boolean; onOpen: (slug: string) => void; onPrefetch: (slug: string) => void }) {
   const title = p.title.replace("\n", " ");
+  // warm the route as soon as this slide is shown, so the click is instant
+  React.useEffect(() => { if (active) onPrefetch(p.slug); }, [active, p.slug, onPrefetch]);
   return (
     <article className={`slide split${active ? " active" : ""}`} aria-hidden={!active}
       style={{ "--accent": p.accent } as React.CSSProperties}>
@@ -37,7 +40,7 @@ function Slide({ p, active, onOpen }: { p: Project; active: boolean; onOpen: (sl
           <span className="eyebrow">{p.cats.join(" · ")} — {p.year}</span>
           <h2 className="slide-title">{title}</h2>
           <p className="summary">{p.summary}</p>
-          <button className="btn btn-accent slide-cta" onClick={() => onOpen(p.slug)}>View project <span className="arr">→</span></button>
+          <button className="btn btn-accent slide-cta" onClick={() => onOpen(p.slug)} onMouseEnter={() => onPrefetch(p.slug)} onFocus={() => onPrefetch(p.slug)}>View project <span className="arr">→</span></button>
         </div>
       </div>
       {/* RIGHT — image zone */}
@@ -51,20 +54,28 @@ function Slide({ p, active, onOpen }: { p: Project; active: boolean; onOpen: (sl
 }
 
 export default function Slideshow({ onOpen }: { onOpen: (slug: string) => void }) {
+  const { prefetch } = useNav();
   const [i, setI] = React.useState(0);
   const n = PROJECTS.length + 1; // +1 intro
   const go = React.useCallback((idx: number) => setI(((idx % n) + n) % n), [n]);
   const next = React.useCallback(() => setI((v) => (v + 1) % n), [n]);
   const prev = React.useCallback(() => setI((v) => (v - 1 + n) % n), [n]);
 
+  // Once a project is opened, freeze the slideshow so the wipe/navigation isn't
+  // undercut by a stray wheel/swipe flipping to another slide while it loads.
+  const navigating = React.useRef(false);
+  const open = React.useCallback((slug: string) => { navigating.current = true; onOpen(slug); }, [onOpen]);
+  const prefetchCase = React.useCallback((slug: string) => prefetch("case:" + slug), [prefetch]);
+
   React.useEffect(() => {
     let lock = false;
     const onWheel = (e: WheelEvent) => {
-      if (lock || Math.abs(e.deltaY) < 12) return;
+      if (navigating.current || lock || Math.abs(e.deltaY) < 12) return;
       lock = true; e.deltaY > 0 ? next() : prev();
       setTimeout(() => { lock = false; }, 950);
     };
     const onKey = (e: KeyboardEvent) => {
+      if (navigating.current) return;
       if (e.key === "ArrowDown" || e.key === "ArrowRight") next();
       if (e.key === "ArrowUp" || e.key === "ArrowLeft") prev();
     };
@@ -72,6 +83,7 @@ export default function Slideshow({ onOpen }: { onOpen: (slug: string) => void }
     let startY = 0, startX = 0;
     const onTouchStart = (e: TouchEvent) => { startY = e.touches[0].clientY; startX = e.touches[0].clientX; };
     const onTouchEnd = (e: TouchEvent) => {
+      if (navigating.current) return;
       const dy = startY - e.changedTouches[0].clientY;
       const dx = startX - e.changedTouches[0].clientX;
       if (Math.abs(dy) < 45 || Math.abs(dy) <= Math.abs(dx)) return; // ignore small or mostly-horizontal swipes
@@ -96,7 +108,7 @@ export default function Slideshow({ onOpen }: { onOpen: (slug: string) => void }
   return (
     <div className="stage" style={{ "--accent": accent } as React.CSSProperties}>
       <IntroSlide active={i === 0} />
-      {PROJECTS.map((p, idx) => <Slide key={p.slug} p={p} active={idx + 1 === i} onOpen={onOpen} />)}
+      {PROJECTS.map((p, idx) => <Slide key={p.slug} p={p} active={idx + 1 === i} onOpen={open} onPrefetch={prefetchCase} />)}
 
       <div className="rail-left">
         <span className="vlabel">Scroll</span>

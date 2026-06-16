@@ -11,6 +11,7 @@ import { Cursor, Preloader } from "@/components/chrome/Effects";
 
 type NavCtx = {
   go: (route: string) => void;
+  prefetch: (route: string) => void;
   openMenu: () => void;
   closeMenu: () => void;
 };
@@ -55,13 +56,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     window.setTimeout(() => setWipe(false), 900);
   }, [pathname, router]);
 
+  // Warm the route (JS chunk + RSC payload) ahead of the click so the first
+  // navigation isn't paying a cold network fetch under the wipe animation.
+  const prefetch = React.useCallback((route: string) => {
+    router.prefetch(routeToUrl(route));
+  }, [router]);
+
   // Home is a fixed/fullscreen slideshow → lock body scroll; inner pages scroll.
   React.useEffect(() => {
     document.body.style.overflow = isHome ? "hidden" : "auto";
     return () => { document.body.style.overflow = "auto"; };
   }, [isHome]);
 
-  const value = React.useMemo<NavCtx>(() => ({ go, openMenu, closeMenu }), [go, openMenu, closeMenu]);
+  const value = React.useMemo<NavCtx>(() => ({ go, prefetch, openMenu, closeMenu }), [go, prefetch, openMenu, closeMenu]);
 
   return (
     <Ctx.Provider value={value}>
