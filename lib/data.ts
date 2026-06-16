@@ -144,13 +144,12 @@ export const PROJECTS: Project[] = [
     },
     stats: [["4", "wk", "Blank page → live"], ["0", "", "Framework deps"], ["6", "", "SKUs + 1 OS"], ["100", "%", "Homepage flow shipped"]],
     media: {
-      // Direction & design grid — every tile is a windowed band of the one full-desktop screenshot.
-      // cropY values measured from the image (section centers → centered crops), tune live with ?calibrate
+      // Direction & design grid — purpose-built design-system boards (Claude Design)
       design: [
-        { src: "url('/assets/volt/full-desktop.png')", label: "Identity & hero", cropY: "0%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Type specimen", cropY: "91%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "Component library", cropY: "12%" },
-        { src: "url('/assets/volt/full-desktop.png')", label: "App / mobile UI", cropY: "54%", note: { x: "80%", y: "50%", text: "Live app", lx: "26%", ly: "20%" } },
+        { src: "url('/assets/volt/design-identity.jpg')", label: "Identity & hero" },
+        { src: "url('/assets/volt/design-type.jpg')", label: "Type specimen" },
+        { src: "url('/assets/volt/design-components.jpg')", label: "Component library" },
+        { src: "url('/assets/volt/design-app.jpg')", label: "App / mobile UI" },
       ],
       // homepage shown as one captioned device pair, windowed from both full images
       devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.png')", mobile: "url('/assets/volt/full-mobile.png')", cropYDesktop: "0%", cropYMobile: "0%" },
