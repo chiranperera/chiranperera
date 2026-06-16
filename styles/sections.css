@@ -115,7 +115,9 @@
    fixed global header: when scrolled, the one logo (left) + one menu (right)
    stack above the tabs instead of duplicating. Solid bg fills behind the
    header so scrolled content never shows through. */
-.case-filter{position:sticky;top:0;z-index:80;padding:62px var(--wrap-pad) 14px;
+/* left padding clears the fixed back-chevron (≈34px at the gutter) so the
+   stuck tab row reads as [←] [ALL] [OVERVIEW]… instead of overlapping it. */
+.case-filter{position:sticky;top:0;z-index:80;padding:62px var(--wrap-pad) 14px calc(var(--wrap-pad) + 46px);
   background:var(--bg);border-bottom:1px solid var(--line)}
 .cf-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .cf-tabs::-webkit-scrollbar{display:none}
