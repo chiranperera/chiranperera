@@ -171,17 +171,17 @@ img{display:block;max-width:100%}
 .intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;color:#fff;position:relative}
 /* "redaction tape" struck across CHIRAN — flat, matte, torn/ripped edges */
 .nb-tape{isolation:isolate}
-.nametape{position:absolute;left:-3%;right:-3%;top:50%;height:.46em;pointer-events:none;
+.nametape{position:absolute;left:-16px;right:-16px;top:50%;height:.46em;pointer-events:none;
   background:#E5FF03;transform:translateY(-50%) rotate(-2deg);
   clip-path:polygon(
-    /* top edge — nearly straight, faint undulation, left→right */
-    3% 15%, 20% 11%, 40% 9%, 60% 9%, 80% 10%, 96% 8%,
-    /* right end — soft diagonal cut */
-    98.5% 22%, 99% 50%, 97.5% 78%, 95% 90%,
-    /* bottom edge — nearly straight, right→left */
-    80% 91%, 60% 92%, 40% 92%, 20% 90%, 5% 88%,
-    /* left end — soft diagonal cut */
-    1.5% 76%, 1% 48%, 2% 24%)}
+    /* top edge — clean, nearly straight (faint hand-cut wobble), left→right */
+    1% 13%, 34% 10%, 67% 10%, 99% 11%,
+    /* right end — near-vertical cut, soft corners */
+    100% 35%, 99.5% 65%, 98% 89%,
+    /* bottom edge — clean, nearly straight, right→left */
+    67% 90%, 34% 91%, 2% 89%,
+    /* left end — near-vertical cut, soft corners */
+    0% 63%, 0.5% 35%)}
 .intro-tag{order:1;font-family:var(--font-display);font-weight:500;font-size:clamp(17px,4.6vw,22px);letter-spacing:-.01em;color:#fff;max-width:560px;text-wrap:balance}
 .intro-cta{order:2;color:#fff}
 .intro-fade{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:3;pointer-events:none;background:linear-gradient(0deg,#000,transparent)}
