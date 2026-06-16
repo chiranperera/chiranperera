@@ -153,7 +153,7 @@ export const PROJECTS: Project[] = [
       ],
       // homepage shown as one captioned device pair (desktop + mobile); the rest
       // of the screens live on the real site, linked from the Screens section.
-      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.png')", mobile: "url('/assets/volt/full-mobile.png')", cropYDesktop: "0%", cropYMobile: "0%" },
+      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.jpg')", mobile: "url('/assets/volt/full-mobile.jpg')" },
     },
   },
   {
