@@ -35,8 +35,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [menu, setMenu] = React.useState(false);
   const [wipe, setWipe] = React.useState(false);
   const isHome = pathname === "/";
-  // case-study pages get a back chevron to the projects archive; other inner
-  // pages get one back to home. Home itself shows none.
+  // The back chevron is a "go up to the parent level" control, so it only shows
+  // on case-study pages (→ the projects archive). Top-level pages (projects,
+  // studio, services, journal, contact) have home as their parent, which the
+  // logo already handles — and a chevron there overlapped the archive filters.
   const isCase = pathname.startsWith("/projects/");
 
   const closeMenu = React.useCallback(() => setMenu(false), []);
@@ -66,7 +68,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <Cursor />
       <Field />
-      <Header showBack={!isHome} backTo={isCase ? "projects" : "home"} backLabel={isCase ? "Back to projects" : "Back to home"} />
+      <Header showBack={isCase} backTo="projects" backLabel="Back to projects" />
       {children}
       <Overlay open={menu} onClose={closeMenu} />
       {wipe && <div className="wipe run"><span className="mk">CHIRAN<span className="dot">.</span></span></div>}
