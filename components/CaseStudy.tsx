@@ -93,7 +93,23 @@ export default function CaseStudy({ slug }: { slug: string }) {
 
   const [active, setActive] = React.useState("all");
   const barRef = React.useRef<HTMLDivElement>(null);
+  const pendingScroll = React.useRef(false);
   React.useEffect(() => { window.scrollTo(0, 0); setActive("all"); }, [slug]);
+
+  // After a filter click changes which sections render, bring the sticky tab
+  // bar to the top so the chosen section starts at its heading (right below the
+  // bar). Runs post-commit (layout settled) to avoid the smooth-scroll/reflow
+  // race that previously overshot past the heading.
+  React.useEffect(() => {
+    if (!pendingScroll.current) return;
+    pendingScroll.current = false;
+    const bar = barRef.current;
+    if (!bar) return;
+    requestAnimationFrame(() => {
+      const y = bar.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }, [active]);
 
   const hasScreens = !!(m?.devicePair || p.liveUrl);
   const tabs: { key: string; label: string }[] = [
@@ -108,12 +124,8 @@ export default function CaseStudy({ slug }: { slug: string }) {
   ];
   const show = (k: string) => active === "all" || active === k;
   const pick = (k: string) => {
+    pendingScroll.current = true;
     setActive(k);
-    const bar = barRef.current;
-    if (bar) {
-      const y = bar.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
   };
 
   return (
