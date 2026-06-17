@@ -178,12 +178,7 @@ img{display:block;max-width:100%}
 .intro-subject img{width:auto;height:auto;max-height:46vh;max-width:84vw;object-fit:contain;filter:contrast(1.02);-webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
 .intro-eyebrow{order:-1;font-family:var(--font-mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);max-width:92%}
 .intro-nameback{order:0;display:flex;flex-direction:column;align-items:center}
-/* brushed-metal / chrome name — vertical silver gradient + bevel + soft halo */
-.intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;position:relative;
-  color:transparent;-webkit-text-fill-color:transparent;
-  background:linear-gradient(176deg,#ffffff 0%,#e4e7eb 14%,#aeb4bd 38%,#767b83 50%,#565a61 54%,#9aa0a8 67%,#dce0e5 85%,#f6f8fa 100%);
-  -webkit-background-clip:text;background-clip:text;
-  filter:drop-shadow(0 1px 0 rgba(255,255,255,.4)) drop-shadow(0 4px 7px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(255,255,255,.15))}
+.intro-nameback h1{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,15vw,92px);line-height:.86;letter-spacing:-.04em;color:#fff;position:relative}
 /* "redaction tape" struck across CHIRAN — flat, matte, torn/ripped edges */
 .nb-tape{isolation:isolate}
 .nametape{position:absolute;left:-16px;right:-16px;top:50%;height:.46em;pointer-events:none;
@@ -197,7 +192,9 @@ img{display:block;max-width:100%}
     67% 90%, 34% 91%, 2% 89%,
     /* left end — near-vertical cut, soft corners */
     0% 63%, 0.5% 35%)}
-.intro-tag{order:1;font-family:var(--font-display);font-weight:500;font-size:clamp(17px,4.6vw,22px);letter-spacing:-.01em;color:#fff;max-width:560px;text-wrap:balance}
+.intro-tag{order:1;font-family:var(--font-display);font-weight:500;font-size:clamp(14px,3.2vw,17px);letter-spacing:-.01em;color:#fff;max-width:360px;text-wrap:balance}
+/* small lead-in line above the three-S statement */
+.tag-lead{display:block;font-size:.72em;font-weight:400;letter-spacing:.02em;color:rgba(255,255,255,.6);margin-bottom:3px}
 .intro-cta{order:2;color:#fff}
 .intro-fade{position:absolute;left:0;right:0;bottom:0;height:16%;z-index:3;pointer-events:none;background:linear-gradient(0deg,#000,transparent)}
 .intro-grain{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,11,.30),transparent 30%,transparent 64%,rgba(10,10,11,.85))}
@@ -225,8 +222,8 @@ img{display:block;max-width:100%}
     -webkit-mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%);
     mask-image:linear-gradient(to top, #000000e0 0%, #000000fa 20%)}
   .intro-nameback{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:1;width:max-content;display:flex;flex-direction:column;align-items:center}
-  .intro-nameback h1{font-size:clamp(64px,10.5vw,168px);line-height:.84;letter-spacing:-.05em;white-space:nowrap}
-  .intro-tag{order:1;max-width:680px;font-size:clamp(18px,2vw,24px)}
+  .intro-nameback h1{font-size:clamp(64px,10.5vw,168px);line-height:.84;letter-spacing:-.05em;white-space:nowrap;text-shadow:0 4px 50px rgba(0,0,0,.45)}
+  .intro-tag{order:1;max-width:420px;font-size:clamp(15px,1.4vw,18px)}
   .intro-cta{order:2}
   .intro-fade{height:13%}
 }

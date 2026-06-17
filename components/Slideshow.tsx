@@ -18,7 +18,7 @@ function IntroSlide({ active, onAdvance }: { active: boolean; onAdvance: () => v
             <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
           </div>
         </div>
-        <p className="intro-tag">Stand Out · Sell More · Save Time</p>
+        <p className="intro-tag"><span className="tag-lead">I Help Businesses To</span>Stand Out · Sell More · Save Time</p>
         <button type="button" className="tlink intro-cta" onClick={onAdvance} style={{ color: "#fff", background: "transparent", border: 0, padding: 0 }}>Selected projects <span className="arr">↓</span></button>
       </div>
       <div className="intro-fade" />
