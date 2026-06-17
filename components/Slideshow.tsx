@@ -5,7 +5,7 @@ import { PROJECTS, type Project } from "@/lib/data";
 import { useNav } from "@/components/AppShell";
 import { IArrow, IArrowL } from "@/components/icons";
 
-function IntroSlide({ active }: { active: boolean }) {
+function IntroSlide({ active, onAdvance }: { active: boolean; onAdvance: () => void }) {
   return (
     <article className={`slide intro${active ? " active" : ""}`} aria-hidden={!active}>
       <div className="intro-bg" />
@@ -18,8 +18,8 @@ function IntroSlide({ active }: { active: boolean }) {
             <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
           </div>
         </div>
-        <p className="intro-tag">STAND OUT · SELL MORE · SAVE TIME</p>
-        <span className="tlink intro-cta" style={{ color: "#fff" }}>Selected projects <span className="arr">↓</span></span>
+        <p className="intro-tag">Stand Out · Sell More · Save Time</p>
+        <button type="button" className="tlink intro-cta" onClick={onAdvance} style={{ color: "#fff", background: "transparent", border: 0, padding: 0 }}>Selected projects <span className="arr">↓</span></button>
       </div>
       <div className="intro-fade" />
       <div className="intro-grain" />
@@ -107,7 +107,7 @@ export default function Slideshow({ onOpen }: { onOpen: (slug: string) => void }
 
   return (
     <div className="stage" style={{ "--accent": accent } as React.CSSProperties}>
-      <IntroSlide active={i === 0} />
+      <IntroSlide active={i === 0} onAdvance={() => go(1)} />
       {PROJECTS.map((p, idx) => <Slide key={p.slug} p={p} active={idx + 1 === i} onOpen={open} onPrefetch={prefetchCase} />)}
 
       <div className="rail-left">
