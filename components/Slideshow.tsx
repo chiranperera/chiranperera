@@ -18,7 +18,7 @@ function IntroSlide({ active }: { active: boolean }) {
             <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
           </div>
         </div>
-        <p className="intro-tag">I help businesses stand out, sell more, and save time with AI.</p>
+        <p className="intro-tag">STAND OUT · SELL MORE · SAVE TIME</p>
         <span className="tlink intro-cta" style={{ color: "#fff" }}>Selected projects <span className="arr">↓</span></span>
       </div>
       <div className="intro-fade" />
