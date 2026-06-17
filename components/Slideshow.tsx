@@ -10,7 +10,7 @@ function IntroSlide({ active }: { active: boolean }) {
     <article className={`slide intro${active ? " active" : ""}`} aria-hidden={!active}>
       <div className="intro-bg" />
       <div className="intro-comp">
-        <span className="intro-eyebrow">Stand out · Sell more · Save time</span>
+        <span className="intro-eyebrow">Designer · Developer · Brand &amp; AI Automation</span>
         <div className="intro-lockup">
           <div className="intro-nameback"><h1 className="nb-tape">CHIRAN<span className="nametape" aria-hidden="true" /></h1><h1>PERERA</h1></div>
           <div className="intro-subject">
@@ -18,7 +18,7 @@ function IntroSlide({ active }: { active: boolean }) {
             <img src="/assets/chiran-cutout.png" alt="Chiran Perera" />
           </div>
         </div>
-        <p className="intro-tag">I help businesses stand out, make more sales, and use AI to handle the day-to-day.</p>
+        <p className="intro-tag">I help businesses stand out, sell more, and save time with AI.</p>
         <span className="tlink intro-cta" style={{ color: "#fff" }}>Selected projects <span className="arr">↓</span></span>
       </div>
       <div className="intro-fade" />
