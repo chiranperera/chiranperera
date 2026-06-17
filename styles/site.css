@@ -168,6 +168,20 @@ img{display:block;max-width:100%}
   animation:introAura 24s ease-in-out infinite alternate}
 .intro-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:var(--grid-size) var(--grid-size);-webkit-mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%);mask-image:radial-gradient(900px 620px at 50% 12%,#000,transparent 82%);animation:introGridDrift 90s linear infinite}
 @keyframes introAura{0%{transform:translate(-3%,-2%) scale(1)}50%{transform:translate(2.5%,1.5%) scale(1.08)}100%{transform:translate(3.5%,-1.5%) scale(1.03)}}
+/* a soft light that travels over the blueprint net, brightening the lines it
+   passes — slow + restrained for a precise, premium, trustworthy feel */
+.intro-net{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.085) 1px,transparent 1px);
+  background-size:var(--grid-size) var(--grid-size);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,rgba(0,0,0,.4) 42%,transparent 70%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 0%,rgba(0,0,0,.4) 42%,transparent 70%);
+  -webkit-mask-size:58% 58%;mask-size:58% 58%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  animation:introNetSweep 26s ease-in-out infinite alternate}
+@keyframes introNetSweep{
+  0%{-webkit-mask-position:6% 16%;mask-position:6% 16%}
+  50%{-webkit-mask-position:80% 48%;mask-position:80% 48%}
+  100%{-webkit-mask-position:28% 88%;mask-position:28% 88%}}
+@media (prefers-reduced-motion:reduce){.intro-net{animation:none;-webkit-mask-position:50% 30%;mask-position:50% 30%}}
 @keyframes introGridDrift{to{background-position:var(--grid-size) var(--grid-size),var(--grid-size) var(--grid-size)}}
 @media (prefers-reduced-motion:reduce){.intro-bg::before,.intro-bg::after{animation:none}}
 

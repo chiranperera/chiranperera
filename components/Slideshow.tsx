@@ -8,7 +8,7 @@ import { IArrow, IArrowL } from "@/components/icons";
 function IntroSlide({ active, onAdvance }: { active: boolean; onAdvance: () => void }) {
   return (
     <article className={`slide intro${active ? " active" : ""}`} aria-hidden={!active}>
-      <div className="intro-bg" />
+      <div className="intro-bg"><div className="intro-net" aria-hidden="true" /></div>
       <div className="intro-comp">
         <span className="intro-eyebrow">Designer · Developer · Brand &amp; AI Automation</span>
         <div className="intro-lockup">
