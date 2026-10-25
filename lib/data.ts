@@ -18,7 +18,9 @@ export type FeatureRow = {
   title: string;
   body: string;
   points?: string[];
-  media: { label: string; src?: string; pos?: string; capPad?: string; cropY?: string; note?: TileNote }; // src omitted → placeholder; pos = bg-position; capPad = caption side inset; cropY = window a full-page image; note = anchored pin
+  /* media omitted → the row renders text-only (used when a feature has no
+     honest screenshot, e.g. a channel that isn't live yet). */
+  media?: { label: string; src?: string; pos?: string; capPad?: string; cropY?: string; note?: TileNote }; // src omitted → placeholder; pos = bg-position; capPad = caption side inset; cropY = window a full-page image; note = anchored pin
 };
 
 /* A business pain point the client faced before the project (Overview). */
@@ -42,11 +44,15 @@ export type Project = {
   summary: string;
   role: string;
   client: string;
+  clientLabel?: string;     // meta-bar key when the work isn't a client job (default "Client")
   timeline: string;
   stack: string[];
   img: string | null;       // slideshow / work-card image
   heroImg?: string;         // case-study hero banner (falls back to img)
   liveUrl?: string;
+  status?: string;          // shown in the Live slot when there is no URL yet
+  buildNote?: string;       // Build section intro; falls back to the generic line
+  designNote?: string;      // Design section intro (e.g. design-system summary)
   overview: string[];
   pains?: Pain[];           // Overview: the business problems before the project
   research: string;         // Research: the industry-standard / the gap
@@ -71,7 +77,103 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "volt-home-energy", num: "01", title: "VOLT Home\nEnergy",
+    slug: "sarisara-lanka", num: "01", title: "Sarisara\nLanka",
+    cats: ["Travel Marketplace", "Web", "Design System", "AI", "Automation"], year: "2026", accent: "#7700FF",
+    summary: "An AI-native travel marketplace for Sri Lanka — licensed local guides design real multi-day trips from real hotels, stays and experiences, and every public page is built so AI assistants can read and quote it.",
+    role: "Founder · Strategy · Brand & Design System · Build", clientLabel: "Own venture", client: "Sarisara Lanka", timeline: "In development",
+    stack: ["WordPress", "Traveler theme + custom child", "PHP · MySQL", "Elementor Pro", "ACF Pro", "FluentCRM", "PayPal · bank transfer", "Schema.org + llms.txt", "Playwright", "Claude co-builder"],
+    status: "Launching soon",
+    img: "url('/assets/sarisara/project-card.webp')",
+    heroImg: "url('/assets/sarisara/hero-banner.webp')",
+    overview: [
+      "Sri Lanka's best stays and experiences live in an informal, relationship-run economy — family-run hotels, licensed guides, home stays and local experts who trade over WhatsApp and word of mouth. Global platforms skip them, and the travellers who would love them can't find them or trust them.",
+      "Sarisara Lanka brings that whole ecosystem onto one platform. Licensed local guides design real multi-day trips from real hotels, home stays, activities and local experts. Travellers choose their dates and group, see the exact price, and book. Every partner is confirmed and paid through one system, and every public page carries a card that AI assistants can read. I own it end to end — positioning, brand and design system, the full build, and the automation that runs it.",
+    ],
+    pains: [
+      { problem: "The best providers were invisible", result: "Small hotels, guides and hosts ran on WhatsApp and word of mouth with no real storefront — so global platforms skipped them and international travellers never found them." },
+      { problem: "Trips were stitched together by hand", result: "Planning a Sri Lankan trip meant juggling a dozen separate chats and bank transfers — no single price, no confirmation, and a lot of misplaced trust." },
+      { problem: "Coordination ate the margins", result: "Confirming rooms, guides and activities meant endless calls and messages across several languages — slow, error-prone, and impossible to scale with people." },
+      { problem: "Invisible to the assistants travellers now ask", result: "More trips start with 'ask AI' than with a search bar — and a pile of unstructured listings is something an assistant simply can't read, quote or book." },
+      { problem: "Money went wrong quietly", result: "When a price, deposit or payout is wrong, nothing on the screen turns red. Nobody finds out until a hotel calls asking where its money is." },
+    ],
+    research: "Industry standard: regional travel sites are listing dumps tuned for Google's blue links — pretty pages a human scrolls, with availability and pricing locked inside forms. None of it is readable by an AI assistant, and none of it coordinates the real people behind the listing.",
+    researchOurs: "I built the marketplace to be machine-readable and self-running. Every public page — trips, stays, activities, local experiences, places and town pages — carries a Schema.org JSON-LD card built by code from the listing's own facts, plus an llms.txt file for AI crawlers. A daily check confirms every card is still correct, and no card ever carries a price, phone number or email. Behind that, pricing, partner confirmation and payouts run as one pipeline, so the platform grows without a large operations team.",
+    ai: "The platform is one connected system. A drag-and-drop itinerary builder lets a licensed guide assemble a multi-day trip — hotels, activities and local experiences — with prices read live from each partner's own availability calendar. The moment a traveller pays the deposit, the agreed price is locked and every partner is asked to confirm. A partner who does not answer within 24 to 48 hours is replaced, but only after the traveller approves the change. After the trip there is a 14-day waiting period for any claim, then every partner is paid in one monthly pay run on the 25th, after an admin approves it. Partner phone numbers are never shown to anyone. I used Claude as a co-builder throughout — architecture, the booking and money logic, the design system, copy and automated testing.",
+    aiHeadline: "A marketplace that runs itself — and that AI can read.",
+    features: [
+      {
+        eyebrow: "Interactive · Guide-facing",
+        title: "Build a whole trip, day by day.",
+        body: "A drag-and-drop builder lets a guide put together several days of hotels, activities and local experiences, with each price read from the partner's calendar for those exact dates. Dates are auto-corrected so days never gap or overlap.",
+        points: [
+          "Drag-and-drop days",
+          "Live calendar prices",
+          "Automatic date fixing",
+        ],
+        media: { label: "Itinerary builder", src: "url('/assets/sarisara/feature-itinerary.webp')" },
+      },
+      {
+        eyebrow: "Automated · Partners",
+        title: "Every partner confirms, nobody chases.",
+        body: "After the deposit, every hotel, guide and host gets one message with one button to say yes or no. No answer in 24 to 48 hours means a replacement is offered — and the traveller approves it first. Phone numbers are never exposed. Email is live today; WhatsApp is built and switches on once the business registration is complete.",
+        points: [
+          "One-button reply",
+          "24 to 48 hour replacement with traveller approval",
+          "Local Expert messages in English, Sinhala and Tamil",
+        ],
+      },
+      {
+        eyebrow: "Engine · Trust",
+        title: "One price, from search to payout.",
+        body: "Every rate is read on the server from the partner's own availability calendar, so the price a traveller sees is the price they are charged — in whole US dollars. Deposit, partner confirmation, balance, a 14-day waiting period and the pay run on the 25th all run as one audited pipeline.",
+        points: [
+          "Price locked at deposit",
+          "Whole US dollars",
+          "Monthly pay run on the 25th",
+        ],
+        media: { label: "Booking & payout pipeline", src: "url('/assets/sarisara/feature-pipeline.webp')" },
+      },
+      {
+        eyebrow: "Pipeline · Discoverability",
+        title: "Built to be the source AI reads.",
+        body: "Every public page carries a Schema.org JSON-LD card built from the listing's own facts, plus an llms.txt file. A daily check keeps each card correct and makes sure no price, phone number or email ever leaks into one. When a traveller asks an assistant about Sri Lanka, Sarisara is something it can read and quote.",
+        points: [
+          "Schema.org JSON-LD",
+          "llms.txt",
+          "No prices, phones or emails in any card",
+        ],
+        media: { label: "Structured data · agent-readable", src: "url('/assets/sarisara/feature-schema.webp')" },
+      },
+    ],
+    pitch: {
+      eyebrow: "For travel, hospitality & marketplaces",
+      title: "Your platform should run itself —\nand be readable by AI.",
+      body: [
+        "Travel is shifting two ways at once: guests increasingly start with an AI assistant, and the operators who win are the ones who don't drown in manual coordination. Most sites are ready for neither.",
+        "An AI-native build like Sarisara works on both fronts — it automates the busywork (confirmations, pricing, payouts) so you scale without an ops team, and it structures your inventory so AI agents can discover and quote it. The same approach fits any marketplace, hotel group or experience brand.",
+      ],
+      points: [
+        "Automate the coordination — confirmations, pricing, payouts",
+        "Be readable and quotable by AI assistants, not just Google",
+        "Multi-channel, multi-language guest and provider comms",
+        "A platform that scales without scaling the team",
+      ],
+    },
+    stats: [["7", "", "Partner types, one booking flow"], ["309K", "", "Lines of custom PHP"], ["396", "", "Automated browser test files"], ["384", "", "Custom icons in the design system"]],
+    buildNote: "Built on WordPress with a large custom child theme — one codebase for the public site, the partner tools and the booking and money pipeline. Every money path is covered by automated browser tests, and every public page ships with a Schema.org JSON-LD card plus llms.txt for AI crawlers.",
+    designNote: "Before redesigning a single page, I built the Sarisara Lanka Design System: one violet-led palette (violet #7700FF, green #30B300, gold #FFB700, navy #090920, red #FF0A1F), one typeface (DM Sans), shadcn-style components, and a custom set of 384 icons in 25 groups, all drawn on one 24 px grid with one stroke weight. Every screen — from the homepage to the partner dashboard — is checked against it, so the whole platform looks and feels like one product.",
+    media: {
+      design: [
+        { src: "url('/assets/sarisara/design-brand.webp')", label: "Design system" },
+        { src: "url('/assets/sarisara/design-home.webp')", label: "Homepage" },
+        { src: "url('/assets/sarisara/design-listing.webp')", label: "Trip page" },
+        { src: "url('/assets/sarisara/design-itinerary.webp')", label: "Itinerary builder" },
+      ],
+      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/sarisara/full-desktop.webp')", mobile: "url('/assets/sarisara/full-mobile.webp')" },
+    },
+  },
+  {
+    slug: "volt-home-energy", num: "02", title: "VOLT Home\nEnergy",
     cats: ["Solar & Energy", "Web", "Branding", "AI"], year: "2026", accent: "#E5FF03",
     summary: "A modular home-energy brand — a Swiss-grid storefront with an on-page AI sizing concierge.",
     role: "Strategy · Design · Build", client: "VOLT Home Energy", timeline: "4 weeks",
@@ -156,89 +258,8 @@ export const PROJECTS: Project[] = [
       devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/volt/full-desktop.jpg')", mobile: "url('/assets/volt/full-mobile.jpg')" },
     },
   },
-  {
-    slug: "sarisara-lanka", num: "02", title: "Sarisara\nLanka",
-    cats: ["Travel Marketplace", "Web", "AI", "Automation"], year: "2026", accent: "#FFB700",
-    summary: "An AI-native travel marketplace for Sri Lanka — it maps the island's independent hotels, guides and community hosts into one bookable platform, built to be the source AI assistants cite and book through.",
-    role: "Strategy · Design · Build", client: "Sarisara Lanka", timeline: "In development", stack: ["WordPress", "PHP · MySQL", "Elementor Pro", "WhatsApp Cloud API", "FluentCRM", "PayHere · PayPal", "Schema · JSON-LD"],
-    liveUrl: "https://sarisaralanka.com/",
-    img: null,
-    overview: [
-      "Sri Lanka's best stays and experiences live in an informal, relationship-run economy — family-run hotels, licensed guides, home cooks and cultural hosts who trade over WhatsApp and word of mouth. Global platforms ignore them, and the travellers who'd love them can't find or trust them.",
-      "Sarisara Lanka maps that whole ecosystem into one platform: travellers build a multi-day trip themselves, every provider is coordinated and paid automatically, and each listing is structured so AI assistants can discover and book it. I own it end to end — positioning, brand, the full build, and the AI/automation layer that runs it.",
-    ],
-    pains: [
-      { problem: "The best providers were invisible", result: "Small hotels, guides and hosts ran on WhatsApp and word of mouth with no real storefront — so global platforms skipped them and international travellers never found them." },
-      { problem: "Trips were stitched together by hand", result: "Planning a Sri Lankan trip meant juggling a dozen separate chats and bank transfers — no single price, no confirmation, and a lot of misplaced trust." },
-      { problem: "Coordination ate the margins", result: "Confirming rooms, guides and activities meant endless calls and messages across three languages — slow, error-prone, and impossible to scale with people." },
-      { problem: "Invisible to the assistants travellers now ask", result: "More trips start with 'ask AI' than with a search bar — and a pile of unstructured listings is something an assistant simply can't read, quote or book." },
-    ],
-    research: "Industry standard: regional travel sites are listing dumps tuned for Google's blue links — pretty pages a human scrolls, with availability and pricing locked inside forms. None of it is readable by an AI assistant, and none of it coordinates the real people behind the listing.",
-    researchOurs: "So I built the marketplace to be machine-quotable and self-running. Every hotel, guide and experience is structured as Schema.org JSON-LD — clean facts plus live availability — exposed through an API and built MCP/WebMCP-ready, so an assistant can discover, compare and book it. Behind that, booking, pricing and provider coordination are automated end to end, so the platform scales without an ops team.",
-    ai: "The platform is one connected automation system. A drag-and-drop Itinerary Builder lets travellers assemble a multi-day trip with live, calendar-driven pricing. The moment a deposit lands, a single dispatcher confirms every provider — hotels, guides, drivers and community hosts — over WhatsApp, email and SMS in English, Sinhala or Tamil, with one-tap reply buttons that update the booking automatically. Pricing reads from one calendar so the price shown is always the price charged, and payouts (plus a one-time finder's fee to the guide who discovered a host) are calculated and released by a post-trip job. I used Claude as a co-builder throughout — architecture, the booking-state logic, copy and rapid component generation against a strict spec.",
-    aiHeadline: "A marketplace that books and runs itself.",
-    features: [
-      {
-        eyebrow: "Interactive · Traveller-facing",
-        title: "Build a whole trip, day by day.",
-        body: "A drag-and-drop itinerary builder lets a traveller assemble multiple days of hotels, activities and local experiences and watch the price update live from the availability calendar. Date continuity is auto-corrected so days never gap or overlap — a real trip plan, not a contact form.",
-        points: [
-          "Live, calendar-driven pricing as you build",
-          "Auto-fixes dates so the plan always holds together",
-          "Hotels, activities and community hosts in one flow",
-        ],
-        media: { label: "Itinerary builder" },
-      },
-      {
-        eyebrow: "AI · Automated",
-        title: "Confirms every provider while you sleep.",
-        body: "The moment a deposit is paid, one dispatcher reaches every provider — hotels, guides, drivers and community hosts — over WhatsApp, email and SMS, in their own language. A single tap (Available / Not / Call me) updates the booking automatically: no app, no typing, and no phone numbers ever exposed.",
-        points: [
-          "WhatsApp quick-reply buttons → the booking updates itself",
-          "English · Sinhala · Tamil, auto-selected per provider",
-          "Five provider types coordinated from one flow",
-        ],
-        media: { label: "WhatsApp provider confirmation" },
-      },
-      {
-        eyebrow: "Engine · Trust",
-        title: "One price, from search to payout.",
-        body: "Every rate reads from a single availability calendar on the server, so the price a traveller sees is always the price they're charged — no surprises. Deposit, provider confirmation, balance and automatic payouts (including a one-time finder's fee for whoever discovered a host) all run as one audited pipeline.",
-        points: [
-          "The calendar is the single source of truth for pricing",
-          "Deposit → confirm → balance → payout, fully tracked",
-          "Automatic payouts — no manual processing",
-        ],
-        media: { label: "Booking & payout pipeline" },
-      },
-      {
-        eyebrow: "Pipeline · Discoverability",
-        title: "Built to be the source AI books through.",
-        body: "Every listing is structured as Schema.org JSON-LD with clean facts and live availability, exposed through an API and built MCP/WebMCP-ready. So when a traveller asks an assistant to plan Sri Lanka, Sarisara is something it can actually read, quote and book — not just another page hoping to rank.",
-        points: [
-          "JSON-LD on every hotel, guide and experience",
-          "API + MCP/WebMCP-ready for agent-led booking",
-          "Destination content agents can cite as a source",
-        ],
-        media: { label: "Structured data · agent-ready" },
-      },
-    ],
-    pitch: {
-      eyebrow: "For travel, hospitality & marketplaces",
-      title: "Your platform should run itself —\nand be bookable by AI.",
-      body: [
-        "Travel is shifting two ways at once: guests increasingly start with an AI assistant, and the operators who win are the ones who don't drown in manual coordination. Most sites are ready for neither.",
-        "An AI-native build like Sarisara works on both fronts — it automates the busywork (confirmations, pricing, payouts) so you scale without an ops team, and it structures your inventory so AI agents can discover and book it. The same approach fits any marketplace, hotel group or experience brand.",
-      ],
-      points: [
-        "Automate the coordination — confirmations, pricing, payouts",
-        "Be discoverable and bookable by AI assistants, not just Google",
-        "Multi-channel, multi-language guest and provider comms",
-        "A platform that scales without scaling the team",
-      ],
-    },
-    stats: [["5", "", "Provider types, one flow"], ["3", "", "Languages — EN · SI · TA"], ["10", "", "Booking stages automated"], ["0", "", "Manual payouts"]],
-  },
+
+
   {
     slug: "villa-kaloya", num: "03", title: "Villa\nKaloya",
     cats: ["Hospitality", "Web", "Bookings"], year: "2025", accent: "#FF9F1C",

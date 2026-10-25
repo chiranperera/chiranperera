@@ -160,12 +160,12 @@ export default function CaseStudy({ slug }: { slug: string }) {
           <p className="lead">{p.summary}</p>
           <div className="meta-bar">
             <div className="m"><div className="k">Role</div><div className="v">{p.role}</div></div>
-            <div className="m"><div className="k">Client</div><div className="v">{p.client}</div></div>
+            <div className="m"><div className="k">{p.clientLabel || "Client"}</div><div className="v">{p.client}</div></div>
             <div className="m"><div className="k">Timeline</div><div className="v">{p.timeline}</div></div>
             <div className="m"><div className="k">Live</div><div className="v accent">
               {p.liveUrl
                 ? <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">{p.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗</a>
-                : `${p.client.toLowerCase().replace(/ /g, "")}.com ↗`}
+                : p.status || "—"}
             </div></div>
           </div>
         </div>
@@ -242,14 +242,16 @@ export default function CaseStudy({ slug }: { slug: string }) {
           {p.features && p.features.length > 0 && (
             <div className="features">
               {p.features.map((f, i) => (
-                <Reveal key={i} className={`feature-row${i % 2 === 1 ? " flip" : ""}`}>
+                <Reveal key={i} className={`feature-row${i % 2 === 1 ? " flip" : ""}${f.media ? "" : " text-only"}`}>
                   <div className="f-text">
                     <span className="eyebrow"><span className="dot">●</span> {f.eyebrow}</span>
                     <h3>{f.title}</h3>
                     <p>{f.body}</p>
                     {f.points && <ul className="f-points">{f.points.map((pt, j) => <li key={j}>{pt}</li>)}</ul>}
                   </div>
-                  <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} capPad={f.media.capPad} cropY={f.media.cropY} note={f.media.note} /></div>
+                  {f.media && (
+                    <div className="f-media"><Tile n={`F—0${i + 1}`} label={f.media.label} img={f.media.src} pos={f.media.pos} capPad={f.media.capPad} cropY={f.media.cropY} note={f.media.note} /></div>
+                  )}
                 </Reveal>
               ))}
             </div>
@@ -261,6 +263,12 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {show("design") && (
         <section className="wrap" id="sec-design">
           <Reveal><CaseHead ix="04">Direction &amp;<br />design.</CaseHead></Reveal>
+          {p.designNote && (
+            <Reveal className="case-body" style={{ marginBottom: 44 }}>
+              <div className="left">Design system</div>
+              <div><p>{p.designNote}</p></div>
+            </Reveal>
+          )}
           <Reveal>
             <div className="imgrid imgrid-2">
               {m?.design && m.design.length > 0 ? (
@@ -287,10 +295,9 @@ export default function CaseStudy({ slug }: { slug: string }) {
           <Reveal className="case-body">
             <div className="left">Frameworks · Tooling</div>
             <div>
-              <p>Static-generated, image-optimised, and shipped on Vercel — built the way I&apos;d build my own studio site, then handed over clean.</p>
+              <p>{p.buildNote || "Built end to end — the same care I'd give my own site — then handed over clean."}</p>
               <div className="chips" style={{ marginTop: 20 }}>
                 {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
-                <span className="chip accent">llms.txt</span>
               </div>
             </div>
           </Reveal>
@@ -300,7 +307,7 @@ export default function CaseStudy({ slug }: { slug: string }) {
       {/* RESULTS */}
       {show("results") && (
         <section className="wrap" id="sec-results">
-          <Reveal><CaseHead ix="06">Deployment &amp;<br />results.</CaseHead></Reveal>
+          <Reveal><CaseHead ix="06">Proof &amp;<br />numbers.</CaseHead></Reveal>
           <Reveal>
             <div className="stat-row">
               {p.stats.map(([big, u, lbl], i) => (
