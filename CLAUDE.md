@@ -89,12 +89,14 @@ tabular; one accent; no emoji.
 
 ## Data model (lib/data.ts `Project`)
 `slug, num, title (\n for 2 lines), cats[], year, accent (hex), summary, role,
-client, timeline, stack[], liveUrl?, img (card), heroImg? (banner), overview[],
-pains?[{problem,result}], research, researchOurs?, ai, aiHeadline?, features?[]
-(eyebrow,title,body,points[],media{label,src?,pos?,capPad?}), pitch?, stats[],
-media?{identity,type,homeDesktop,homeMobile,components,devicePair,gallery[]}`.
-Projects: volt-home-energy (lead, real images), sarisara-lanka, villa-kaloya,
-lumen-skincare, hiruka-wellness, north-point. Only VOLT has real screenshots.
+client, clientLabel?, timeline, stack[], liveUrl?, status?, img (card), cardPos?,
+heroImg? (banner), overview[], pains?[{problem,result}], research, researchOurs?,
+ai, aiHeadline?, features?[] (eyebrow,title,body,points[],media? — omit media for a
+centred text-only row), pitch?, stats[], buildNote?, designNote?,
+media?{identity,type,homeDesktop,homeMobile,components,design[],devicePair,gallery[]}`.
+Projects: sarisara-lanka (lead, real images), thushara-rathnayake (real images),
+volt-home-energy (real images), villa-kaloya, lumen-skincare, hiruka-wellness,
+north-point (older samples).
 
 ## ✅ IMAGE WINDOWING SYSTEM (done for VOLT — standard going forward)
 Per project the user supplies **one full-desktop PNG + one full-mobile PNG**

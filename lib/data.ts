@@ -48,6 +48,7 @@ export type Project = {
   timeline: string;
   stack: string[];
   img: string | null;       // slideshow / work-card image
+  cardPos?: string;         // work-card crop position (default "center"; e.g. "center 8%")
   heroImg?: string;         // case-study hero banner (falls back to img)
   liveUrl?: string;
   status?: string;          // shown in the Live slot when there is no URL yet
@@ -173,7 +174,103 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    slug: "volt-home-energy", num: "02", title: "VOLT Home\nEnergy",
+    slug: "thushara-rathnayake", num: "02", title: "Thushara\nRathnayake",
+    cats: ["Personal Brand", "Web", "Booking", "Automation", "Admin"], year: "2026", accent: "#C9962F",
+    summary: "A personal-brand site for a 16-year insurance advisor — plain-language services, real approved reviews, and a 90-second booking flow that runs itself.",
+    role: "Strategy · Brand & Design · Build · Handover", client: "Thushara Rathnayake", timeline: "Live · handed over 4 Oct 2026",
+    stack: ["Astro 7", "Preact islands", "Tailwind CSS 4", "TypeScript", "Cloudflare Workers", "Cloudflare D1", "Cloudflare R2", "Cloudflare Email", "Self-hosted fonts", "Schema.org JSON-LD", "Claude co-builder"],
+    liveUrl: "https://thushararathnayake.com/",
+    img: "url('/assets/thushara/project-card.webp')", cardPos: "center 8%",
+    heroImg: "url('/assets/thushara/hero-banner.webp')",
+    overview: [
+      "Thushara Rathnayake has advised Sri Lankan professionals for 16 years — 14 of them at MDRT level, the global standard that fewer than 1% of financial advisors reach. His business ran on referrals and WhatsApp, with no place where a busy doctor or engineer could see what he does, read what other clients say, and book a time in a minute and a half.",
+      "I built that place: a fast, calm website with eight service pages, pages written for doctors and engineers, a four-step booking form that offers only the times he is free, and an email that reaches him with a one-tap WhatsApp reply. Behind it sits a simple admin where Thushara changes his own content — reviews, photos, guides, questions, hours and legal pages — without ever needing a developer.",
+    ],
+    pains: [
+      { problem: "Expertise without a storefront", result: "16 years of results lived only in referrals and WhatsApp chats. A new client had nothing to look at before trusting him with their family's future." },
+      { problem: "Busy professionals, no time to call", result: "Doctors and engineers work long shifts. A phone call during work hours is a lost lead." },
+      { problem: "Insurance feels like jargon and pressure", result: "People delay cover because they expect a sales pitch they cannot follow." },
+      { problem: "Every change needed a developer", result: "A new award photo, a new review or new opening hours should not mean a support ticket." },
+    ],
+    research: "Industry standard: most insurance-agent sites are a single template page with a phone number, a generic stock photo and a contact form that drops into an inbox nobody watches. There are no real reviews, no plain-language explanations, and nothing the advisor can update himself.",
+    researchOurs: "A personal brand site that answers questions before they are asked: eight service pages in plain language, separate pages for doctors and engineers, a 'how working with me works' page, and only real, approved client reviews. Booking takes about 90 seconds and offers only the hours Thushara has set. The site is static and fast on Sri Lankan mobile networks, with fonts hosted on the same server, and everything that changes often is editable by Thushara himself.",
+    ai: "Every booking is saved to the database first, then two emails go out: Thushara gets the client's details with a 'Reply on WhatsApp' button, and the client gets a warm confirmation from Thushara's own name — and if they reply, it reaches him directly. The booking form offers only the hours he has set for each day of the week. His years of experience and his MDRT count go up by themselves every 1 January, on Colombo time. New reviews arrive through a private link he sends to clients, and nothing is published until he approves it with one tap.",
+    aiHeadline: "A website that books, answers and updates itself.",
+    features: [
+      {
+        eyebrow: "Booking · Client-facing",
+        title: "Book a consultation in about 90 seconds.",
+        body: "A four-step form: what you do, what you need, how and when to meet, and how to reach you. It only offers times inside the hours Thushara has set, at least 3 hours ahead and up to 30 days out. Progress is saved if the visitor leaves and comes back.",
+        points: [
+          "4 steps",
+          "Only his free hours",
+          "Saved if you leave",
+        ],
+        media: { label: "Booking form · step 1", src: "url('/assets/thushara/feature-booking.webp')" },
+      },
+      {
+        eyebrow: "Email · Automated",
+        title: "The right email to the right person.",
+        body: "Each booking sends two emails. Thushara's copy shows who, what and when, with one-tap Reply on WhatsApp, Call and Email buttons and a link to the enquiry. The client's thank-you arrives from 'Thushara Rathnayake', and a reply goes straight to him. The booking is saved before any email is sent, so a slow email never loses a client.",
+        points: [
+          "2 emails per booking",
+          "One-tap WhatsApp reply",
+          "Saved before sending",
+        ],
+        media: { label: "Booking emails · client & advisor", src: "url('/assets/thushara/feature-email.webp')" },
+      },
+      {
+        eyebrow: "Admin · No code",
+        title: "Thushara runs his own website.",
+        body: "A private admin with no password — he signs in with a one-time link sent to his email. He edits enquiries (with CSV export), reviews, photos, downloadable guides, questions for each page, service-page wording, weekly hours, his contact details and his legal pages.",
+        points: [
+          "One-time sign-in link",
+          "10 admin sections",
+          "Hours set per day of the week",
+        ],
+        media: { label: "Admin · home & weekly hours", src: "url('/assets/thushara/feature-admin.webp')" },
+      },
+      {
+        eyebrow: "Trust · Reviews",
+        title: "Only real reviews, approved by him.",
+        body: "There is no public review button. Thushara sends a private link to a client, who adds a review and an optional photo. It waits until he approves it — one tap from the email he receives.",
+        points: [
+          "Private review link",
+          "Optional photo",
+          "Nothing published without approval",
+        ],
+        media: { label: "Reviews · private link & approval", src: "url('/assets/thushara/feature-reviews.webp')" },
+      },
+    ],
+    pitch: {
+      eyebrow: "For advisors, consultants & personal brands",
+      title: "Your reputation, working for you\naround the clock.",
+      body: [
+        "Clients check you online before they call.",
+        "A site like this answers their questions, shows real reviews, and books a time while you are with another client — and you can update it yourself.",
+      ],
+      points: [
+        "Plain-language services for the clients you want",
+        "Real reviews, approved before they go live",
+        "A booking flow that only offers your free hours",
+        "Update reviews, photos and hours yourself",
+      ],
+    },
+    stats: [["24", "", "Pages, all live"], ["90", "sec", "To book a consultation"], ["10", "", "Admin sections he edits himself"], ["2", "", "Emails sent automatically per booking"]],
+    buildNote: "Marketing pages are pre-built and served from Cloudflare's network; only the booking, admin and email parts run on demand. Each page has its own share image, a sitemap, structured data for search engines, and the staging address is blocked from search.",
+    designNote: "Ink navy, a warm gold and a cream page — calm and premium, never salesy. Headlines in Cabinet Grotesk, body text in Satoshi, and each service's promise line in Newsreader italic. All fonts are hosted on the site itself so pages load fast on Sri Lankan mobile networks.",
+    media: {
+      design: [
+        { src: "url('/assets/thushara/design-brand.webp')", label: "Brand & type" },
+        { src: "url('/assets/thushara/design-home.webp')", label: "Homepage" },
+        { src: "url('/assets/thushara/design-service.webp')", label: "Service page" },
+        { src: "url('/assets/thushara/design-persona.webp')", label: "Page for doctors" },
+      ],
+      devicePair: { label: "Homepage — desktop & mobile", desktop: "url('/assets/thushara/full-desktop.webp')", mobile: "url('/assets/thushara/full-mobile.webp')", cropYMobile: "100%" },
+    },
+  },
+  {
+    slug: "volt-home-energy", num: "03", title: "VOLT Home\nEnergy",
     cats: ["Solar & Energy", "Web", "Branding", "AI"], year: "2026", accent: "#E5FF03",
     summary: "A modular home-energy brand — a Swiss-grid storefront with an on-page AI sizing concierge.",
     role: "Strategy · Design · Build", client: "VOLT Home Energy", timeline: "4 weeks",
@@ -261,7 +358,7 @@ export const PROJECTS: Project[] = [
 
 
   {
-    slug: "villa-kaloya", num: "03", title: "Villa\nKaloya",
+    slug: "villa-kaloya", num: "04", title: "Villa\nKaloya",
     cats: ["Hospitality", "Web", "Bookings"], year: "2025", accent: "#FF9F1C",
     summary: "A boutique villa, booked direct. Cinematic, editorial, and engineered to skip the OTAs.",
     role: "Design · Build", client: "Villa Kaloya", timeline: "5 weeks", stack: ["Next.js", "Sanity", "Stripe"],
@@ -277,7 +374,7 @@ export const PROJECTS: Project[] = [
     stats: [["0", "%", "OTA fees"], ["2.1", "×", "Direct bookings"], ["48", "s", "Avg. session"], ["5", "wk", "To launch"]],
   },
   {
-    slug: "lumen-skincare", num: "04", title: "Lumen\nSkincare",
+    slug: "lumen-skincare", num: "05", title: "Lumen\nSkincare",
     cats: ["Beauty", "Brand", "Shopify"], year: "2025", accent: "#FF3B30",
     summary: "A skincare brand built to be cited — identity, store, and an ingredient story assistants can read.",
     role: "Branding · Design · Build", client: "Lumen", timeline: "7 weeks", stack: ["Shopify", "Hydrogen", "Schema"],
@@ -293,7 +390,7 @@ export const PROJECTS: Project[] = [
     stats: [["41", "%", "AI-cited claims"], ["1.8", "×", "Conversion"], ["18", "mo", "Brand runway"], ["7", "wk", "To launch"]],
   },
   {
-    slug: "hiruka-wellness", num: "05", title: "Hiruka\nWellness",
+    slug: "hiruka-wellness", num: "06", title: "Hiruka\nWellness",
     cats: ["Wellness", "Web", "UI/UX"], year: "2024", accent: "#2E6BFF",
     summary: "Calm, editorial, conversion-ready — a wellness retreat that reads like a long exhale.",
     role: "Design · Build", client: "Hiruka", timeline: "6 weeks", stack: ["Next.js", "Contentful"],
@@ -309,7 +406,7 @@ export const PROJECTS: Project[] = [
     stats: [["1.9", "×", "Sign-ups"], ["54", "%", "Mobile share"], ["0", "", "Bounce on hero"], ["6", "wk", "To launch"]],
   },
   {
-    slug: "north-point", num: "06", title: "North Point\nEstates",
+    slug: "north-point", num: "07", title: "North Point\nEstates",
     cats: ["Real Estate", "Web", "Brand"], year: "2024", accent: "#FFFFFF",
     summary: "Property, presented like product. A monochrome estate brand with listings that feel inevitable.",
     role: "Branding · Design · Build", client: "North Point", timeline: "8 weeks", stack: ["Next.js", "Mapbox", "Schema"],

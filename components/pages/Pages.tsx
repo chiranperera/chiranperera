@@ -10,7 +10,7 @@ import { IArrow } from "@/components/icons";
 export function WorkPage() {
   const { go } = useNav();
   const [f, setF] = React.useState("All");
-  const cats = ["All", "Web", "Branding", "AI", "Hospitality", "Beauty"];
+  const cats = ["All", "Web", "AI", "Automation", "Branding", "Design System"];
   const list = f === "All" ? PROJECTS : PROJECTS.filter((p) => p.cats.some((c) => c.includes(f)) || (f === "Branding" && p.cats.includes("Brand")));
   return (
     <div className="case" style={{ "--accent": "#D8FF3E" } as React.CSSProperties}>
@@ -24,7 +24,7 @@ export function WorkPage() {
           {list.map((p) => (
             <article className="wi" key={p.slug} onClick={() => go("case:" + p.slug)} style={{ "--accent": p.accent } as React.CSSProperties}>
               <div className="media">
-                {p.img ? <div className="img" style={{ backgroundImage: p.img }} /> : null}
+                {p.img ? <div className="img" style={{ backgroundImage: p.img, backgroundPosition: p.cardPos || "center" }} /> : null}
                 <span className="num">{p.num}</span>
                 <span className="big">{p.title.replace("\n", " ")}</span>
               </div>
@@ -63,7 +63,7 @@ export function StudioPage() {
       <section className="wrap">
         <div className="studio-two">
           <div className="story">
-            <p>I&apos;m Chiran Perera — a one-designer studio building cinematic, AI-native websites for hotels, wellness, beauty and lifestyle brands. The work is the hero; every project ships as a full case study.</p>
+            <p>I&apos;m Chiran Perera — a one-designer studio building cinematic, AI-native websites and booking systems for ambitious businesses. The work is the hero; every project ships as a full case study.</p>
             <p>For six years I&apos;ve designed and built across web development, UI/UX, branding, social campaigns and AI-driven marketing — and lately, engineering brands to be the source ChatGPT, Claude and Perplexity actually cite.</p>
             <p>I work solo and close to the metal: strategy, design, front-end and deploy, with no agency layers in between. One maker, one client, one clear path from idea to launched.</p>
           </div>
@@ -172,7 +172,7 @@ export function JournalPage() {
       <section className="wrap page-hero">
         <span className="eyebrow"><span className="dot" style={{ color: "var(--accent)" }}>●</span> Journal</span>
         <h1>Journal<span style={{ color: "var(--accent)" }}>.</span></h1>
-        <p className="lead">Notes on AI search, brand systems, and building cinematic, citable websites for lifestyle brands. Coming soon.</p>
+        <p className="lead">Notes on AI search, brand systems, and building cinematic, citable websites for ambitious brands. Coming soon.</p>
         <div style={{ marginTop: 36 }}>
           <button className="btn btn-outline" onClick={() => go("home")}>Back to work <span className="arr">→</span></button>
         </div>

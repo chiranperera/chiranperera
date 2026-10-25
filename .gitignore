@@ -36,5 +36,5 @@ next-env.d.ts
 # project source drops (images already copied into public/assets/)
 /volt-website
 
-# Sarisara source screenshots (optimised copies live in public/assets/sarisara/)
-/markdowns/SarisaraLanka/*.png
+# project source screenshots (optimised copies live in public/assets/)
+/markdowns/*/*.png

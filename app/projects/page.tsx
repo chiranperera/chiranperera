@@ -3,7 +3,7 @@ import { WorkPage } from "@/components/pages/Pages";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected projects, 2024–2026 — cinematic, AI-native websites and brand systems for hospitality, wellness, beauty and lifestyle brands.",
+  description: "Selected projects, 2024–2026 — AI-native websites, personal brands and booking systems, designed and built end to end.",
 };
 
 export default function Page() {
